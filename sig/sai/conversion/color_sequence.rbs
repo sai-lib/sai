@@ -1,0 +1,114 @@
+# Generated from lib/sai/conversion/color_sequence.rb with RBS::Inline
+
+module Sai
+  module Conversion
+    # ANSI escape sequence utilities
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    module ColorSequence
+      type style_type = :foreground | :background
+
+      # Convert a color to the appropriate ANSI escape sequence
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param color [String, Array<Integer>] the color to convert
+      # @param mode [Integer] the terminal color mode
+      # @param style_type [Symbol] the type of color (foreground or background)
+      #
+      # @return [String] the ANSI escape sequence
+      # @rbs (Array[Integer] | String | Symbol color, Integer mode, ?style_type style_type) -> String
+      def self.resolve: (Array[Integer] | String | Symbol color, Integer mode, ?style_type style_type) -> String
+
+      # Convert RGB values to a 4-bit ANSI color sequence
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param rgb [Array<Integer>] the RGB components
+      # @param style_type [Symbol] the type of color (foreground or background)
+      #
+      # @return [String] the ANSI escape sequence
+      # @rbs (Array[Integer] rgb, style_type style_type) -> String
+      private def self.ansi: (Array[Integer] rgb, style_type style_type) -> String
+
+      # Convert a base color to a foreground or background sequence
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param base_code [Integer] the base color code
+      # @param style_type [Symbol] the type of color (foreground or background)
+      #
+      # @return [Integer] the code for the color sequence
+      # @rbs (Integer base_code, style_type style_type) -> Integer
+      private def self.base_color_for_style_type: (Integer base_code, style_type style_type) -> Integer
+
+      # Convert RGB values to a 3-bit basic color sequence
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param rgb [Array<Integer>] the RGB components
+      # @param style_type [Symbol] the type of color (foreground or background)
+      #
+      # @return [String] the ANSI escape sequence
+      # @rbs (Array[Integer] rgb, style_type style_type) -> String
+      private def self.basic: (Array[Integer] rgb, style_type style_type) -> String
+
+      # Convert RGB values to an 8-bit color sequence
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param rgb [Array<Integer>] the RGB components
+      # @param style_type [Symbol] the type of color (foreground or background)
+      #
+      # @return [String] the ANSI escape sequence
+      # @rbs (Array[Integer] rgb, style_type type) -> String
+      private def self.bit8: (Array[Integer] rgb, style_type type) -> String
+
+      # Convert RGB values to a true color (24-bit) sequence
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param rgb [Array<Integer>] the RGB components
+      # @param style_type [Symbol] the type of color (foreground or background)
+      #
+      # @return [String] the ANSI escape sequence
+      # @rbs (Array[Integer] rgb, style_type type) -> String
+      private def self.true_color: (Array[Integer] rgb, style_type type) -> String
+
+      # Validate a color style type
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param style_type [Symbol] the style type to validate
+      #
+      # @raise [ArgumentError] if the style type is invalid
+      # @return [Symbol] the validated style type
+      # @rbs (Symbol style_type) -> Symbol
+      private def self.validate_style_type: (Symbol style_type) -> Symbol
+    end
+  end
+end
