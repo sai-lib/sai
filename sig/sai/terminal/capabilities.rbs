@@ -1,0 +1,81 @@
+# Generated from lib/sai/terminal/capabilities.rb with RBS::Inline
+
+module Sai
+  module Terminal
+    # Detect the color capabilities of the terminal
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    module Capabilities
+      # Detect the color capabilities of the current terminal
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Integer] the {ColorMode} of the terminal
+      # @rbs () -> Integer
+      def self.detect_color_support: () -> Integer
+
+      # Check for ANSI color support
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Boolean] `true` if the terminal supports basic ANSI colors, otherwise `false`
+      # @rbs () -> bool
+      private def self.ansi?: () -> bool
+
+      # Check for basic color support
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Boolean] `true` if the terminal supports basic colors, otherwise `false`
+      # @rbs () -> bool
+      private def self.basic?: () -> bool
+
+      # Check for 256 color (8-bit) support
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Boolean] `true` if the terminal supports 256 colors, otherwise `false`
+      # @rbs () -> bool
+      private def self.bit8?: () -> bool
+
+      # Check for NO_COLOR environment variable
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @see https://no-color.org
+      #
+      # @return [Boolean] `true` if the NO_COLOR environment variable is set, otherwise `false`
+      # @rbs () -> bool
+      private def self.no_color?: () -> bool
+
+      # Check for true color (24-bit) support
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Boolean] `true` if the terminal supports true color, otherwise `false`
+      # @rbs () -> bool
+      private def self.true_color?: () -> bool
+    end
+  end
+end
