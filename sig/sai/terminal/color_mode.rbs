@@ -1,0 +1,63 @@
+# Generated from lib/sai/terminal/color_mode.rb with RBS::Inline
+
+module Sai
+  module Terminal
+    # Represents different color support levels for terminal interfaces
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    module ColorMode
+      # The terminal does not support color output
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Integer] the color mode
+      NO_COLOR: Integer
+
+      # The terminal supports 8 colors (3-bit)
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Integer] the color mode
+      BASIC: Integer
+
+      # The terminal supports 16 colors (4-bit)
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Integer] the color mode
+      ANSI: Integer
+
+      # The terminal supports 256 colors (8-bit)
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Integer] the color mode
+      BIT8: Integer
+
+      # The terminal supports 16 million colors (24-bit)
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Integer] the color mode
+      TRUE_COLOR: Integer
+    end
+  end
+end
