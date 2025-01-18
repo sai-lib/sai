@@ -1,0 +1,2 @@
+inherit_gem:
+  rubocop-domainic-dev: config/rubocop/domainic.yml
