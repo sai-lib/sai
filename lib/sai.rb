@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sai/support'
+
 # An elegant color management system for crafting sophisticated CLI applications
 #
 # Sai (彩) - meaning 'coloring' or 'paint' in Japanese - is a powerful and intuitive system for managing color output in
