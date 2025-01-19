@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'sai'
 require 'sai/ansi'
 require 'sai/conversion/color_sequence'
 
@@ -18,13 +19,13 @@ module Sai
     #
     # @api private
     #
-    # @param color_mode [Integer] the color mode to use
+    # @param mode [Integer] the color mode to use
     #
     # @return [Decorator] the new instance of Decorator
-    # @rbs (Integer color_mode) -> void
-    def initialize(color_mode)
+    # @rbs (?mode: Integer) -> void
+    def initialize(mode: Sai.mode.auto)
       @background = nil
-      @color_mode = color_mode
+      @mode = mode
       @foreground = nil
       @styles = [] #: Array[Symbol]
     end
@@ -694,11 +695,11 @@ module Sai
     # @return [String] the decorated text
     # @rbs (String text) -> String
     def decorate(text)
-      return text if @foreground.nil? && @background.nil? && @styles.empty?
+      return text unless should_decorate?
 
       sequences = [
-        @foreground && Conversion::ColorSequence.resolve(@foreground, @color_mode),
-        @background && Conversion::ColorSequence.resolve(@background, @color_mode, :background),
+        @foreground && Conversion::ColorSequence.resolve(@foreground, @mode),
+        @background && Conversion::ColorSequence.resolve(@background, @mode, :background),
         @styles.map { |style| "\e[#{ANSI::STYLES[style]}m" }.join
       ].compact.join
 
@@ -846,6 +847,22 @@ module Sai
       end
 
       dup.tap { |duped| duped.instance_variable_set(:@styles, (@styles + [style]).uniq) }
+    end
+
+    # Check if text should be decorated
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @return [Boolean] `true` if text should be decorated, `false` otherwise
+    # @rbs () -> bool
+    def should_decorate?
+      return false if @mode == Terminal::ColorMode::NO_COLOR
+      return false if @foreground.nil? && @background.nil? && @styles.empty?
+
+      true
     end
   end
 end

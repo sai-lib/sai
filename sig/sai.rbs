@@ -167,17 +167,6 @@ module Sai
   # @rbs () -> singleton(Support)
   def self.support: () -> singleton(Support)
 
-  # Detect the color capabilities of the terminal
-  #
-  # @author {https://aaronmallen.me Aaron Allen}
-  # @since 0.1.0
-  #
-  # @api private
-  #
-  # @return [Integer] the color mode
-  # @rbs () -> Integer
-  private def self.color_mode: () -> Integer
-
   # A helper method to initialize an instance of {Decorator}
   #
   # @author {https://aaronmallen.me Aaron Allen}
@@ -193,9 +182,14 @@ module Sai
   #   MyClass.new.decorator.blue.on_red.bold.decorate('Hello, world!')
   #   #=> "\e[38;5;21m\e[48;5;160m\e[1mHello, world!\e[0m"
   #
+  #   MyClass.new.decorator(mode: Sai.mode.no_color)
+  #   #=> "Hello, world!"
+  #
+  # @param mode [Integer] the color mode to use
+  #
   # @return [Decorator] the Decorator instance
-  # @rbs () -> Decorator
-  def decorator: () -> Decorator
+  # @rbs (?mode: Integer) -> Decorator
+  def decorator: (?mode: Integer) -> Decorator
 
   # The supported color modes for the terminal
   #

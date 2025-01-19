@@ -15,11 +15,11 @@ module Sai
     #
     # @api private
     #
-    # @param color_mode [Integer] the color mode to use
+    # @param mode [Integer] the color mode to use
     #
     # @return [Decorator] the new instance of Decorator
-    # @rbs (Integer color_mode) -> void
-    def initialize: (Integer color_mode) -> void
+    # @rbs (?mode: Integer) -> void
+    def initialize: (?mode: Integer) -> void
 
     def black: () -> Decorator
 
@@ -242,5 +242,16 @@ module Sai
     # @return [Decorator] a new instance of Decorator with the style applied
     # @rbs (String | Symbol style) -> self
     def apply_style: (String | Symbol style) -> self
+
+    # Check if text should be decorated
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @return [Boolean] `true` if text should be decorated, `false` otherwise
+    # @rbs () -> bool
+    def should_decorate?: () -> bool
   end
 end

@@ -51,7 +51,7 @@ module Sai
     ignored_decorator_methods = %i[apply call decorate encode]
     Decorator.instance_methods(false).reject { |m| ignored_decorator_methods.include?(m) }.each do |method|
       define_method(method) do |*arguments, **keyword_arguments|
-        Decorator.new(send(:color_mode)).public_send(method, *arguments, **keyword_arguments)
+        Decorator.new(mode: Sai.mode.auto).public_send(method, *arguments, **keyword_arguments)
       end
     end
 
@@ -140,21 +140,6 @@ module Sai
     def support
       Support
     end
-
-    private
-
-    # Detect the color capabilities of the terminal
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api private
-    #
-    # @return [Integer] the color mode
-    # @rbs () -> Integer
-    def color_mode
-      Thread.current[:sai_color_mode] ||= Terminal::Capabilities.detect_color_support
-    end
   end
 
   # A helper method to initialize an instance of {Decorator}
@@ -172,10 +157,15 @@ module Sai
   #   MyClass.new.decorator.blue.on_red.bold.decorate('Hello, world!')
   #   #=> "\e[38;5;21m\e[48;5;160m\e[1mHello, world!\e[0m"
   #
+  #   MyClass.new.decorator(mode: Sai.mode.no_color)
+  #   #=> "Hello, world!"
+  #
+  # @param mode [Integer] the color mode to use
+  #
   # @return [Decorator] the Decorator instance
-  # @rbs () -> Decorator
-  def decorator
-    Decorator.new(Terminal::Capabilities.detect_color_support)
+  # @rbs (?mode: Integer) -> Decorator
+  def decorator(mode: Sai.mode.auto)
+    Decorator.new(mode:)
   end
 
   # The supported color modes for the terminal
