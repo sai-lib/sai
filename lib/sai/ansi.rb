@@ -4,14 +4,14 @@ module Sai
   # ANSI constants for encoding text styles and colors
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since unreleased
+  # @since 0.1.0
   #
   # @api private
   module ANSI
     # ANSI color code mappings
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     #
@@ -30,7 +30,7 @@ module Sai
     # Standard ANSI color names and their RGB values
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     #
@@ -57,7 +57,7 @@ module Sai
     # ANSI escape sequence for resetting text formatting
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     #
@@ -67,7 +67,7 @@ module Sai
     # Standard ANSI style codes
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     #

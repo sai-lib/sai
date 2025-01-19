@@ -6,14 +6,14 @@ module Sai
   # Determine the color capabilities of the terminal
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since unreleased
+  # @since 0.1.0
   #
   # @api public
   class Support
     # Initialize a new instance of Support
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     #
@@ -28,7 +28,7 @@ module Sai
     # Check if the terminal supports ANSI colors (4-bit)
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -46,7 +46,7 @@ module Sai
     # Check if the terminal supports basic colors (3-bit)
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -64,7 +64,7 @@ module Sai
     # Check if the terminal supports 256 colors (8-bit)
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -81,7 +81,7 @@ module Sai
     # Check if the terminal supports color output
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -97,7 +97,7 @@ module Sai
     # Check if the terminal supports true color (24-bit)
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #

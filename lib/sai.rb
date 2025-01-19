@@ -23,7 +23,7 @@ require 'singleton'
 # decorations (apply, call, decorate, encode). These methods are directly delegated to a new {Decorator} instance
 #
 # @author {https://aaronmallen.me Aaron Allen}
-# @since unreleased
+# @since 0.1.0
 #
 # @api public
 #
@@ -105,7 +105,7 @@ module Sai
     # The supported color modes for the terminal
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -127,7 +127,7 @@ module Sai
     # Detect the color capabilities of the terminal
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     #
@@ -141,7 +141,7 @@ module Sai
   # A helper method to initialize an instance of {Decorator}
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since unreleased
+  # @since 0.1.0
   #
   # @api public
   #
@@ -162,7 +162,7 @@ module Sai
   # The supported color modes for the terminal
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since unreleased
+  # @since 0.1.0
   #
   # @api public
   #

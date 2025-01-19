@@ -7,14 +7,14 @@ module Sai
   # A decorator for applying ANSI styles and colors to text
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since unreleased
+  # @since 0.1.0
   #
   # @api public
   class Decorator
     # Initialize a new instance of Decorator
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     #
@@ -33,7 +33,7 @@ module Sai
     #   Apply the named ANSI color "black" to the foreground
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -46,7 +46,7 @@ module Sai
     #   Apply the named ANSI color "blue" to the foreground
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -59,7 +59,7 @@ module Sai
     #   Apply the named ANSI color "bright_black" to the foreground
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -172,7 +172,7 @@ module Sai
     #   Apply the named ANSI color "black" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -185,7 +185,7 @@ module Sai
     #   Apply the named ANSI color "blue" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -198,7 +198,7 @@ module Sai
     #   Apply the named ANSI color "bright_black" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -211,7 +211,7 @@ module Sai
     #   Apply the named ANSI color "bright_blue" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -224,7 +224,7 @@ module Sai
     #   Apply the named ANSI color "bright_cyan" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -237,7 +237,7 @@ module Sai
     #   Apply the named ANSI color "bright_green" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -250,7 +250,7 @@ module Sai
     #   Apply the named ANSI color "bright_magenta" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -263,7 +263,7 @@ module Sai
     #   Apply the named ANSI color "bright_red" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -276,7 +276,7 @@ module Sai
     #   Apply the named ANSI color "bright_white" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -289,7 +289,7 @@ module Sai
     #   Apply the named ANSI color "bright_yellow" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -302,7 +302,7 @@ module Sai
     #   Apply the named ANSI color "cyan" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -315,7 +315,7 @@ module Sai
     #   Apply the named ANSI color "green" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -328,7 +328,7 @@ module Sai
     #   Apply the named ANSI color "magenta" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -341,7 +341,7 @@ module Sai
     #   Apply the named ANSI color "red" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -354,7 +354,7 @@ module Sai
     #   Apply the named ANSI color "white" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -367,7 +367,7 @@ module Sai
     #   Apply the named ANSI color "yellow" to the background
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -451,7 +451,7 @@ module Sai
     #   Apply the ANSI style "blink" to the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -464,7 +464,7 @@ module Sai
     #   Apply the ANSI style "bold" to the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -477,7 +477,7 @@ module Sai
     #   Apply the ANSI style "conceal" to the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -490,7 +490,7 @@ module Sai
     #   Apply the ANSI style "dim" to the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -503,7 +503,7 @@ module Sai
     #   Apply the ANSI style "italic" to the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -516,7 +516,7 @@ module Sai
     #   Remove the ANSI style "blink" from the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -529,7 +529,7 @@ module Sai
     #   Remove the ANSI style "conceal" from the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -542,7 +542,7 @@ module Sai
     #   Remove the ANSI style "italic" from the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -555,7 +555,7 @@ module Sai
     #   Remove the ANSI style "reverse" from the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -568,7 +568,7 @@ module Sai
     #   Remove the ANSI style "strike" from the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -581,7 +581,7 @@ module Sai
     #   Remove the ANSI style "underline" from the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -594,7 +594,7 @@ module Sai
     #   Remove any intensity styles (bold or dim) from the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -607,7 +607,7 @@ module Sai
     #   Apply the ANSI style "rapid_blink" to the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -620,7 +620,7 @@ module Sai
     #   Apply the ANSI style "reverse" to the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -633,7 +633,7 @@ module Sai
     #   Apply the ANSI style "strike" to the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -646,7 +646,7 @@ module Sai
     #   Apply the ANSI style "underline" to the text
     #
     #   @author {https://aaronmallen.me Aaron Allen}
-    #   @since unreleased
+    #   @since 0.1.0
     #
     #   @api public
     #
@@ -681,7 +681,7 @@ module Sai
     # Apply the styles and colors to the text
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -711,7 +711,7 @@ module Sai
     # Apply a hexadecimal color to the foreground
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -732,7 +732,7 @@ module Sai
     # Apply a hexadecimal color to the background
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -753,7 +753,7 @@ module Sai
     # Apply an RGB color to the background
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -778,7 +778,7 @@ module Sai
     # Apply an RGB color to the foreground
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -805,7 +805,7 @@ module Sai
     # Apply a named color to the specified style type
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     #
@@ -828,7 +828,7 @@ module Sai
     # Apply a style to the text
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     #

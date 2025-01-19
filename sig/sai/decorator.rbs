@@ -4,14 +4,14 @@ module Sai
   # A decorator for applying ANSI styles and colors to text
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since unreleased
+  # @since 0.1.0
   #
   # @api public
   class Decorator
     # Initialize a new instance of Decorator
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     #
@@ -120,7 +120,7 @@ module Sai
     # Apply the styles and colors to the text
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -143,7 +143,7 @@ module Sai
     # Apply a hexadecimal color to the foreground
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -160,7 +160,7 @@ module Sai
     # Apply a hexadecimal color to the background
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -177,7 +177,7 @@ module Sai
     # Apply an RGB color to the background
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -196,7 +196,7 @@ module Sai
     # Apply an RGB color to the foreground
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api public
     #
@@ -217,7 +217,7 @@ module Sai
     # Apply a named color to the specified style type
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     #
@@ -232,7 +232,7 @@ module Sai
     # Apply a style to the text
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     #

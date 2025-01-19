@@ -5,14 +5,14 @@ module Sai
     # Represents different color support levels for terminal interfaces
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     module ColorMode
       # The terminal does not support color output
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.1.0
       #
       # @api private
       #
@@ -22,7 +22,7 @@ module Sai
       # The terminal supports 8 colors (3-bit)
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.1.0
       #
       # @api private
       #
@@ -32,7 +32,7 @@ module Sai
       # The terminal supports 16 colors (4-bit)
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.1.0
       #
       # @api private
       #
@@ -42,7 +42,7 @@ module Sai
       # The terminal supports 256 colors (8-bit)
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.1.0
       #
       # @api private
       #
@@ -52,7 +52,7 @@ module Sai
       # The terminal supports 16 million colors (24-bit)
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.1.0
       #
       # @api private
       #

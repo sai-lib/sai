@@ -7,7 +7,7 @@ module Sai
     # RGB color conversion utilities
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     module RGB
@@ -15,7 +15,7 @@ module Sai
         # Get closest ANSI color for RGB values
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -37,7 +37,7 @@ module Sai
         # Determine if a color is dark
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -54,7 +54,7 @@ module Sai
         # Determine if a color is grayscale
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -71,7 +71,7 @@ module Sai
         # Convert a color value to RGB components
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -96,7 +96,7 @@ module Sai
         # Convert RGB values to 256-color cube index
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -112,7 +112,7 @@ module Sai
         # Convert RGB values to grayscale index
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -129,7 +129,7 @@ module Sai
         # Check if RGB values represent cyan
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -146,7 +146,7 @@ module Sai
         # Convert a hex string to RGB values
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -166,7 +166,7 @@ module Sai
         # Check if RGB values represent magenta
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -183,7 +183,7 @@ module Sai
         # Convert a named color to RGB values
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -201,7 +201,7 @@ module Sai
         # Determine if RGB values represent a primary color
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -220,7 +220,7 @@ module Sai
         # Get the closest primary color
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -242,7 +242,7 @@ module Sai
         # Determine if RGB values represent a secondary color
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -263,7 +263,7 @@ module Sai
         # Get the closest secondary color
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -284,7 +284,7 @@ module Sai
         # Validate RGB values
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -303,7 +303,7 @@ module Sai
         # Check if RGB values represent yellow
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #

@@ -9,7 +9,7 @@ module Sai
     # ANSI escape sequence utilities
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.1.0
     #
     # @api private
     module ColorSequence
@@ -20,7 +20,7 @@ module Sai
         # Convert a color to the appropriate ANSI escape sequence
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -49,7 +49,7 @@ module Sai
         # Convert RGB values to a 4-bit ANSI color sequence
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -72,7 +72,7 @@ module Sai
         # Convert a base color to a foreground or background sequence
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -88,7 +88,7 @@ module Sai
         # Convert RGB values to a 3-bit basic color sequence
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -107,7 +107,7 @@ module Sai
         # Convert RGB values to an 8-bit color sequence
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -130,7 +130,7 @@ module Sai
         # Convert RGB values to a true color (24-bit) sequence
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
@@ -147,7 +147,7 @@ module Sai
         # Validate a color style type
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.1.0
         #
         # @api private
         #
