@@ -24,8 +24,8 @@ RSpec.describe Sai::Support do
       it { expect(support.ansi?).to be true }
     end
 
-    context 'when color mode is BIT8' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BIT8 }
+    context 'when color mode is ADVANCED' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ADVANCED }
 
       it { expect(support.ansi?).to be true }
     end
@@ -56,8 +56,8 @@ RSpec.describe Sai::Support do
       it { expect(support.basic?).to be true }
     end
 
-    context 'when color mode is BIT8' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BIT8 }
+    context 'when color mode is ADVANCED' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ADVANCED }
 
       it { expect(support.basic?).to be true }
     end
@@ -69,35 +69,35 @@ RSpec.describe Sai::Support do
     end
   end
 
-  describe '#bit8?' do
+  describe '#advanced?' do
     context 'when color mode is NO_COLOR' do
       let(:color_mode) { Sai::Terminal::ColorMode::NO_COLOR }
 
-      it { expect(support.bit8?).to be false }
+      it { expect(support.advanced?).to be false }
     end
 
     context 'when color mode is BASIC' do
       let(:color_mode) { Sai::Terminal::ColorMode::BASIC }
 
-      it { expect(support.bit8?).to be false }
+      it { expect(support.advanced?).to be false }
     end
 
     context 'when color mode is ANSI' do
       let(:color_mode) { Sai::Terminal::ColorMode::ANSI }
 
-      it { expect(support.bit8?).to be false }
+      it { expect(support.advanced?).to be false }
     end
 
-    context 'when color mode is BIT8' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BIT8 }
+    context 'when color mode is ADVANCED' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ADVANCED }
 
-      it { expect(support.bit8?).to be true }
+      it { expect(support.advanced?).to be true }
     end
 
     context 'when color mode is TRUE_COLOR' do
       let(:color_mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
 
-      it { expect(support.bit8?).to be true }
+      it { expect(support.advanced?).to be true }
     end
   end
 
@@ -120,8 +120,8 @@ RSpec.describe Sai::Support do
       it { expect(support.color?).to be true }
     end
 
-    context 'when color mode is BIT8' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BIT8 }
+    context 'when color mode is ADVANCED' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ADVANCED }
 
       it { expect(support.color?).to be true }
     end
@@ -152,8 +152,8 @@ RSpec.describe Sai::Support do
       it { expect(support.true_color?).to be false }
     end
 
-    context 'when color mode is BIT8' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BIT8 }
+    context 'when color mode is ADVANCED' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ADVANCED }
 
       it { expect(support.true_color?).to be false }
     end

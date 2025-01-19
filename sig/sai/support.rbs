@@ -21,6 +21,22 @@ module Sai
     # @rbs (Integer color_mode) -> void
     def initialize: (Integer color_mode) -> void
 
+    # Check if the terminal supports 256 colors (8-bit)
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.1.0
+    #
+    # @api public
+    #
+    # @example Check if the terminal supports 256 colors
+    #   Sai.advanced? # => true
+    #
+    # @return [Boolean] `true` if the terminal supports 256 colors (8-bit), otherwise `false`
+    # @rbs () -> bool
+    def advanced?: () -> bool
+
+    alias eight_bit? advanced?
+
     # Check if the terminal supports ANSI colors (4-bit)
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -56,22 +72,6 @@ module Sai
     alias bit3? basic?
 
     alias three_bit? basic?
-
-    # Check if the terminal supports 256 colors (8-bit)
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api public
-    #
-    # @example Check if the terminal supports 256 colors
-    #   Sai.bit8? # => true
-    #
-    # @return [Boolean] `true` if the terminal supports 256 colors (8-bit), otherwise `false`
-    # @rbs () -> bool
-    def bit8?: () -> bool
-
-    alias eight_bit? bit8?
 
     # Check if the terminal supports color output
     #

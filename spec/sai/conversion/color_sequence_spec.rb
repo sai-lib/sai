@@ -46,7 +46,7 @@ RSpec.describe Sai::Conversion::ColorSequence do
     end
 
     context 'when in 8-bit color mode' do
-      let(:mode) { Sai::Terminal::ColorMode::BIT8 }
+      let(:mode) { Sai::Terminal::ColorMode::ADVANCED }
 
       context 'when given grayscale color' do
         let(:color) { [128, 128, 128] }

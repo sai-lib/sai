@@ -112,7 +112,7 @@ module Sai
     # @example Check the color support of the terminal
     #   Sai.support.ansi? # => true
     #   Sai.support.basic? # => true
-    #   Sai.support.bit8? # => true
+    #   Sai.support.advanced? # => true
     #   Sai.support.no_color? # => false
     #   Sai.support.true_color? # => true
     #
@@ -173,7 +173,7 @@ module Sai
   #
   #   MyClass.new.terminal_color_support.ansi? # => true
   #   MyClass.new.terminal_color_support.basic? # => true
-  #   MyClass.new.terminal_color_support.bit8? # => true
+  #   MyClass.new.terminal_color_support.advanced? # => true
   #   MyClass.new.terminal_color_support.no_color? # => false
   #   MyClass.new.terminal_color_support.true_color? # => true
   #

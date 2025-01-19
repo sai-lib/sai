@@ -242,7 +242,7 @@ You can check the terminal's capabilities:
 ```ruby
 # Using directly
 Sai.support.true_color? # => true/false
-Sai.support.bit8?      # => true/false
+Sai.support.advanced?      # => true/false
 Sai.support.ansi?      # => true/false
 Sai.support.basic?     # => true/false
 Sai.support.color?     # => true/false
