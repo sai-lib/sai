@@ -6,9 +6,13 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 ## [Unreleased]
 
+## 0.1.0 - 2025-01-19
+
+* Initial release
+
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Break Versioning]: https://www.taoensso.com/break-versioning
 
 <!-- versions -->
 
-[Unreleased]: https://github.com/aaronmallen/sai/compare/
+[Unreleased]: https://github.com/aaronmallen/sai/compare/0.1.0..HEAD

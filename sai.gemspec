@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-SAI_GEM_VERSION = '0.0.1'
-SAI_SEMVER = '0.0.1'
+SAI_GEM_VERSION = '0.1.0'
+SAI_SEMVER = '0.1.0'
 SAI_REPO_URL = 'https://github.com/aaronmallen/sai'
 SAI_HOME_URL = SAI_REPO_URL
 
