@@ -39,6 +39,20 @@
 #
 #   Sai.support.true_color? # => true
 module Sai
+  # The Sai {ModeSelector mode selector}
+  #
+  # @author {https://aaronmallen.me Aaron Allen}
+  # @since unreleased
+  #
+  # @api public
+  #
+  # @example
+  #   Sai.mode.auto #=> 4
+  #
+  # @return [ModeSelector] the mode selector
+  # @rbs () -> singleton(ModeSelector)
+  def self.mode: () -> singleton(ModeSelector)
+
   def black: () -> Decorator
 
   def blink: () -> Decorator

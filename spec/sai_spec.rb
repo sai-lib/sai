@@ -9,6 +9,12 @@ RSpec.describe Sai do
     allow(Sai::Terminal::Capabilities).to receive(:detect_color_support).and_return(color_mode)
   end
 
+  describe '.mode' do
+    subject(:mode) { described_class.mode }
+
+    it { is_expected.to eq(Sai::ModeSelector) }
+  end
+
   describe '.support' do
     subject(:support) { described_class.support }
 

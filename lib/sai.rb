@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'sai/decorator'
+require 'sai/mode_selector'
 require 'sai/support'
 require 'sai/terminal/capabilities'
 require 'singleton'
@@ -50,6 +51,22 @@ module Sai
       define_method(method) do |*arguments, **keyword_arguments|
         Decorator.new(send(:color_mode)).public_send(method, *arguments, **keyword_arguments)
       end
+    end
+
+    # The Sai {ModeSelector mode selector}
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api public
+    #
+    # @example
+    #   Sai.mode.auto #=> 4
+    #
+    # @return [ModeSelector] the mode selector
+    # @rbs () -> singleton(ModeSelector)
+    def mode
+      ModeSelector
     end
 
     # @rbs!
