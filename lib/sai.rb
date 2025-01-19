@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'sai/decorator'
 require 'sai/support'
 require 'sai/terminal/capabilities'
 require 'singleton'

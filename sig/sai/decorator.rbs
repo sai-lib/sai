@@ -1,0 +1,246 @@
+# Generated from lib/sai/decorator.rb with RBS::Inline
+
+module Sai
+  # A decorator for applying ANSI styles and colors to text
+  #
+  # @author {https://aaronmallen.me Aaron Allen}
+  # @since unreleased
+  #
+  # @api public
+  class Decorator
+    # Initialize a new instance of Decorator
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param color_mode [Integer] the color mode to use
+    #
+    # @return [Decorator] the new instance of Decorator
+    # @rbs (Integer color_mode) -> void
+    def initialize: (Integer color_mode) -> void
+
+    def black: () -> self
+
+    def blue: () -> self
+
+    def bright_black: () -> self
+
+    def bright_blue: () -> self
+
+    def bright_cyan: () -> self
+
+    def bright_green: () -> self
+
+    def bright_magenta: () -> self
+
+    def bright_red: () -> self
+
+    def bright_white: () -> self
+
+    def bright_yellow: () -> self
+
+    def cyan: () -> self
+
+    def green: () -> self
+
+    def magenta: () -> self
+
+    def on_black: () -> self
+
+    def on_blue: () -> self
+
+    def on_bright_black: () -> self
+
+    def on_bright_blue: () -> self
+
+    def on_bright_cyan: () -> self
+
+    def on_bright_green: () -> self
+
+    def on_bright_magenta: () -> self
+
+    def on_bright_red: () -> self
+
+    def on_bright_white: () -> self
+
+    def on_bright_yellow: () -> self
+
+    def on_cyan: () -> self
+
+    def on_green: () -> self
+
+    def on_magenta: () -> self
+
+    def on_red: () -> self
+
+    def on_white: () -> self
+
+    def on_yellow: () -> self
+
+    def red: () -> self
+
+    def white: () -> self
+
+    def yellow: () -> self
+
+    def blink: () -> self
+
+    def bold: () -> self
+
+    def conceal: () -> self
+
+    def dim: () -> self
+
+    def italic: () -> self
+
+    def no_blink: () -> self
+
+    def no_conceal: () -> self
+
+    def no_italic: () -> self
+
+    def no_reverse: () -> self
+
+    def no_strike: () -> self
+
+    def no_underline: () -> self
+
+    def normal_intensity: () -> self
+
+    def rapid_blink: () -> self
+
+    def reverse: () -> self
+
+    def strike: () -> self
+
+    def underline: () -> self
+
+    # Apply the styles and colors to the text
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api public
+    #
+    # @example
+    #   decorator.red.on_blue.bold.decorate('Hello, world!')
+    #   #=> "\e[38;2;205;0;0m\e[48;2;0;0;238m\e[1mHello, world!\e[0m"
+    #
+    # @param text [String] the text to decorate
+    #
+    # @return [String] the decorated text
+    # @rbs (String text) -> String
+    def decorate: (String text) -> String
+
+    alias apply decorate
+
+    alias call decorate
+
+    alias encode decorate
+
+    # Apply a hexadecimal color to the foreground
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api public
+    #
+    # @example
+    #   decorator.hex("#EB4133").decorate('Hello, world!') #=> "\e[38;2;235;65;51mHello, world!\e[0m"
+    #
+    # @param code [String] the hex color code
+    #
+    # @raise [ArgumentError] if the hex code is invalid
+    # @return [self] the instance of Decorator for chaining
+    # @rbs (String code) -> self
+    def hex: (String code) -> self
+
+    # Apply a hexadecimal color to the background
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api public
+    #
+    # @example
+    #   decorator.on_hex("#EB4133").decorate('Hello, world!') #=> "\e[48;2;235;65;51mHello, world!\e[0m"
+    #
+    # @param code [String] the hex color code
+    #
+    # @raise [ArgumentError] if the hex code is invalid
+    # @return [self] the instance of Decorator for chaining
+    # @rbs (String code) -> self
+    def on_hex: (String code) -> self
+
+    # Apply an RGB color to the background
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api public
+    #
+    # @example
+    #   decorator.on_rgb(235, 65, 51).decorate('Hello, world!') #=> "\e[48;2;235;65;51mHello, world!\e[0m"
+    #
+    # @param red [Integer] the red component
+    # @param green [Integer] the green component
+    # @param blue [Integer] the blue component
+    #
+    # @raise [ArgumentError] if the RGB values are out of range
+    # @return [self] the instance of Decorator for chaining
+    # @rbs (Integer red, Integer green, Integer blue) -> self
+    def on_rgb: (Integer red, Integer green, Integer blue) -> self
+
+    # Apply an RGB color to the foreground
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api public
+    #
+    # @example
+    #   decorator.rgb(235, 65, 51).decorate('Hello, world!') #=> "\e[38;2;235;65;51mHello, world!\e[0m"
+    #
+    # @param red [Integer] the red component
+    # @param green [Integer] the green component
+    # @param blue [Integer] the blue component
+    #
+    # @raise [ArgumentError] if the RGB values are out of range
+    # @return [self] the instance of Decorator for chaining
+    # @rbs (Integer red, Integer green, Integer blue) -> self
+    def rgb: (Integer red, Integer green, Integer blue) -> self
+
+    private
+
+    # Apply a named color to the specified style type
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param style_type [Symbol] the style type to apply the color to
+    # @param color [Symbol] the color to apply
+    #
+    # @raise [ArgumentError] if the color is invalid
+    # @return [self] the instance of Decorator for chaining
+    # @rbs (Conversion::ColorSequence::style_type style_type, Symbol color) -> self
+    def apply_named_color: (Conversion::ColorSequence::style_type style_type, Symbol color) -> self
+
+    # Apply a style to the text
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param style [String, Symbol] the style to apply
+    #
+    # @raise [ArgumentError] if the style is invalid
+    # @return [self] the instance of Decorator for chaining
+    # @rbs (String | Symbol style) -> self
+    def apply_style: (String | Symbol style) -> self
+  end
+end
