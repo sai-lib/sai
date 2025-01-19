@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 ## [Unreleased]
 
+### Changed
+
+* [#2](https://github.com/aaronmallen/sai/pull/2) - Immutable method chaining for `Sai::Decorator` by
+  [@aaronmallen](https://github.com/aaronmallen)
+
 ## 0.1.0 - 2025-01-19
 
 * Initial release

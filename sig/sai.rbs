@@ -39,101 +39,101 @@
 #
 #   Sai.support.true_color? # => true
 module Sai
-  def black: () -> self
+  def black: () -> Decorator
 
-  def blink: () -> self
+  def blink: () -> Decorator
 
-  def blue: () -> self
+  def blue: () -> Decorator
 
-  def bold: () -> self
+  def bold: () -> Decorator
 
-  def bright_black: () -> self
+  def bright_black: () -> Decorator
 
-  def bright_blue: () -> self
+  def bright_blue: () -> Decorator
 
-  def bright_cyan: () -> self
+  def bright_cyan: () -> Decorator
 
-  def bright_green: () -> self
+  def bright_green: () -> Decorator
 
-  def bright_magenta: () -> self
+  def bright_magenta: () -> Decorator
 
-  def bright_red: () -> self
+  def bright_red: () -> Decorator
 
-  def bright_white: () -> self
+  def bright_white: () -> Decorator
 
-  def bright_yellow: () -> self
+  def bright_yellow: () -> Decorator
 
-  def conceal: () -> self
+  def conceal: () -> Decorator
 
-  def cyan: () -> self
+  def cyan: () -> Decorator
 
-  def dim: () -> self
+  def dim: () -> Decorator
 
-  def green: () -> self
+  def green: () -> Decorator
 
-  def italic: () -> self
+  def italic: () -> Decorator
 
-  def magenta: () -> self
+  def magenta: () -> Decorator
 
-  def no_blink: () -> self
+  def no_blink: () -> Decorator
 
-  def no_conceal: () -> self
+  def no_conceal: () -> Decorator
 
-  def no_italic: () -> self
+  def no_italic: () -> Decorator
 
-  def no_reverse: () -> self
+  def no_reverse: () -> Decorator
 
-  def no_strike: () -> self
+  def no_strike: () -> Decorator
 
-  def no_underline: () -> self
+  def no_underline: () -> Decorator
 
-  def normal_intensity: () -> self
+  def normal_intensity: () -> Decorator
 
-  def on_black: () -> self
+  def on_black: () -> Decorator
 
-  def on_blue: () -> self
+  def on_blue: () -> Decorator
 
-  def on_bright_black: () -> self
+  def on_bright_black: () -> Decorator
 
-  def on_bright_blue: () -> self
+  def on_bright_blue: () -> Decorator
 
-  def on_bright_cyan: () -> self
+  def on_bright_cyan: () -> Decorator
 
-  def on_bright_green: () -> self
+  def on_bright_green: () -> Decorator
 
-  def on_bright_magenta: () -> self
+  def on_bright_magenta: () -> Decorator
 
-  def on_bright_red: () -> self
+  def on_bright_red: () -> Decorator
 
-  def on_bright_white: () -> self
+  def on_bright_white: () -> Decorator
 
-  def on_bright_yellow: () -> self
+  def on_bright_yellow: () -> Decorator
 
-  def on_cyan: () -> self
+  def on_cyan: () -> Decorator
 
-  def on_green: () -> self
+  def on_green: () -> Decorator
 
-  def on_magenta: () -> self
+  def on_magenta: () -> Decorator
 
-  def on_red: () -> self
+  def on_red: () -> Decorator
 
-  def on_white: () -> self
+  def on_white: () -> Decorator
 
-  def on_yellow: () -> self
+  def on_yellow: () -> Decorator
 
-  def rapid_blink: () -> self
+  def rapid_blink: () -> Decorator
 
-  def red: () -> self
+  def red: () -> Decorator
 
-  def reverse: () -> self
+  def reverse: () -> Decorator
 
-  def strike: () -> self
+  def strike: () -> Decorator
 
-  def underline: () -> self
+  def underline: () -> Decorator
 
-  def white: () -> self
+  def white: () -> Decorator
 
-  def yellow: () -> self
+  def yellow: () -> Decorator
 
   # The supported color modes for the terminal
   #

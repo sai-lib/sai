@@ -21,101 +21,101 @@ module Sai
     # @rbs (Integer color_mode) -> void
     def initialize: (Integer color_mode) -> void
 
-    def black: () -> self
+    def black: () -> Decorator
 
-    def blue: () -> self
+    def blue: () -> Decorator
 
-    def bright_black: () -> self
+    def bright_black: () -> Decorator
 
-    def bright_blue: () -> self
+    def bright_blue: () -> Decorator
 
-    def bright_cyan: () -> self
+    def bright_cyan: () -> Decorator
 
-    def bright_green: () -> self
+    def bright_green: () -> Decorator
 
-    def bright_magenta: () -> self
+    def bright_magenta: () -> Decorator
 
-    def bright_red: () -> self
+    def bright_red: () -> Decorator
 
-    def bright_white: () -> self
+    def bright_white: () -> Decorator
 
-    def bright_yellow: () -> self
+    def bright_yellow: () -> Decorator
 
-    def cyan: () -> self
+    def cyan: () -> Decorator
 
-    def green: () -> self
+    def green: () -> Decorator
 
-    def magenta: () -> self
+    def magenta: () -> Decorator
 
-    def on_black: () -> self
+    def on_black: () -> Decorator
 
-    def on_blue: () -> self
+    def on_blue: () -> Decorator
 
-    def on_bright_black: () -> self
+    def on_bright_black: () -> Decorator
 
-    def on_bright_blue: () -> self
+    def on_bright_blue: () -> Decorator
 
-    def on_bright_cyan: () -> self
+    def on_bright_cyan: () -> Decorator
 
-    def on_bright_green: () -> self
+    def on_bright_green: () -> Decorator
 
-    def on_bright_magenta: () -> self
+    def on_bright_magenta: () -> Decorator
 
-    def on_bright_red: () -> self
+    def on_bright_red: () -> Decorator
 
-    def on_bright_white: () -> self
+    def on_bright_white: () -> Decorator
 
-    def on_bright_yellow: () -> self
+    def on_bright_yellow: () -> Decorator
 
-    def on_cyan: () -> self
+    def on_cyan: () -> Decorator
 
-    def on_green: () -> self
+    def on_green: () -> Decorator
 
-    def on_magenta: () -> self
+    def on_magenta: () -> Decorator
 
-    def on_red: () -> self
+    def on_red: () -> Decorator
 
-    def on_white: () -> self
+    def on_white: () -> Decorator
 
-    def on_yellow: () -> self
+    def on_yellow: () -> Decorator
 
-    def red: () -> self
+    def red: () -> Decorator
 
-    def white: () -> self
+    def white: () -> Decorator
 
-    def yellow: () -> self
+    def yellow: () -> Decorator
 
-    def blink: () -> self
+    def blink: () -> Decorator
 
-    def bold: () -> self
+    def bold: () -> Decorator
 
-    def conceal: () -> self
+    def conceal: () -> Decorator
 
-    def dim: () -> self
+    def dim: () -> Decorator
 
-    def italic: () -> self
+    def italic: () -> Decorator
 
-    def no_blink: () -> self
+    def no_blink: () -> Decorator
 
-    def no_conceal: () -> self
+    def no_conceal: () -> Decorator
 
-    def no_italic: () -> self
+    def no_italic: () -> Decorator
 
-    def no_reverse: () -> self
+    def no_reverse: () -> Decorator
 
-    def no_strike: () -> self
+    def no_strike: () -> Decorator
 
-    def no_underline: () -> self
+    def no_underline: () -> Decorator
 
-    def normal_intensity: () -> self
+    def normal_intensity: () -> Decorator
 
-    def rapid_blink: () -> self
+    def rapid_blink: () -> Decorator
 
-    def reverse: () -> self
+    def reverse: () -> Decorator
 
-    def strike: () -> self
+    def strike: () -> Decorator
 
-    def underline: () -> self
+    def underline: () -> Decorator
 
     # Apply the styles and colors to the text
     #
@@ -153,9 +153,9 @@ module Sai
     # @param code [String] the hex color code
     #
     # @raise [ArgumentError] if the hex code is invalid
-    # @return [self] the instance of Decorator for chaining
-    # @rbs (String code) -> self
-    def hex: (String code) -> self
+    # @return [Decorator] a new instance of Decorator with the hex color applied
+    # @rbs (String code) -> Decorator
+    def hex: (String code) -> Decorator
 
     # Apply a hexadecimal color to the background
     #
@@ -170,9 +170,9 @@ module Sai
     # @param code [String] the hex color code
     #
     # @raise [ArgumentError] if the hex code is invalid
-    # @return [self] the instance of Decorator for chaining
-    # @rbs (String code) -> self
-    def on_hex: (String code) -> self
+    # @return [Decorator] a new instance of Decorator with the hex color applied
+    # @rbs (String code) -> Decorator
+    def on_hex: (String code) -> Decorator
 
     # Apply an RGB color to the background
     #
@@ -189,9 +189,9 @@ module Sai
     # @param blue [Integer] the blue component
     #
     # @raise [ArgumentError] if the RGB values are out of range
-    # @return [self] the instance of Decorator for chaining
-    # @rbs (Integer red, Integer green, Integer blue) -> self
-    def on_rgb: (Integer red, Integer green, Integer blue) -> self
+    # @return [Decorator] a new instance of Decorator with the RGB color applied
+    # @rbs (Integer red, Integer green, Integer blue) -> Decorator
+    def on_rgb: (Integer red, Integer green, Integer blue) -> Decorator
 
     # Apply an RGB color to the foreground
     #
@@ -208,9 +208,9 @@ module Sai
     # @param blue [Integer] the blue component
     #
     # @raise [ArgumentError] if the RGB values are out of range
-    # @return [self] the instance of Decorator for chaining
-    # @rbs (Integer red, Integer green, Integer blue) -> self
-    def rgb: (Integer red, Integer green, Integer blue) -> self
+    # @return [Decorator] a new instance of Decorator with the RGB color applied
+    # @rbs (Integer red, Integer green, Integer blue) -> Decorator
+    def rgb: (Integer red, Integer green, Integer blue) -> Decorator
 
     private
 
@@ -225,9 +225,9 @@ module Sai
     # @param color [Symbol] the color to apply
     #
     # @raise [ArgumentError] if the color is invalid
-    # @return [self] the instance of Decorator for chaining
-    # @rbs (Conversion::ColorSequence::style_type style_type, Symbol color) -> self
-    def apply_named_color: (Conversion::ColorSequence::style_type style_type, Symbol color) -> self
+    # @return [Decorator] a new instance of Decorator with the color applied
+    # @rbs (Conversion::ColorSequence::style_type style_type, Symbol color) -> Decorator
+    def apply_named_color: (Conversion::ColorSequence::style_type style_type, Symbol color) -> Decorator
 
     # Apply a style to the text
     #
@@ -239,7 +239,7 @@ module Sai
     # @param style [String, Symbol] the style to apply
     #
     # @raise [ArgumentError] if the style is invalid
-    # @return [self] the instance of Decorator for chaining
+    # @return [Decorator] a new instance of Decorator with the style applied
     # @rbs (String | Symbol style) -> self
     def apply_style: (String | Symbol style) -> self
   end
