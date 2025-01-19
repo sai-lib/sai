@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require 'sai/conversion/color_sequence'
+require 'sai/conversion/rgb'
 require 'sai/decorator'
 require 'sai/mode_selector'
 require 'sai/support'
 require 'sai/terminal/capabilities'
-require 'singleton'
+require 'sai/terminal/color_mode'
 
 # An elegant color management system for crafting sophisticated CLI applications
 #
@@ -134,9 +136,9 @@ module Sai
     #   Sai.support.true_color? # => true
     #
     # @return [Support] the color support
-    # @rbs () -> Support
+    # @rbs () -> singleton(Support)
     def support
-      @support ||= Support.new(color_mode).freeze
+      Support
     end
 
     private
@@ -195,8 +197,8 @@ module Sai
   #   MyClass.new.terminal_color_support.true_color? # => true
   #
   # @return [Support] the color support
-  # @rbs () -> Support
+  # @rbs () -> singleton(Support)
   def terminal_color_support
-    Sai.support
+    Support
   end
 end

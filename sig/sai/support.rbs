@@ -7,20 +7,7 @@ module Sai
   # @since 0.1.0
   #
   # @api public
-  class Support
-    # Initialize a new instance of Support
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api private
-    #
-    # @param color_mode [Integer] the color mode
-    #
-    # @return [Support] the new instance of support
-    # @rbs (Integer color_mode) -> void
-    def initialize: (Integer color_mode) -> void
-
+  module Support
     # Check if the terminal supports 256 colors (8-bit)
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -33,9 +20,17 @@ module Sai
     #
     # @return [Boolean] `true` if the terminal supports 256 colors (8-bit), otherwise `false`
     # @rbs () -> bool
-    def advanced?: () -> bool
+    def self.advanced?: () -> bool
 
-    alias eight_bit? advanced?
+    alias self.color256? self.advanced?
+
+    alias self.colour256? self.advanced?
+
+    alias self.eight_bit? self.advanced?
+
+    alias self.two_hundred_fifty_six_color? self.advanced?
+
+    alias self.two_hundred_fifty_six_colour? self.advanced?
 
     # Check if the terminal supports ANSI colors (4-bit)
     #
@@ -49,11 +44,17 @@ module Sai
     #
     # @return [Boolean] `true` if the terminal supports ANSI colors (4-bit), otherwise `false`
     # @rbs () -> bool
-    def ansi?: () -> bool
+    def self.ansi?: () -> bool
 
-    alias bit4? ansi?
+    alias self.color16? self.ansi?
 
-    alias four_bit? ansi?
+    alias self.colour16? self.ansi?
+
+    alias self.four_bit? self.ansi?
+
+    alias self.sixteen_color? self.ansi?
+
+    alias self.sixteen_colour? self.ansi?
 
     # Check if the terminal supports basic colors (3-bit)
     #
@@ -67,11 +68,17 @@ module Sai
     #
     # @return [Boolean] `true` if the terminal supports basic colors (3-bit), otherwise `false`
     # @rbs () -> bool
-    def basic?: () -> bool
+    def self.basic?: () -> bool
 
-    alias bit3? basic?
+    alias self.color8? self.basic?
 
-    alias three_bit? basic?
+    alias self.colour8? self.basic?
+
+    alias self.eight_color? self.basic?
+
+    alias self.eight_colour? self.basic?
+
+    alias self.three_bit? self.basic?
 
     # Check if the terminal supports color output
     #
@@ -85,7 +92,7 @@ module Sai
     #
     # @return [Boolean] `true` if the terminal supports color output, otherwise `false`
     # @rbs () -> bool
-    def color?: () -> bool
+    def self.color?: () -> bool
 
     # Check if the terminal supports true color (24-bit)
     #
@@ -99,10 +106,16 @@ module Sai
     #
     # @return [Boolean] `true` if the terminal supports true color (24-bit), otherwise `false`
     # @rbs () -> bool
-    def true_color?: () -> bool
+    def self.true_color?: () -> bool
 
-    alias bit24? true_color?
+    alias self.color16m? self.true_color?
 
-    alias twenty_four_bit? true_color?
+    alias self.colour16m? self.true_color?
+
+    alias self.sixteen_million_color? self.true_color?
+
+    alias self.sixteen_million_colour? self.true_color?
+
+    alias self.twenty_for_bit? self.true_color?
   end
 end

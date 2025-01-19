@@ -164,8 +164,8 @@ module Sai
   #   Sai.support.true_color? # => true
   #
   # @return [Support] the color support
-  # @rbs () -> Support
-  def self.support: () -> Support
+  # @rbs () -> singleton(Support)
+  def self.support: () -> singleton(Support)
 
   # Detect the color capabilities of the terminal
   #
@@ -216,6 +216,6 @@ module Sai
   #   MyClass.new.terminal_color_support.true_color? # => true
   #
   # @return [Support] the color support
-  # @rbs () -> Support
-  def terminal_color_support: () -> Support
+  # @rbs () -> singleton(Support)
+  def terminal_color_support: () -> singleton(Support)
 end
