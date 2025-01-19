@@ -69,7 +69,7 @@ module Sai
     # @api public
     #
     # @example Check if the terminal supports 256 colors
-    #   Sai.bit_8? # => true
+    #   Sai.bit8? # => true
     #
     # @return [Boolean] `true` if the terminal supports 256 colors (8-bit), otherwise `false`
     # @rbs () -> bool
