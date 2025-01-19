@@ -39,55 +39,60 @@ RSpec.describe Sai::Decorator do
     end
 
     context 'when a foreground color is applied' do
-      before { decorator.red }
+      let(:decorated) { decorator.red }
 
       it 'is expected to wrap the text with the color sequence and reset' do
-        expect(decorated_text).to eq("\e[38;2;205;0;0m#{text}\e[0m")
+        expect(decorated.decorate(text)).to eq("\e[38;2;205;0;0m#{text}\e[0m")
       end
     end
 
     context 'when a background color is applied' do
-      before { decorator.on_blue }
+      let(:decorated) { decorator.on_blue }
 
       it 'is expected to wrap the text with the color sequence and reset' do
-        expect(decorated_text).to eq("\e[48;2;0;0;238m#{text}\e[0m")
+        expect(decorated.decorate(text)).to eq("\e[48;2;0;0;238m#{text}\e[0m")
       end
     end
 
     context 'when styles are applied' do
-      before { decorator.bold }
+      let(:decorated) { decorator.bold }
 
       it 'is expected to wrap the text with the style sequence and reset' do
-        expect(decorated_text).to eq("\e[1m#{text}\e[0m")
+        expect(decorated.decorate(text)).to eq("\e[1m#{text}\e[0m")
       end
     end
 
     context 'when multiple decorations are applied' do
-      before do
-        decorator.red.on_blue.bold
-      end
+      let(:decorated) { decorator.red.on_blue.bold }
 
       it 'is expected to apply all decorations in order' do
-        expect(decorated_text).to eq("\e[38;2;205;0;0m\e[48;2;0;0;238m\e[1m#{text}\e[0m")
+        expect(decorated.decorate(text)).to eq("\e[38;2;205;0;0m\e[48;2;0;0;238m\e[1m#{text}\e[0m")
       end
     end
   end
 
   describe '#hex' do
-    subject(:hex) { decorator.hex(code) }
+    subject(:hex_decorator) { decorator.hex(code) }
 
     let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
 
     context 'when given a valid hex code' do
       let(:code) { '#EB4133' }
 
-      it 'is expected to set the foreground color' do
-        hex
-        expect(decorator.instance_variable_get(:@foreground)).to eq(code)
+      it { is_expected.to be_an_instance_of(described_class) }
+
+      it 'is expected to return a new instance' do
+        expect(hex_decorator).not_to eq(decorator)
       end
 
-      it 'is expected to return self for chaining' do
-        expect(hex).to eq(decorator)
+      it 'is expected to set the foreground color on the new instance' do
+        expect(hex_decorator.instance_variable_get(:@foreground)).to eq(code)
+      end
+
+      it 'is expected not to modify the original instance' do
+        original_foreground = decorator.instance_variable_get(:@foreground)
+        hex_decorator
+        expect(decorator.instance_variable_get(:@foreground)).to eq(original_foreground)
       end
     end
 
@@ -95,26 +100,33 @@ RSpec.describe Sai::Decorator do
       let(:code) { 'invalid' }
 
       it 'is expected to raise an ArgumentError' do
-        expect { hex }.to raise_error(ArgumentError, 'Invalid hex color code: invalid')
+        expect { hex_decorator }.to raise_error(ArgumentError, 'Invalid hex color code: invalid')
       end
     end
   end
 
   describe '#on_hex' do
-    subject(:on_hex) { decorator.on_hex(code) }
+    subject(:on_hex_decorator) { decorator.on_hex(code) }
 
     let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
 
     context 'when given a valid hex code' do
       let(:code) { '#EB4133' }
 
-      it 'is expected to set the background color' do
-        on_hex
-        expect(decorator.instance_variable_get(:@background)).to eq(code)
+      it { is_expected.to be_an_instance_of(described_class) }
+
+      it 'is expected to return a new instance' do
+        expect(on_hex_decorator).not_to eq(decorator)
       end
 
-      it 'is expected to return self for chaining' do
-        expect(on_hex).to eq(decorator)
+      it 'is expected to set the background color on the new instance' do
+        expect(on_hex_decorator.instance_variable_get(:@background)).to eq(code)
+      end
+
+      it 'is expected not to modify the original instance' do
+        original_background = decorator.instance_variable_get(:@background)
+        on_hex_decorator
+        expect(decorator.instance_variable_get(:@background)).to eq(original_background)
       end
     end
 
@@ -122,13 +134,13 @@ RSpec.describe Sai::Decorator do
       let(:code) { 'invalid' }
 
       it 'is expected to raise an ArgumentError' do
-        expect { on_hex }.to raise_error(ArgumentError, 'Invalid hex color code: invalid')
+        expect { on_hex_decorator }.to raise_error(ArgumentError, 'Invalid hex color code: invalid')
       end
     end
   end
 
   describe '#rgb' do
-    subject(:rgb) { decorator.rgb(red, green, blue) }
+    subject(:rgb_decorator) { decorator.rgb(red, green, blue) }
 
     let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
     let(:red) { 235 }
@@ -136,13 +148,20 @@ RSpec.describe Sai::Decorator do
     let(:blue) { 51 }
 
     context 'when given valid RGB values' do
-      it 'is expected to set the foreground color' do
-        rgb
-        expect(decorator.instance_variable_get(:@foreground)).to eq([red, green, blue])
+      it { is_expected.to be_an_instance_of(described_class) }
+
+      it 'is expected to return a new instance' do
+        expect(rgb_decorator).not_to eq(decorator)
       end
 
-      it 'is expected to return self for chaining' do
-        expect(rgb).to eq(decorator)
+      it 'is expected to set the foreground color on the new instance' do
+        expect(rgb_decorator.instance_variable_get(:@foreground)).to eq([red, green, blue])
+      end
+
+      it 'is expected not to modify the original instance' do
+        original_foreground = decorator.instance_variable_get(:@foreground)
+        rgb_decorator
+        expect(decorator.instance_variable_get(:@foreground)).to eq(original_foreground)
       end
     end
 
@@ -150,13 +169,13 @@ RSpec.describe Sai::Decorator do
       let(:red) { 300 }
 
       it 'is expected to raise an ArgumentError' do
-        expect { rgb }.to raise_error(ArgumentError, 'Invalid RGB value: 300, 65, 51')
+        expect { rgb_decorator }.to raise_error(ArgumentError, 'Invalid RGB value: 300, 65, 51')
       end
     end
   end
 
   describe '#on_rgb' do
-    subject(:on_rgb) { decorator.on_rgb(red, green, blue) }
+    subject(:on_rgb_decorator) { decorator.on_rgb(red, green, blue) }
 
     let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
     let(:red) { 235 }
@@ -164,13 +183,20 @@ RSpec.describe Sai::Decorator do
     let(:blue) { 51 }
 
     context 'when given valid RGB values' do
-      it 'is expected to set the background color' do
-        on_rgb
-        expect(decorator.instance_variable_get(:@background)).to eq([red, green, blue])
+      it { is_expected.to be_an_instance_of(described_class) }
+
+      it 'is expected to return a new instance' do
+        expect(on_rgb_decorator).not_to eq(decorator)
       end
 
-      it 'is expected to return self for chaining' do
-        expect(on_rgb).to eq(decorator)
+      it 'is expected to set the background color on the new instance' do
+        expect(on_rgb_decorator.instance_variable_get(:@background)).to eq([red, green, blue])
+      end
+
+      it 'is expected not to modify the original instance' do
+        original_background = decorator.instance_variable_get(:@background)
+        on_rgb_decorator
+        expect(decorator.instance_variable_get(:@background)).to eq(original_background)
       end
     end
 
@@ -178,7 +204,7 @@ RSpec.describe Sai::Decorator do
       let(:red) { 300 }
 
       it 'is expected to raise an ArgumentError' do
-        expect { on_rgb }.to raise_error(ArgumentError, 'Invalid RGB value: 300, 65, 51')
+        expect { on_rgb_decorator }.to raise_error(ArgumentError, 'Invalid RGB value: 300, 65, 51')
       end
     end
   end
@@ -186,32 +212,46 @@ RSpec.describe Sai::Decorator do
   # Test each named color method
   Sai::ANSI::COLOR_NAMES.each_key do |color|
     describe "##{color}" do
-      subject(:color_method) { decorator.public_send(color) }
+      subject(:color_decorator) { decorator.public_send(color) }
 
       let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
 
-      it 'is expected to set the foreground color' do
-        color_method
-        expect(decorator.instance_variable_get(:@foreground)).to eq(color)
+      it { is_expected.to be_an_instance_of(described_class) }
+
+      it 'is expected to return a new instance' do
+        expect(color_decorator).not_to eq(decorator)
       end
 
-      it 'is expected to return self for chaining' do
-        expect(color_method).to eq(decorator)
+      it 'is expected to set the foreground color on the new instance' do
+        expect(color_decorator.instance_variable_get(:@foreground)).to eq(color)
+      end
+
+      it 'is expected not to modify the original instance' do
+        original_foreground = decorator.instance_variable_get(:@foreground)
+        color_decorator
+        expect(decorator.instance_variable_get(:@foreground)).to eq(original_foreground)
       end
     end
 
     describe "#on_#{color}" do
-      subject(:background_color_method) { decorator.public_send(:"on_#{color}") }
+      subject(:background_color_decorator) { decorator.public_send(:"on_#{color}") }
 
       let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
 
-      it 'is expected to set the background color' do
-        background_color_method
-        expect(decorator.instance_variable_get(:@background)).to eq(color)
+      it { is_expected.to be_an_instance_of(described_class) }
+
+      it 'is expected to return a new instance' do
+        expect(background_color_decorator).not_to eq(decorator)
       end
 
-      it 'is expected to return self for chaining' do
-        expect(background_color_method).to eq(decorator)
+      it 'is expected to set the background color on the new instance' do
+        expect(background_color_decorator.instance_variable_get(:@background)).to eq(color)
+      end
+
+      it 'is expected not to modify the original instance' do
+        original_background = decorator.instance_variable_get(:@background)
+        background_color_decorator
+        expect(decorator.instance_variable_get(:@background)).to eq(original_background)
       end
     end
   end
@@ -219,22 +259,29 @@ RSpec.describe Sai::Decorator do
   # Test each style method
   Sai::ANSI::STYLES.each_key do |style|
     describe "##{style}" do
-      subject(:style_method) { decorator.public_send(style) }
+      subject(:style_decorator) { decorator.public_send(style) }
 
       let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
 
-      it 'is expected to add the style' do
-        style_method
-        expect(decorator.instance_variable_get(:@styles)).to include(style)
+      it { is_expected.to be_an_instance_of(described_class) }
+
+      it 'is expected to return a new instance' do
+        expect(style_decorator).not_to eq(decorator)
       end
 
-      it 'is expected to return self for chaining' do
-        expect(style_method).to eq(decorator)
+      it 'is expected to add the style to the new instance' do
+        expect(style_decorator.instance_variable_get(:@styles)).to include(style)
       end
 
-      it 'is expected not to duplicate styles' do
-        2.times { style_method }
-        styles = decorator.instance_variable_get(:@styles)
+      it 'is expected not to modify the original instance' do
+        expect { style_decorator }.not_to(change do
+          decorator.instance_variable_get(:@styles).dup
+        end)
+      end
+
+      it 'is expected not to duplicate styles in the new instance' do
+        duplicated_style = style_decorator.public_send(style)
+        styles = duplicated_style.instance_variable_get(:@styles)
         expect(styles.count(style)).to eq(1)
       end
     end
