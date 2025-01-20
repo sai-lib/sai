@@ -37,6 +37,7 @@ target :lib do
   signature 'sig'
   check 'lib'
 
+  library 'forwardable'
   library 'strscan'
 
   configure_code_diagnostics do |hash|

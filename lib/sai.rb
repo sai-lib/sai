@@ -2,6 +2,7 @@
 
 require 'sai/ansi'
 require 'sai/ansi/sequence_processor'
+require 'sai/ansi/sequenced_string'
 require 'sai/conversion/color_sequence'
 require 'sai/conversion/rgb'
 require 'sai/decorator'
