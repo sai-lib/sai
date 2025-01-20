@@ -142,6 +142,26 @@ module Sai
     end
   end
 
+  # A helper method that provides Sai color modes
+  #
+  # @author {https://aaronmallen.me Aaron Allen}
+  # @since unreleased
+  #
+  # @api public
+  #
+  # @example
+  #   class MyClass
+  #     include Sai
+  #   end
+  #
+  #   MyClass.new.color_mode.ansi #=> 2
+  #
+  # @return [ModeSelector] the mode selector
+  # @rbs () -> singleton(ModeSelector)
+  def color_mode
+    ModeSelector
+  end
+
   # A helper method to initialize an instance of {Decorator}
   #
   # @author {https://aaronmallen.me Aaron Allen}

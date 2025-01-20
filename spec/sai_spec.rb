@@ -26,6 +26,12 @@ RSpec.describe Sai do
 
     let(:instance) { including_class.new }
 
+    describe '#color_mode' do
+      subject(:color_mode) { instance.color_mode }
+
+      it { is_expected.to eq(Sai::ModeSelector) }
+    end
+
     describe '#decorator' do
       subject(:decorator) { instance.decorator(mode: mode) }
 
