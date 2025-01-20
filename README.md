@@ -50,7 +50,7 @@ gem install sai
 ```
 
 > [!IMPORTANT]  
-> If you're upgrading from version 0.2.0, please see our [Migration Guide](docs/migrations/0.2.0-to-0.3.0.md) for
+> If you're upgrading from version 0.2.0, please see our [Migration Guide](docs/migrations/0.2.0-0.3.0.md) for
 > important changes.
 
 ## Quick Start
