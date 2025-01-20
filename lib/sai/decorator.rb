@@ -831,16 +831,9 @@ module Sai
     # @param style_type [Symbol] the style type to apply the color to
     # @param color [Symbol] the color to apply
     #
-    # @raise [ArgumentError] if the color is invalid
     # @return [Decorator] a new instance of Decorator with the color applied
     # @rbs (Conversion::ColorSequence::style_type style_type, Symbol color) -> Decorator
     def apply_named_color(style_type, color)
-      unless ANSI::COLOR_NAMES.key?(color.to_s.downcase.to_sym)
-        e = ArgumentError.new("Invalid color: #{color}")
-        e.set_backtrace(caller_locations(1, 1)&.map(&:to_s)) # steep:ignore UnresolvedOverloading
-        raise e
-      end
-
       dup.tap { |duped| duped.instance_variable_set(:"@#{style_type}", color) }
     end
 
@@ -853,17 +846,10 @@ module Sai
     #
     # @param style [String, Symbol] the style to apply
     #
-    # @raise [ArgumentError] if the style is invalid
     # @return [Decorator] a new instance of Decorator with the style applied
     # @rbs (String | Symbol style) -> self
     def apply_style(style)
       style = style.to_s.downcase.to_sym
-      unless ANSI::STYLES.key?(style)
-        e = ArgumentError.new("Invalid style: #{style}")
-        e.set_backtrace(caller_locations(1, 1)&.map(&:to_s)) # steep:ignore UnresolvedOverloading
-        raise e
-      end
-
       dup.tap { |duped| duped.instance_variable_set(:@styles, (@styles + [style]).uniq) }
     end
 
