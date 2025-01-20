@@ -213,6 +213,20 @@ RSpec.describe Sai::Decorator do
     end
   end
 
+  describe '#with_mode' do
+    subject(:with_mode) { decorator.with_mode(color_mode) }
+
+    let(:decorator) { described_class.new(mode: Sai.mode.true_color) }
+    let(:color_mode) { Sai.mode.no_color }
+
+    it 'is expected to set the color mode' do
+      before_mode_set = decorator.hex('#CD0000').decorate('text')
+      after_mode_set = with_mode.decorate('text')
+
+      expect(after_mode_set).not_to eq(before_mode_set)
+    end
+  end
+
   describe 'color mode behavior' do
     subject(:decorated_text) { decorator.hex('#CD0000').decorate('test') }
 
