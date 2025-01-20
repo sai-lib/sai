@@ -1,6 +1,8 @@
 # Sai
 
 [![Sai Version](https://img.shields.io/gem/v/sai?style=for-the-badge&logo=rubygems&logoColor=white&logoSize=auto&label=Gem%20Version)](https://rubygems.org/gems/sai)
+[![Sai Codacy grade](https://img.shields.io/codacy/grade/0f9a91b573ed4768a773867b95ed4894/main?style=for-the-badge&logo=codacy&logoColor=white&logoSize=auto)](https://app.codacy.com/gh/aaronmallen/sai)
+[![Sai Codacy coverage](https://img.shields.io/codacy/coverage/0f9a91b573ed4768a773867b95ed4894/main?style=for-the-badge&logo=codacy&logoColor=white&logoSize=auto)](https://app.codacy.com/gh/aaronmallen/sai/coverage)
 [![Sai License](https://img.shields.io/github/license/aaronmallen/sai?style=for-the-badge&logo=opensourceinitiative&logoColor=white&logoSize=auto)](./LICENSE)
 [![Sai Docs](https://img.shields.io/badge/rubydoc-blue?style=for-the-badge&logo=readthedocs&logoColor=white&logoSize=auto&label=docs)](https://rubydoc.info/gems/sai/0.2.0)
 [![Sai Open Issues](https://img.shields.io/github/issues-search/aaronmallen/sai?query=state%3Aopen&style=for-the-badge&logo=github&logoColor=white&logoSize=auto&label=issues&color=red)](https://github.com/aaronmallen/sai/issues?q=state%3Aopen%20)
