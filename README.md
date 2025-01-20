@@ -2,7 +2,7 @@
 
 [![Sai Version](https://img.shields.io/gem/v/sai?style=for-the-badge&logo=rubygems&logoColor=white&logoSize=auto&label=Gem%20Version)](https://rubygems.org/gems/sai)
 [![Sai License](https://img.shields.io/github/license/aaronmallen/sai?style=for-the-badge&logo=opensourceinitiative&logoColor=white&logoSize=auto)](./LICENSE)
-[![Sai Docs](https://img.shields.io/badge/rubydoc-blue?style=for-the-badge&logo=readthedocs&logoColor=white&logoSize=auto&label=docs)](https://rubydoc.info/gems/sai/0.1.0)
+[![Sai Docs](https://img.shields.io/badge/rubydoc-blue?style=for-the-badge&logo=readthedocs&logoColor=white&logoSize=auto&label=docs)](https://rubydoc.info/gems/sai/0.2.0)
 [![Sai Open Issues](https://img.shields.io/github/issues-search/aaronmallen/sai?query=state%3Aopen&style=for-the-badge&logo=github&logoColor=white&logoSize=auto&label=issues&color=red)](https://github.com/aaronmallen/sai/issues?q=state%3Aopen%20)
 
 An elegant color management system for crafting sophisticated CLI applications
