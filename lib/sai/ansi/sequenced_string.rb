@@ -9,7 +9,7 @@ module Sai
     # A representation of a ANSI encoded string and its individual {SequencedString::Segment segments}
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.3.0
     #
     # @api public
     class SequencedString
@@ -21,7 +21,7 @@ module Sai
       #   Iterate over each segment
       #
       #   @author {https://aaronmallen.me Aaron Allen}
-      #   @since unreleased
+      #   @since 0.3.0
       #
       #   @api public
       #   @return [Enumerator] the Enumerator
@@ -30,7 +30,7 @@ module Sai
       #   Map over segments
       #
       #   @author {https://aaronmallen.me Aaron Allen}
-      #   @since unreleased
+      #   @since 0.3.0
       #
       #   @api public
       #   @return [Array] the segments to map over
@@ -39,7 +39,7 @@ module Sai
       #   Number of segments
       #
       #   @author {https://aaronmallen.me Aaron Allen}
-      #   @since unreleased
+      #   @since 0.3.0
       #
       #   @api public
       #
@@ -55,7 +55,7 @@ module Sai
       # Initialize a new instance of SequencedString
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -72,7 +72,7 @@ module Sai
       # Fetch a segment by index
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api public
       #
@@ -91,7 +91,7 @@ module Sai
       # Compare the SequencedString to another object
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api public
       #
@@ -111,7 +111,7 @@ module Sai
       # Combine a sequenced string with another object
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api public
       #
@@ -131,7 +131,7 @@ module Sai
       # Return just the raw text content with **no ANSI sequences**
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api public
       #
@@ -147,7 +147,7 @@ module Sai
       # Return the fully reconstructed string with **all ANSI sequences** (foreground, background, style)
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api public
       #
@@ -164,7 +164,7 @@ module Sai
       # Return a string with everything except **background** color sequences removed
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api public
       #
@@ -181,7 +181,7 @@ module Sai
       # Return a string containing *style* sequences but **no foreground or background colors**
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api public
       #
@@ -198,7 +198,7 @@ module Sai
       # Return a string with everything except **foreground** color sequences removed
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api public
       #
@@ -215,7 +215,7 @@ module Sai
       # Return a string with specified styles removed
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api public
       #
@@ -240,7 +240,7 @@ module Sai
       # Build the color sequences for a segment
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -260,7 +260,7 @@ module Sai
       # Build a string with specified parts skipped
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -286,7 +286,7 @@ module Sai
       # Build the style sequences for a segment
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -307,14 +307,14 @@ module Sai
       # A segment of an ANSI encoded string
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api public
       class Segment
         # The background color sequences for the Segment
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.0
         #
         # @api public
         #
@@ -324,7 +324,7 @@ module Sai
         # The foreground color sequences for the Segment
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.0
         #
         # @api public
         #
@@ -334,7 +334,7 @@ module Sai
         # The {Location} of the encoded string within the {SequencedString}
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.0
         #
         # @api public
         #
@@ -345,7 +345,7 @@ module Sai
         # The {Location} of the encoded string without it's encoding within the {SequencedString}
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.0
         #
         # @api public
         #
@@ -356,7 +356,7 @@ module Sai
         # The style sequences (bold, underline, etc...) for the segment
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.0
         #
         # @api public
         #
@@ -366,7 +366,7 @@ module Sai
         # The raw text of the Segment without any of its ANSI sequences
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.0
         #
         # @api public
         #
@@ -376,7 +376,7 @@ module Sai
         # Initialize a new instance of Segment
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.0
         #
         # @api private
         #
@@ -425,14 +425,14 @@ module Sai
         # The location of the {Segment} within a {SequencedString}
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.0
         #
         # @api public
         class Location
           # The ending position of the Location
           #
           # @author {https://aaronmallen.me Aaron Allen}
-          # @since unreleased
+          # @since 0.3.0
           #
           # @api public
           #
@@ -443,7 +443,7 @@ module Sai
           # The starting position of the Location
           #
           # @author {https://aaronmallen.me Aaron Allen}
-          # @since unreleased
+          # @since 0.3.0
           #
           # @api public
           #
@@ -454,7 +454,7 @@ module Sai
           # Initialize a new instance of Location
           #
           # @author {https://aaronmallen.me Aaron Allen}
-          # @since unreleased
+          # @since 0.3.0
           #
           # @api private
           #

@@ -8,14 +8,14 @@ module Sai
     # Extract ANSI sequence information from a string
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.3.0
     #
     # @api private
     class SequenceProcessor # rubocop:disable Metrics/ClassLength
       # The pattern to extract ANSI sequences from a string
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -26,7 +26,7 @@ module Sai
       # Matches the code portion of style sequences
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -37,7 +37,7 @@ module Sai
       # Initialize a new instance of SequenceProcessor and parse the provided string
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -52,7 +52,7 @@ module Sai
       # Initialize a new instance of SequenceProcessor
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -71,7 +71,7 @@ module Sai
       # Parse a string and return a hash of segments
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -89,7 +89,7 @@ module Sai
       # Applies 24-bit truecolor (e.g., 38;2;R;G;B or 48;2;R;G;B)
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -115,7 +115,7 @@ module Sai
       # Applies 256-color mode (e.g., 38;5;160 or 48;5;21)
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -138,7 +138,7 @@ module Sai
       # Applies the appropriate action for the provided ANSI sequence
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -158,7 +158,7 @@ module Sai
       # Applies a basic color (FG or BG) in the range 30..37 (FG) or 40..47 (BG)
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -177,7 +177,7 @@ module Sai
       # Parse all numeric codes in the provided string, applying them in order (just like a real ANSI terminal)
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -199,7 +199,7 @@ module Sai
       #  - otherwise => style code (bold, underline, etc.)
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -230,7 +230,7 @@ module Sai
       # Applies a single style code (e.g. 1=bold, 2=dim, 4=underline, etc.) if it matches
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -249,7 +249,7 @@ module Sai
       # Creates and returns a fresh, blank segment
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -262,7 +262,7 @@ module Sai
       # Scans the string for ANSI sequences or individual characters
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -275,7 +275,7 @@ module Sai
       # Finalizes the current segment if any text is present, then resets it
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -300,7 +300,7 @@ module Sai
       # the current text segment and applies the sequence
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -319,7 +319,7 @@ module Sai
       # Reads a single character from the scanner and appends it to the current segment
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -336,7 +336,7 @@ module Sai
       # and apply them to foreground or background
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
@@ -363,7 +363,7 @@ module Sai
       # Resets the current segment to a fresh, blank state
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.0
       #
       # @api private
       #
