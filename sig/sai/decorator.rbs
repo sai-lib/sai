@@ -240,7 +240,6 @@ module Sai
     # @param style_type [Symbol] the style type to apply the color to
     # @param color [Symbol] the color to apply
     #
-    # @raise [ArgumentError] if the color is invalid
     # @return [Decorator] a new instance of Decorator with the color applied
     # @rbs (Conversion::ColorSequence::style_type style_type, Symbol color) -> Decorator
     def apply_named_color: (Conversion::ColorSequence::style_type style_type, Symbol color) -> Decorator
@@ -254,7 +253,6 @@ module Sai
     #
     # @param style [String, Symbol] the style to apply
     #
-    # @raise [ArgumentError] if the style is invalid
     # @return [Decorator] a new instance of Decorator with the style applied
     # @rbs (String | Symbol style) -> self
     def apply_style: (String | Symbol style) -> self
