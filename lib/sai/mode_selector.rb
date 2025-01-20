@@ -17,7 +17,7 @@ module Sai
       # @author {https://aaronmallen.me Aaron Allen}
       # @since 0.2.0
       #
-      # @api private
+      # @api public
       #
       # @example
       #   Sai.mode.advanced  #=> 3
@@ -47,31 +47,31 @@ module Sai
       # @api public
       #
       # @example With color support enabled
-      #   ENV['COLORTERM']       #=> nil
-      #   ENV['TERM']            #=> 'xterm-256color'
-      #   Sai.mode.ansi_auto     #=> 3
-      #   Sai.mode.four_bit_auto #=> 3
-      #   Sai.mode.color_16_auto #=> 3
+      #   ENV['COLORTERM']        #=> nil
+      #   ENV['TERM']             #=> 'xterm-256color'
+      #   Sai.mode.advanced_auto  #=> 3
+      #   Sai.mode.eight_bit_auto #=> 3
+      #   Sai.mode.color256_auto  #=> 3
       #
       # @example With only 4-bit color support
-      #   ENV['NO_COLOR']        #=> nil
-      #   ENV['TERM']            #=> 'ansi'
-      #   Sai.mode.ansi_auto     #=> 2
-      #   Sai.mode.four_bit_auto #=> 2
-      #   Sai.mode.color_16_auto #=> 2
+      #   ENV['NO_COLOR']         #=> nil
+      #   ENV['TERM']             #=> 'ansi'
+      #   Sai.mode.advanced_auto  #=> 2
+      #   Sai.mode.eight_bit_auto #=> 2
+      #   Sai.mode.color256_auto  #=> 2
       #
       # @example With only 3-bit color support
       #   ENV['TERM']             #=> nil
       #   ENV['NO_COLOR']         #=> nil
-      #   Sai.mode.ansi_auto      #=> 1
-      #   Sai.mode.four_bit_auto  #=> 1
-      #   Sai.mode.color16_auto   #=> 1
+      #   Sai.mode.advanced_auto  #=> 1
+      #   Sai.mode.eight_bit_auto #=> 1
+      #   Sai.mode.color256_auto  #=> 1
       #
       # @example With color support disabled
       #   ENV['NO_COLOR']         #=> 'true'
-      #   Sai.mode.ansi_auto      #=> 0
-      #   Sai.mode.four_bit_auto  #=> 0
-      #   Sai.mode.color16_auto   #=> 0
+      #   Sai.mode.advanced_auto  #=> 0
+      #   Sai.mode.eight_bit_auto #=> 0
+      #   Sai.mode.color256_auto  #=> 0
       #
       # @return [Integer] the color mode
       # @rbs () -> Integer
@@ -123,7 +123,7 @@ module Sai
       #   ENV['TERM'] #=> 'ansi'
       #   Sai.mode.ansi_auto     #=> 2
       #   Sai.mode.four_bit_auto #=> 2
-      #   Sai.mode.color_16_auto #=> 2
+      #   Sai.mode.color16_auto  #=> 2
       #
       # @example With only 3-bit color support
       #   ENV['TERM']             #=> nil
@@ -276,7 +276,7 @@ module Sai
       # @author {https://aaronmallen.me Aaron Allen}
       # @since 0.2.0
       #
-      # @api private
+      # @api public
       #
       # @example
       #   Sai.mode.true_color      #=> 4

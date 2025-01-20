@@ -11,6 +11,7 @@
 # adaptive color to your terminal interfaces
 #
 # When included in a class or module, Sai provides the following instance methods:
+# * {#color_mode} - Returns an interface to select Sai color modes
 # * {#decorator} - Returns a new instance of {Decorator} for method chaining
 # * {#terminal_color_support} - Returns the color support capabilities of the current terminal
 #
