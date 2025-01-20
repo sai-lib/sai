@@ -6,16 +6,18 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 ## [Unreleased]
 
+## [0.2.0] - 2025-01-20
+
 ### Added
 
-* [#3](https://github.com/aaronmallen/sai/pull/3) - mode selection via `Sai::ModeSelector`
+* [#3](https://github.com/aaronmallen/sai/pull/3) - mode selection via `Sai::ModeSelector`by
   [@aaronmallen](https://github.com/aaronmallen)
 
 ### Changed
 
 * [#2](https://github.com/aaronmallen/sai/pull/2) - Immutable method chaining for `Sai::Decorator` by
   [@aaronmallen](https://github.com/aaronmallen)
-* [#3](https://github.com/aaronmallen/sai/pull/3) - `Sia::Support` from class to module for improved API design
+* [#3](https://github.com/aaronmallen/sai/pull/3) - `Sia::Support` from class to module for improved API design by
   [@aaronmallen](https://github.com/aaronmallen)
 
 ## 0.1.0 - 2025-01-19
@@ -27,4 +29,5 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 <!-- versions -->
 
-[Unreleased]: https://github.com/aaronmallen/sai/compare/0.1.0..HEAD
+[Unreleased]: https://github.com/aaronmallen/sai/compare/0.2.0..HEAD
+[0.2.0]: https://github.com/aaronmallen/sai/compare/0.1.0..0.2.0

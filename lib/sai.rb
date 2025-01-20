@@ -58,7 +58,7 @@ module Sai
     # The Sai {ModeSelector mode selector}
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.2.0
     #
     # @api public
     #
@@ -145,7 +145,7 @@ module Sai
   # A helper method that provides Sai color modes
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since unreleased
+  # @since 0.2.0
   #
   # @api public
   #

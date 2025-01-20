@@ -7,7 +7,7 @@ module Sai
   # Color mode selection methods
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since unreleased
+  # @since 0.2.0
   #
   # @api public
   module ModeSelector
@@ -15,7 +15,7 @@ module Sai
       # Set the color mode to 256 color (8-bit) mode
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.2.0
       #
       # @api private
       #
@@ -42,7 +42,7 @@ module Sai
       # advanced colors
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.2.0
       #
       # @api public
       #
@@ -87,7 +87,7 @@ module Sai
       # Set the color mode to 16 color (4-bit) mode
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.2.0
       #
       # @api public
       #
@@ -114,7 +114,7 @@ module Sai
       # ansi colors
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.2.0
       #
       # @api public
       #
@@ -154,7 +154,7 @@ module Sai
       # This is the default color mode for {Sai}
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.2.0
       #
       # @api public
       #
@@ -196,7 +196,7 @@ module Sai
       # Set the color mode to 8 color (3-bit) mode
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.2.0
       #
       # @api public
       #
@@ -223,7 +223,7 @@ module Sai
       # basic colors
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.2.0
       #
       # @api public
       #
@@ -253,7 +253,7 @@ module Sai
       # Set the color mode to disable all color and styling
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.2.0
       #
       # @api public
       #
@@ -274,7 +274,7 @@ module Sai
       # Set the color mode to 16-million color (24-bit) mode
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.2.0
       #
       # @api private
       #

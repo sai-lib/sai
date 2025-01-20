@@ -804,7 +804,7 @@ module Sai
     # Apply a specific color mode to the decorator
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.2.0
     #
     # @api public
     #
@@ -870,7 +870,7 @@ module Sai
     # Check if text should be decorated
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.2.0
     #
     # @api private
     #
