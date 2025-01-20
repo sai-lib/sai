@@ -125,6 +125,24 @@ module Sai
     #   def white: () -> Decorator
     #   def yellow: () -> Decorator
 
+    # Sequence a string with ANSI escape codes
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api public
+    #
+    # @example Sequence a string with ANSI escape codes
+    #   Sai.sequence("\e[38;2;205;0;0mHello, World!\e[0m") #=> #<Sai::ANSI::SequencedString:0x123>
+    #
+    # @param text [String] the text to sequence
+    #
+    # @return [ANSI::SequencedString] the sequenced string
+    # @rbs (String text) -> ANSI::SequencedString
+    def sequence(text)
+      ANSI::SequencedString.new(text)
+    end
+
     # The supported color modes for the terminal
     #
     # @author {https://aaronmallen.me Aaron Allen}
