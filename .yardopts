@@ -8,4 +8,4 @@ lib/**/*.rb
 --embed-mixins
 --tag rbs
 --hide-tag rbs
---files LICENSE
+--files LICENSE,docs/USAGE.md

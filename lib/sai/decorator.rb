@@ -2,6 +2,7 @@
 
 require 'sai'
 require 'sai/ansi'
+require 'sai/ansi/sequenced_string'
 require 'sai/conversion/color_sequence'
 
 module Sai
@@ -39,7 +40,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.black.decorate('Hello, world!') #=> "\e[30mHello, world!\e[0m"
+    #     decorator.black.decorate('Hello, world!').to_s #=> "\e[30mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -52,7 +53,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.blue.decorate('Hello, world!') #=> "\e[34mHello, world!\e[0m"
+    #     decorator.blue.decorate('Hello, world!').to_s #=> "\e[34mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -65,7 +66,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.bright_black.decorate('Hello, world!') #=> "\e[90mHello, world!\e[0m"
+    #     decorator.bright_black.decorate('Hello, world!').to_s #=> "\e[90mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -75,7 +76,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.bright_blue.decorate('Hello, world!') #=> "\e[94mHello, world!\e[0m"
+    #     decorator.bright_blue.decorate('Hello, world!').to_s #=> "\e[94mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -85,7 +86,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.bright_cyan.decorate('Hello, world!') #=> "\e[96mHello, world!\e[0m"
+    #     decorator.bright_cyan.decorate('Hello, world!').to_s #=> "\e[96mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -95,7 +96,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.bright_green.decorate('Hello, world!') #=> "\e[92mHello, world!\e[0m"
+    #     decorator.bright_green.decorate('Hello, world!').to_s #=> "\e[92mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -105,7 +106,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.bright_magenta.decorate('Hello, world!') #=> "\e[95mHello, world!\e[0m"
+    #     decorator.bright_magenta.decorate('Hello, world!').to_s #=> "\e[95mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -115,7 +116,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.bright_red.decorate('Hello, world!') #=> "\e[91mHello, world!\e[0m"
+    #     decorator.bright_red.decorate('Hello, world!').to_s #=> "\e[91mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -125,7 +126,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.bright_white.decorate('Hello, world!') #=> "\e[97mHello, world!\e[0m"
+    #     decorator.bright_white.decorate('Hello, world!').to_s #=> "\e[97mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -135,7 +136,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.bright_yellow.decorate('Hello, world!') #=> "\e[93mHello, world!\e[0m"
+    #     decorator.bright_yellow.decorate('Hello, world!').to_s #=> "\e[93mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -145,7 +146,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.cyan.decorate('Hello, world!') #=> "\e[36mHello, world!\e[0m"
+    #     decorator.cyan.decorate('Hello, world!').to_s #=> "\e[36mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -155,7 +156,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.green.decorate('Hello, world!') #=> "\e[32mHello, world!\e[0m"
+    #     decorator.green.decorate('Hello, world!').to_s #=> "\e[32mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -165,7 +166,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.magenta.decorate('Hello, world!') #=> "\e[35mHello, world!\e[0m"
+    #     decorator.magenta.decorate('Hello, world!').to_s #=> "\e[35mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -178,7 +179,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_black.decorate('Hello, world!') #=> "\e[40mHello, world!\e[0m"
+    #     decorator.on_black.decorate('Hello, world!').to_s #=> "\e[40mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -191,7 +192,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_blue.decorate('Hello, world!') #=> "\e[44mHello, world!\e[0m"
+    #     decorator.on_blue.decorate('Hello, world!').to_s #=> "\e[44mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -204,7 +205,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_bright_black.decorate('Hello, world!') #=> "\e[100mHello, world!\e[0m"
+    #     decorator.on_bright_black.decorate('Hello, world!').to_s #=> "\e[100mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -217,7 +218,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_bright_blue.decorate('Hello, world!') #=> "\e[104mHello, world!\e[0m"
+    #     decorator.on_bright_blue.decorate('Hello, world!').to_s #=> "\e[104mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -230,7 +231,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_bright_cyan.decorate('Hello, world!') #=> "\e[106mHello, world!\e[0m"
+    #     decorator.on_bright_cyan.decorate('Hello, world!').to_s #=> "\e[106mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -243,7 +244,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_bright_green.decorate('Hello, world!') #=> "\e[102mHello, world!\e[0m"
+    #     decorator.on_bright_green.decorate('Hello, world!').to_s #=> "\e[102mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -256,7 +257,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_bright_magenta.decorate('Hello, world!') #=> "\e[105mHello, world!\e[0m"
+    #     decorator.on_bright_magenta.decorate('Hello, world!').to_s #=> "\e[105mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -269,7 +270,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_bright_red.decorate('Hello, world!') #=> "\e[101mHello, world!\e[0m"
+    #     decorator.on_bright_red.decorate('Hello, world!').to_s #=> "\e[101mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -282,7 +283,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_bright_white.decorate('Hello, world!') #=> "\e[107mHello, world!\e[0m"
+    #     decorator.on_bright_white.decorate('Hello, world!').to_s #=> "\e[107mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -295,7 +296,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_bright_yellow.decorate('Hello, world!') #=> "\e[103mHello, world!\e[0m"
+    #     decorator.on_bright_yellow.decorate('Hello, world!').to_s #=> "\e[103mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -308,7 +309,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_cyan.decorate('Hello, world!') #=> "\e[46mHello, world!\e[0m"
+    #     decorator.on_cyan.decorate('Hello, world!').to_s #=> "\e[46mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -321,7 +322,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_green.decorate('Hello, world!') #=> "\e[42mHello, world!\e[0m"
+    #     decorator.on_green.decorate('Hello, world!').to_s #=> "\e[42mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -334,7 +335,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_magenta.decorate('Hello, world!') #=> "\e[45mHello, world!\e[0m"
+    #     decorator.on_magenta.decorate('Hello, world!').to_s #=> "\e[45mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -347,7 +348,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_red.decorate('Hello, world!') #=> "\e[41mHello, world!\e[0m"
+    #     decorator.on_red.decorate('Hello, world!').to_s #=> "\e[41mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -360,7 +361,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_white.decorate('Hello, world!') #=> "\e[47mHello, world!\e[0m"
+    #     decorator.on_white.decorate('Hello, world!').to_s #=> "\e[47mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -373,7 +374,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.on_yellow.decorate('Hello, world!') #=> "\e[43mHello, world!\e[0m"
+    #     decorator.on_yellow.decorate('Hello, world!').to_s #=> "\e[43mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -383,7 +384,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.red.decorate('Hello, world!') #=> "\e[31mHello, world!\e[0m"
+    #     decorator.red.decorate('Hello, world!').to_s #=> "\e[31mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -393,7 +394,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.white.decorate('Hello, world!') #=> "\e[37mHello, world!\e[0m"
+    #     decorator.white.decorate('Hello, world!').to_s #=> "\e[37mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     #
@@ -403,7 +404,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.yellow.decorate('Hello, world!') #=> "\e[33mHello, world!\e[0m"
+    #     decorator.yellow.decorate('Hello, world!').to_s #=> "\e[33mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the color applied
     ANSI::COLOR_NAMES.each_key do |color|
@@ -457,7 +458,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.blink.decorate('Hello, world!') #=> "\e[5mHello, world!\e[0m"
+    #     decorator.blink.decorate('Hello, world!').to_s #=> "\e[5mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -470,7 +471,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.bold.decorate('Hello, world!') #=> "\e[1mHello, world!\e[0m"
+    #     decorator.bold.decorate('Hello, world!').to_s #=> "\e[1mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -483,7 +484,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.conceal.decorate('Hello, world!') #=> "\e[8mHello, world!\e[0m"
+    #     decorator.conceal.decorate('Hello, world!').to_s #=> "\e[8mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -496,7 +497,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.dim.decorate('Hello, world!') #=> "\e[2mHello, world!\e[0m"
+    #     decorator.dim.decorate('Hello, world!').to_s #=> "\e[2mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -509,7 +510,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.italic.decorate('Hello, world!') #=> "\e[3mHello, world!\e[0m"
+    #     decorator.italic.decorate('Hello, world!').to_s #=> "\e[3mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -522,7 +523,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.no_blink.decorate('Hello, world!') #=> "\e[25mHello, world!\e[0m"
+    #     decorator.no_blink.decorate('Hello, world!').to_s #=> "\e[25mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -535,7 +536,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.no_conceal.decorate('Hello, world!') #=> "\e[28mHello, world!\e[0m"
+    #     decorator.no_conceal.decorate('Hello, world!').to_s #=> "\e[28mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -548,7 +549,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.no_italic.decorate('Hello, world!') #=> "\e[23mHello, world!\e[0m"
+    #     decorator.no_italic.decorate('Hello, world!').to_s #=> "\e[23mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -561,7 +562,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.no_reverse.decorate('Hello, world!') #=> "\e[27mHello, world!\e[0m"
+    #     decorator.no_reverse.decorate('Hello, world!').to_s #=> "\e[27mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -574,7 +575,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.no_strike.decorate('Hello, world!') #=> "\e[29mHello, world!\e[0m"
+    #     decorator.no_strike.decorate('Hello, world!').to_s #=> "\e[29mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -587,7 +588,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.no_underline.decorate('Hello, world!') #=> "\e[24mHello, world!\e[0m"
+    #     decorator.no_underline.decorate('Hello, world!').to_s #=> "\e[24mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -600,7 +601,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.normal_intensity.decorate('Hello, world!') #=> "\e[22mHello, world!\e[0m"
+    #     decorator.normal_intensity.decorate('Hello, world!').to_s #=> "\e[22mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -613,7 +614,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.rapid_blink.decorate('Hello, world!') #=> "\e[6mHello, world!\e[0m"
+    #     decorator.rapid_blink.decorate('Hello, world!').to_s #=> "\e[6mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -626,7 +627,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.reverse.decorate('Hello, world!') #=> "\e[7mHello, world!\e[0m"
+    #     decorator.reverse.decorate('Hello, world!').to_s #=> "\e[7mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -639,7 +640,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.strike.decorate('Hello, world!') #=> "\e[9mHello, world!\e[0m"
+    #     decorator.strike.decorate('Hello, world!').to_s #=> "\e[9mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     #
@@ -652,7 +653,7 @@ module Sai
     #   @api public
     #
     #   @example
-    #     decorator.underline.decorate('Hello, world!') #=> "\e[4mHello, world!\e[0m"
+    #     decorator.underline.decorate('Hello, world!').to_s #=> "\e[4mHello, world!\e[0m"
     #
     #   @return [Decorator] a new instance of Decorator with the style applied
     ANSI::STYLES.each_key do |style|
@@ -687,15 +688,14 @@ module Sai
     # @api public
     #
     # @example
-    #   decorator.red.on_blue.bold.decorate('Hello, world!')
-    #   #=> "\e[38;2;205;0;0m\e[48;2;0;0;238m\e[1mHello, world!\e[0m"
+    #   decorator.red.on_blue.bold.decorate('Hello, world!').to_s #=> "\e[38;5;160;48;5;21;1mHello, world!\e[0m"
     #
     # @param text [String] the text to decorate
     #
-    # @return [String] the decorated text
-    # @rbs (String text) -> String
+    # @return [ANSI::SequencedString] the decorated text
+    # @rbs (String text) -> ANSI::SequencedString
     def decorate(text)
-      return text unless should_decorate?
+      return ANSI::SequencedString.new(text) unless should_decorate?
 
       sequences = [
         @foreground && Conversion::ColorSequence.resolve(@foreground, @mode),
@@ -703,7 +703,7 @@ module Sai
         @styles.map { |style| "\e[#{ANSI::STYLES[style]}m" }.join
       ].compact.join
 
-      "#{sequences}#{text}#{ANSI::RESET}"
+      ANSI::SequencedString.new("#{sequences}#{text}#{ANSI::RESET}")
     end
     alias apply decorate
     alias call decorate
@@ -717,7 +717,7 @@ module Sai
     # @api public
     #
     # @example
-    #   decorator.hex("#EB4133").decorate('Hello, world!') #=> "\e[38;2;235;65;51mHello, world!\e[0m"
+    #   decorator.hex("#EB4133").decorate('Hello, world!').to_s #=> "\e[38;2;235;65;51mHello, world!\e[0m"
     #
     # @param code [String] the hex color code
     #
@@ -738,7 +738,7 @@ module Sai
     # @api public
     #
     # @example
-    #   decorator.on_hex("#EB4133").decorate('Hello, world!') #=> "\e[48;2;235;65;51mHello, world!\e[0m"
+    #   decorator.on_hex("#EB4133").decorate('Hello, world!').to_s #=> "\e[48;2;235;65;51mHello, world!\e[0m"
     #
     # @param code [String] the hex color code
     #
@@ -759,7 +759,7 @@ module Sai
     # @api public
     #
     # @example
-    #   decorator.on_rgb(235, 65, 51).decorate('Hello, world!') #=> "\e[48;2;235;65;51mHello, world!\e[0m"
+    #   decorator.on_rgb(235, 65, 51).decorate('Hello, world!').to_s #=> "\e[48;2;235;65;51mHello, world!\e[0m"
     #
     # @param red [Integer] the red component
     # @param green [Integer] the green component
@@ -784,7 +784,7 @@ module Sai
     # @api public
     #
     # @example
-    #   decorator.rgb(235, 65, 51).decorate('Hello, world!') #=> "\e[38;2;235;65;51mHello, world!\e[0m"
+    #   decorator.rgb(235, 65, 51).decorate('Hello, world!').to_s #=> "\e[38;2;235;65;51mHello, world!\e[0m"
     #
     # @param red [Integer] the red component
     # @param green [Integer] the green component

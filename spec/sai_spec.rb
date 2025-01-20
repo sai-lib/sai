@@ -11,6 +11,14 @@ RSpec.describe Sai do
     it { is_expected.to eq(Sai::ModeSelector) }
   end
 
+  describe '.sequence' do
+    subject(:sequence) { described_class.sequence(text) }
+
+    let(:text) { "\e[31mHello, World!\e[0m" }
+
+    it { is_expected.to be_a(Sai::ANSI::SequencedString) }
+  end
+
   describe '.support' do
     subject(:support) { described_class.support }
 
