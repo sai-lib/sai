@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-01-20
+
+### Added
+
+* [#6](https://github.com/aaronmallen/sai/pull/6) - Add `Sai::ANSI::SequencedString` for ANSI string manipulation by
+  [@aaronmallen](https://github.com/aaronmallen)
+
+### Changed
+
+* [#5](https://github.com/aaronmallen/sai/pull/5) - Remove unnecessary error handling in `Sai::Decorator` by
+  [@aaronmallen](https://github.com/aaronmallen)
+
+* [#6](https://github.com/aaronmallen/sai/pull/6) - Changed `Sai::Decorator#decorate` now returns a
+  `Sai::ANSI::SequencedString` by [@aaronmallen](https://github.com/aaronmallen)
+
 ## [0.2.0] - 2025-01-20
 
 ### Added
@@ -29,5 +44,6 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 <!-- versions -->
 
-[Unreleased]: https://github.com/aaronmallen/sai/compare/0.2.0..HEAD
+[Unreleased]: https://github.com/aaronmallen/sai/compare/0.3.0..HEAD
+[0.3.0]: https://github.com/aaronmallen/sai/compare/0.2.0..0.3.0
 [0.2.0]: https://github.com/aaronmallen/sai/compare/0.1.0..0.2.0

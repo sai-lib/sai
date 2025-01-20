@@ -153,7 +153,7 @@ module Sai
   # Sequence a string with ANSI escape codes
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since unreleased
+  # @since 0.3.0
   #
   # @api public
   #
