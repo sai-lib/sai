@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sai/ansi'
+require 'sai/ansi/sequence_processor'
 require 'sai/conversion/color_sequence'
 require 'sai/conversion/rgb'
 require 'sai/decorator'

@@ -1,0 +1,253 @@
+# Generated from lib/sai/ansi/sequence_processor.rb with RBS::Inline
+
+module Sai
+  module ANSI
+    # Extract ANSI sequence information from a string
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    class SequenceProcessor
+      # The pattern to extract ANSI sequences from a string
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Regexp] the pattern
+      SEQUENCE_PATTERN: Regexp
+
+      # Matches the code portion of style sequences
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Regexp] the pattern
+      STYLE_CODE_PATTERN: Regexp
+
+      # Initialize a new instance of SequenceProcessor and parse the provided string
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param string [String] the string to parse
+      #
+      # @return [Array<Hash{Symbol => Object}>] the segments
+      # @rbs (String string) -> Array[Hash[Symbol, untyped]]
+      def self.process: (String string) -> Array[Hash[Symbol, untyped]]
+
+      # Initialize a new instance of SequenceProcessor
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param string [String] the string to parse
+      #
+      # @return [SequenceProcessor] the new instance of SequenceProcessor
+      # @rbs (String string) -> void
+      def initialize: (String string) -> void
+
+      # Parse a string and return a hash of segments
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Array<Hash{Symbol => Object}>] the segments
+      # @rbs () -> Array[Hash[Symbol, untyped]]
+      def process: () -> Array[Hash[Symbol, untyped]]
+
+      private
+
+      # Applies 24-bit truecolor (e.g., 38;2;R;G;B or 48;2;R;G;B)
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param codes_array [Array<Integer>]
+      # @param index [Integer]
+      #
+      # @return [Integer] the updated index (consumed 5 codes)
+      # @rbs (Array[Integer] codes_array, Integer index) -> Integer
+      def apply_24bit_color: (Array[Integer] codes_array, Integer index) -> Integer
+
+      # Applies 256-color mode (e.g., 38;5;160 or 48;5;21)
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param codes_array [Array<Integer>]
+      # @param index [Integer]
+      #
+      # @return [Integer] the updated index (consumed 3 codes)
+      # @rbs (Array[Integer] codes_array, Integer index) -> Integer
+      def apply_256_color: (Array[Integer] codes_array, Integer index) -> Integer
+
+      # Applies the appropriate action for the provided ANSI sequence
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param sequence [String] an ANSI sequence (e.g. "\e[31m", "\e[0m")
+      #
+      # @return [void]
+      # @rbs (String sequence) -> void
+      def apply_ansi_sequence: (String sequence) -> void
+
+      # Applies a basic color (FG or BG) in the range 30..37 (FG) or 40..47 (BG)
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param code [Integer] the numeric color code
+      #
+      # @return [void]
+      # @rbs (Integer code) -> void
+      def apply_basic_color: (Integer code) -> void
+
+      # Parse all numeric codes in the provided string, applying them in order (just like a real ANSI terminal)
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param codes_string [String] e.g. "38;5;160;48;5;21;1"
+      #
+      # @return [void]
+      # @rbs (String codes_string) -> void
+      def apply_codes: (String codes_string) -> void
+
+      # Applies a single code (or group) from the array. This might be:
+      #  - 0 => reset
+      #  - 30..37 => basic FG color
+      #  - 40..47 => basic BG color
+      #  - 38 or 48 => extended color sequence
+      #  - otherwise => style code (bold, underline, etc.)
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param codes_array [Array<Integer>] the list of numeric codes
+      # @param index [Integer] the current index
+      #
+      # @return [Integer] the updated index after consuming needed codes
+      # @rbs (Array[Integer] codes_array, Integer index) -> Integer
+      def apply_single_code: (Array[Integer] codes_array, Integer index) -> Integer
+
+      # Applies a single style code (e.g. 1=bold, 2=dim, 4=underline, etc.) if it matches
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param code [Integer] the numeric code to check
+      #
+      # @return [void]
+      # @rbs (Integer code) -> void
+      def apply_style_code: (Integer code) -> void
+
+      # Creates and returns a fresh, blank segment
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Hash{Symbol => Object}] a new, empty segment
+      # @rbs () -> Hash[Symbol, untyped]
+      def blank_segment: () -> Hash[Symbol, untyped]
+
+      # Scans the string for ANSI sequences or individual characters
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [void]
+      # @rbs () -> void
+      def consume_tokens: () -> void
+
+      # Finalizes the current segment if any text is present, then resets it
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [void]
+      # @rbs () -> void
+      def finalize_segment_if_text!: () -> void
+
+      # Attempts to capture an ANSI sequence from the scanner If found, finalizes
+      # the current text segment and applies the sequence
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Boolean] `true` if a sequence was found, `false` if otherwise
+      # @rbs () -> bool
+      def handle_ansi_sequence: () -> bool
+
+      # Reads a single character from the scanner and appends it to the current segment
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [void]
+      # @rbs () -> void
+      def handle_character: () -> void
+
+      # Parse extended color codes from the array, e.g. 38;5;160 (256-color) or 38;2;R;G;B (24-bit),
+      # and apply them to foreground or background
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param codes_array [Array<Integer>] the array of codes
+      # @param index [Integer] the current position (where we saw 38 or 48)
+      #
+      # @return [Integer] the updated position in the codes array
+      # @rbs (Array[Integer] codes_array, Integer index) -> Integer
+      def parse_extended_color: (Array[Integer] codes_array, Integer index) -> Integer
+
+      # Resets the current segment to a fresh, blank state
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [void]
+      # @rbs () -> void
+      def reset_segment!: () -> void
+    end
+  end
+end
