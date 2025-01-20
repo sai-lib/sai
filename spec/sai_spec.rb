@@ -2,26 +2,19 @@
 
 require 'spec_helper'
 
-RSpec.describe Sai do
-  let(:color_mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+# frozen_string_literal: true
 
-  before do
-    allow(Sai::Terminal::Capabilities).to receive(:detect_color_support).and_return(color_mode)
+RSpec.describe Sai do
+  describe '.mode' do
+    subject(:mode) { described_class.mode }
+
+    it { is_expected.to eq(Sai::ModeSelector) }
   end
 
   describe '.support' do
     subject(:support) { described_class.support }
 
-    it 'is expected to return a frozen Support instance' do
-      expect(support).to be_a(Sai::Support).and(be_frozen)
-    end
-
-    it 'is expected to memoize the Support instance' do
-      first_call = described_class.support
-      second_call = described_class.support
-
-      expect(first_call).to be(second_call)
-    end
+    it { is_expected.to eq(Sai::Support) }
   end
 
   describe 'module inclusion' do
@@ -33,27 +26,41 @@ RSpec.describe Sai do
 
     let(:instance) { including_class.new }
 
+    describe '#color_mode' do
+      subject(:color_mode) { instance.color_mode }
+
+      it { is_expected.to eq(Sai::ModeSelector) }
+    end
+
     describe '#decorator' do
-      subject(:decorator) { instance.decorator }
+      subject(:decorator) { instance.decorator(mode: mode) }
 
       let(:decorator_double) { instance_double(Sai::Decorator) }
+      let(:mode) { described_class.mode.auto }
 
       before do
-        allow(Sai::Decorator).to receive(:new).with(color_mode).and_return(decorator_double)
-        decorator
+        allow(Sai::Decorator).to receive(:new).with(mode: mode).and_return(decorator_double)
       end
 
-      it 'is expected to return a new Decorator instance' do
-        expect(Sai::Decorator).to have_received(:new).with(color_mode)
+      it 'is expected to return a new Decorator instance with the specified mode' do
+        decorator
+        expect(Sai::Decorator).to have_received(:new).with(mode: mode)
+      end
+
+      context 'when no mode is specified' do
+        subject(:decorator) { instance.decorator }
+
+        it 'is expected to use auto mode by default' do
+          decorator
+          expect(Sai::Decorator).to have_received(:new).with(mode: described_class.mode.auto)
+        end
       end
     end
 
     describe '#terminal_color_support' do
       subject(:terminal_color_support) { instance.terminal_color_support }
 
-      it 'is expected to return the support instance' do
-        expect(terminal_color_support).to be(described_class.support)
-      end
+      it { is_expected.to eq(Sai::Support) }
     end
   end
 
@@ -64,15 +71,11 @@ RSpec.describe Sai do
       let(:decorator_instance) { instance_spy(Sai::Decorator) }
 
       before do
-        allow(Sai::Decorator).to receive(:new).and_return(decorator_instance)
+        allow(Sai::Decorator).to receive(:new).with(mode: described_class.mode.auto).and_return(decorator_instance)
+      end
+
+      it 'is expected to delegate the method call to a new Decorator instance' do
         delegated_call
-      end
-
-      it 'is expected to create a new Decorator with the current color mode' do
-        expect(Sai::Decorator).to have_received(:new).with(color_mode)
-      end
-
-      it 'is expected to delegate the method call to the Decorator instance' do
         expect(decorator_instance).to have_received(method).with(no_args)
       end
     end
@@ -83,15 +86,11 @@ RSpec.describe Sai do
       let(:decorator_instance) { instance_spy(Sai::Decorator) }
 
       before do
-        allow(Sai::Decorator).to receive(:new).and_return(decorator_instance)
+        allow(Sai::Decorator).to receive(:new).with(mode: described_class.mode.auto).and_return(decorator_instance)
+      end
+
+      it 'is expected to delegate the method call to a new Decorator instance' do
         delegated_call
-      end
-
-      it 'is expected to create a new Decorator with the current color mode' do
-        expect(Sai::Decorator).to have_received(:new).with(color_mode)
-      end
-
-      it 'is expected to delegate the method call to the Decorator instance' do
         expect(decorator_instance).to have_received(:hex).with('#FF0000')
       end
     end
@@ -102,20 +101,15 @@ RSpec.describe Sai do
       let(:decorator_instance) { instance_spy(Sai::Decorator) }
 
       before do
-        allow(Sai::Decorator).to receive(:new).and_return(decorator_instance)
+        allow(Sai::Decorator).to receive(:new).with(mode: described_class.mode.auto).and_return(decorator_instance)
+      end
+
+      it 'is expected to delegate the method call to a new Decorator instance' do
         delegated_call
-      end
-
-      it 'is expected to create a new Decorator with the current color mode' do
-        expect(Sai::Decorator).to have_received(:new).with(color_mode)
-      end
-
-      it 'is expected to delegate the method call to the Decorator instance' do
         expect(decorator_instance).to have_received(:rgb).with(255, 0, 0)
       end
     end
 
-    # Test methods without arguments
     describe '.red' do
       include_examples 'a delegated method without arguments', :red
     end
@@ -132,7 +126,6 @@ RSpec.describe Sai do
       include_examples 'a delegated method without arguments', :italic
     end
 
-    # Test methods with arguments
     describe '.hex' do
       include_examples 'a delegated method with hex argument'
     end
@@ -146,53 +139,6 @@ RSpec.describe Sai do
         it "is not expected to respond to ##{method}" do
           expect(described_class).not_to respond_to(method)
         end
-      end
-    end
-  end
-
-  describe 'thread safety' do
-    describe '.color_mode' do
-      subject(:color_mode_value) { described_class.send(:color_mode) }
-
-      before do
-        Thread.current[:sai_color_mode] = nil
-      end
-
-      it 'is expected to store color mode in thread local storage' do
-        expect { color_mode_value }
-          .to change { Thread.current[:sai_color_mode] }
-          .from(nil)
-          .to(color_mode)
-      end
-
-      it 'is expected to memoize the color mode per thread' do # rubocop:disable RSpec/MultipleExpectations
-        first_call = described_class.send(:color_mode)
-        described_class.send(:color_mode)
-
-        expect(Sai::Terminal::Capabilities)
-          .to have_received(:detect_color_support).once
-        expect(first_call).to eq(color_mode)
-      end
-    end
-
-    describe 'thread isolation' do
-      it 'is expected to maintain color mode isolation' do
-        Thread.current[:sai_color_mode] = color_mode
-        alternate_thread = Thread.new do
-          Thread.current[:sai_color_mode] = Sai::Terminal::ColorMode::BASIC
-          Thread.current[:sai_color_mode]
-        end
-
-        expect(alternate_thread.value).to eq(Sai::Terminal::ColorMode::BASIC)
-      end
-
-      it 'is expected to maintain the original thread color mode' do
-        Thread.current[:sai_color_mode] = color_mode
-        Thread.new do
-          Thread.current[:sai_color_mode] = Sai::Terminal::ColorMode::BASIC
-        end.join
-
-        expect(Thread.current[:sai_color_mode]).to eq(color_mode)
       end
     end
   end

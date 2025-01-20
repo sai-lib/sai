@@ -20,6 +20,17 @@ module Sai
       # @rbs () -> Integer
       def self.detect_color_support: () -> Integer
 
+      # Check for 256 color (8-bit) support
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since 0.1.0
+      #
+      # @api private
+      #
+      # @return [Boolean] `true` if the terminal supports 256 colors, otherwise `false`
+      # @rbs () -> bool
+      private def self.advanced?: () -> bool
+
       # Check for ANSI color support
       #
       # @author {https://aaronmallen.me Aaron Allen}
@@ -41,17 +52,6 @@ module Sai
       # @return [Boolean] `true` if the terminal supports basic colors, otherwise `false`
       # @rbs () -> bool
       private def self.basic?: () -> bool
-
-      # Check for 256 color (8-bit) support
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @return [Boolean] `true` if the terminal supports 256 colors, otherwise `false`
-      # @rbs () -> bool
-      private def self.bit8?: () -> bool
 
       # Check for NO_COLOR environment variable
       #

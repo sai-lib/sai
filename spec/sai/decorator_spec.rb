@@ -4,9 +4,9 @@ require 'spec_helper'
 
 RSpec.describe Sai::Decorator do
   describe '.new' do
-    subject(:decorator) { described_class.new(color_mode) }
+    subject(:decorator) { described_class.new(mode: mode) }
 
-    let(:color_mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
 
     it 'is expected to initialize with empty styles' do
       expect(decorator.instance_variable_get(:@styles)).to eq([])
@@ -20,16 +20,16 @@ RSpec.describe Sai::Decorator do
       expect(decorator.instance_variable_get(:@background)).to be_nil
     end
 
-    it 'is expected to initialize with the provided color mode' do
-      expect(decorator.instance_variable_get(:@color_mode)).to eq(color_mode)
+    it 'is expected to initialize with the provided mode' do
+      expect(decorator.instance_variable_get(:@mode)).to eq(mode)
     end
   end
 
   describe '#decorate' do
     subject(:decorated_text) { decorator.decorate(text) }
 
-    let(:decorator) { described_class.new(color_mode) }
-    let(:color_mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:decorator) { described_class.new(mode: mode) }
+    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
     let(:text) { 'Hello, world!' }
 
     context 'when no styles or colors are applied' do
@@ -74,7 +74,8 @@ RSpec.describe Sai::Decorator do
   describe '#hex' do
     subject(:hex_decorator) { decorator.hex(code) }
 
-    let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:decorator) { described_class.new(mode: mode) }
+    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
 
     context 'when given a valid hex code' do
       let(:code) { '#EB4133' }
@@ -108,7 +109,8 @@ RSpec.describe Sai::Decorator do
   describe '#on_hex' do
     subject(:on_hex_decorator) { decorator.on_hex(code) }
 
-    let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:decorator) { described_class.new(mode: mode) }
+    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
 
     context 'when given a valid hex code' do
       let(:code) { '#EB4133' }
@@ -142,7 +144,8 @@ RSpec.describe Sai::Decorator do
   describe '#rgb' do
     subject(:rgb_decorator) { decorator.rgb(red, green, blue) }
 
-    let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:decorator) { described_class.new(mode: mode) }
+    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
     let(:red) { 235 }
     let(:green) { 65 }
     let(:blue) { 51 }
@@ -177,7 +180,8 @@ RSpec.describe Sai::Decorator do
   describe '#on_rgb' do
     subject(:on_rgb_decorator) { decorator.on_rgb(red, green, blue) }
 
-    let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:decorator) { described_class.new(mode: mode) }
+    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
     let(:red) { 235 }
     let(:green) { 65 }
     let(:blue) { 51 }
@@ -209,12 +213,77 @@ RSpec.describe Sai::Decorator do
     end
   end
 
+  describe '#with_mode' do
+    subject(:with_mode) { decorator.with_mode(color_mode) }
+
+    let(:decorator) { described_class.new(mode: Sai.mode.true_color) }
+    let(:color_mode) { Sai.mode.no_color }
+
+    it 'is expected to set the color mode' do
+      before_mode_set = decorator.hex('#CD0000').decorate('text')
+      after_mode_set = with_mode.decorate('text')
+
+      expect(after_mode_set).not_to eq(before_mode_set)
+    end
+  end
+
+  describe 'color mode behavior' do
+    subject(:decorated_text) { decorator.hex('#CD0000').decorate('test') }
+
+    let(:decorator) { described_class.new(mode: Sai.mode.auto) }
+
+    before do
+      allow(Sai::Terminal::Capabilities).to receive(:detect_color_support).and_return(terminal_support)
+    end
+
+    context 'when terminal supports true color' do
+      let(:terminal_support) { Sai::Terminal::ColorMode::TRUE_COLOR }
+
+      it 'is expected to use true color codes' do
+        expect(decorated_text).to eq("\e[38;2;205;0;0mtest\e[0m")
+      end
+    end
+
+    context 'when terminal supports 8-bit color' do
+      let(:terminal_support) { Sai::Terminal::ColorMode::ADVANCED }
+
+      it 'is expected to use 8-bit color codes' do
+        expect(decorated_text).to eq("\e[38;5;160mtest\e[0m")
+      end
+    end
+
+    context 'when terminal supports 4-bit color' do
+      let(:terminal_support) { Sai::Terminal::ColorMode::ANSI }
+
+      it 'is expected to use 4-bit color codes' do
+        expect(decorated_text).to eq("\e[31mtest\e[0m")
+      end
+    end
+
+    context 'when terminal supports only basic color' do
+      let(:terminal_support) { Sai::Terminal::ColorMode::BASIC }
+
+      it 'is expected to use basic color codes' do
+        expect(decorated_text).to eq("\e[31mtest\e[0m")
+      end
+    end
+
+    context 'when terminal has no color support' do
+      let(:terminal_support) { Sai::Terminal::ColorMode::NO_COLOR }
+
+      it 'is expected to return unmodified text' do
+        expect(decorated_text).to eq('test')
+      end
+    end
+  end
+
   # Test each named color method
   Sai::ANSI::COLOR_NAMES.each_key do |color|
     describe "##{color}" do
       subject(:color_decorator) { decorator.public_send(color) }
 
-      let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
+      let(:decorator) { described_class.new(mode: mode) }
+      let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
 
       it { is_expected.to be_an_instance_of(described_class) }
 
@@ -236,7 +305,8 @@ RSpec.describe Sai::Decorator do
     describe "#on_#{color}" do
       subject(:background_color_decorator) { decorator.public_send(:"on_#{color}") }
 
-      let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
+      let(:decorator) { described_class.new(mode: mode) }
+      let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
 
       it { is_expected.to be_an_instance_of(described_class) }
 
@@ -261,7 +331,8 @@ RSpec.describe Sai::Decorator do
     describe "##{style}" do
       subject(:style_decorator) { decorator.public_send(style) }
 
-      let(:decorator) { described_class.new(Sai::Terminal::ColorMode::TRUE_COLOR) }
+      let(:decorator) { described_class.new(mode: mode) }
+      let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
 
       it { is_expected.to be_an_instance_of(described_class) }
 

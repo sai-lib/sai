@@ -39,6 +39,20 @@
 #
 #   Sai.support.true_color? # => true
 module Sai
+  # The Sai {ModeSelector mode selector}
+  #
+  # @author {https://aaronmallen.me Aaron Allen}
+  # @since unreleased
+  #
+  # @api public
+  #
+  # @example
+  #   Sai.mode.auto #=> 4
+  #
+  # @return [ModeSelector] the mode selector
+  # @rbs () -> singleton(ModeSelector)
+  def self.mode: () -> singleton(ModeSelector)
+
   def black: () -> Decorator
 
   def blink: () -> Decorator
@@ -145,24 +159,31 @@ module Sai
   # @example Check the color support of the terminal
   #   Sai.support.ansi? # => true
   #   Sai.support.basic? # => true
-  #   Sai.support.bit8? # => true
+  #   Sai.support.advanced? # => true
   #   Sai.support.no_color? # => false
   #   Sai.support.true_color? # => true
   #
   # @return [Support] the color support
-  # @rbs () -> Support
-  def self.support: () -> Support
+  # @rbs () -> singleton(Support)
+  def self.support: () -> singleton(Support)
 
-  # Detect the color capabilities of the terminal
+  # A helper method that provides Sai color modes
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since 0.1.0
+  # @since unreleased
   #
-  # @api private
+  # @api public
   #
-  # @return [Integer] the color mode
-  # @rbs () -> Integer
-  private def self.color_mode: () -> Integer
+  # @example
+  #   class MyClass
+  #     include Sai
+  #   end
+  #
+  #   MyClass.new.color_mode.ansi #=> 2
+  #
+  # @return [ModeSelector] the mode selector
+  # @rbs () -> singleton(ModeSelector)
+  def color_mode: () -> singleton(ModeSelector)
 
   # A helper method to initialize an instance of {Decorator}
   #
@@ -179,9 +200,14 @@ module Sai
   #   MyClass.new.decorator.blue.on_red.bold.decorate('Hello, world!')
   #   #=> "\e[38;5;21m\e[48;5;160m\e[1mHello, world!\e[0m"
   #
+  #   MyClass.new.decorator(mode: Sai.mode.no_color)
+  #   #=> "Hello, world!"
+  #
+  # @param mode [Integer] the color mode to use
+  #
   # @return [Decorator] the Decorator instance
-  # @rbs () -> Decorator
-  def decorator: () -> Decorator
+  # @rbs (?mode: Integer) -> Decorator
+  def decorator: (?mode: Integer) -> Decorator
 
   # The supported color modes for the terminal
   #
@@ -197,11 +223,11 @@ module Sai
   #
   #   MyClass.new.terminal_color_support.ansi? # => true
   #   MyClass.new.terminal_color_support.basic? # => true
-  #   MyClass.new.terminal_color_support.bit8? # => true
+  #   MyClass.new.terminal_color_support.advanced? # => true
   #   MyClass.new.terminal_color_support.no_color? # => false
   #   MyClass.new.terminal_color_support.true_color? # => true
   #
   # @return [Support] the color support
-  # @rbs () -> Support
-  def terminal_color_support: () -> Support
+  # @rbs () -> singleton(Support)
+  def terminal_color_support: () -> singleton(Support)
 end

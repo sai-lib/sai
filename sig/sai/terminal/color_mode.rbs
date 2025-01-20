@@ -47,7 +47,7 @@ module Sai
       # @api private
       #
       # @return [Integer] the color mode
-      BIT8: Integer
+      ADVANCED: Integer
 
       # The terminal supports 16 million colors (24-bit)
       #

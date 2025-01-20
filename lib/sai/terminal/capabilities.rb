@@ -24,7 +24,7 @@ module Sai
         def detect_color_support
           return ColorMode::NO_COLOR if no_color?
           return ColorMode::TRUE_COLOR if true_color?
-          return ColorMode::BIT8 if bit8?
+          return ColorMode::ADVANCED if advanced?
           return ColorMode::ANSI if ansi?
           return ColorMode::BASIC if basic?
 
@@ -32,6 +32,21 @@ module Sai
         end
 
         private
+
+        # Check for 256 color (8-bit) support
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @return [Boolean] `true` if the terminal supports 256 colors, otherwise `false`
+        # @rbs () -> bool
+        def advanced?
+          return true if ENV.fetch('TERM', '').end_with?('-256color')
+
+          ENV.fetch('COLORTERM', '0').to_i >= 256
+        end
 
         # Check for ANSI color support
         #
@@ -59,21 +74,6 @@ module Sai
         # @rbs () -> bool
         def basic?
           !ENV.fetch('TERM', '').empty?
-        end
-
-        # Check for 256 color (8-bit) support
-        #
-        # @author {https://aaronmallen.me Aaron Allen}
-        # @since 0.1.0
-        #
-        # @api private
-        #
-        # @return [Boolean] `true` if the terminal supports 256 colors, otherwise `false`
-        # @rbs () -> bool
-        def bit8?
-          return true if ENV.fetch('TERM', '').end_with?('-256color')
-
-          ENV.fetch('COLORTERM', '0').to_i >= 256
         end
 
         # Check for NO_COLOR environment variable

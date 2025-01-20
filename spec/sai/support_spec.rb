@@ -3,165 +3,177 @@
 require 'spec_helper'
 
 RSpec.describe Sai::Support do
-  subject(:support) { described_class.new(color_mode) }
+  before do
+    allow(Sai::Terminal::Capabilities).to receive(:detect_color_support).and_return(color_mode)
+  end
 
-  describe '#ansi?' do
-    context 'when color mode is NO_COLOR' do
-      let(:color_mode) { Sai::Terminal::ColorMode::NO_COLOR }
+  describe '.advanced?' do
+    subject(:advanced?) { described_class.advanced? }
 
-      it { expect(support.ansi?).to be false }
-    end
-
-    context 'when color mode is BASIC' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BASIC }
-
-      it { expect(support.ansi?).to be false }
-    end
-
-    context 'when color mode is ANSI' do
-      let(:color_mode) { Sai::Terminal::ColorMode::ANSI }
-
-      it { expect(support.ansi?).to be true }
-    end
-
-    context 'when color mode is BIT8' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BIT8 }
-
-      it { expect(support.ansi?).to be true }
-    end
-
-    context 'when color mode is TRUE_COLOR' do
+    context 'when terminal supports true color' do
       let(:color_mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
 
-      it { expect(support.ansi?).to be true }
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal supports 8-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ADVANCED }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal supports 4-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ANSI }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when terminal supports 3-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::BASIC }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when terminal has no color support' do
+      let(:color_mode) { Sai::Terminal::ColorMode::NO_COLOR }
+
+      it { is_expected.to be false }
     end
   end
 
-  describe '#basic?' do
-    context 'when color mode is NO_COLOR' do
-      let(:color_mode) { Sai::Terminal::ColorMode::NO_COLOR }
+  describe '.ansi?' do
+    subject(:ansi?) { described_class.ansi? }
 
-      it { expect(support.basic?).to be false }
-    end
-
-    context 'when color mode is BASIC' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BASIC }
-
-      it { expect(support.basic?).to be true }
-    end
-
-    context 'when color mode is ANSI' do
-      let(:color_mode) { Sai::Terminal::ColorMode::ANSI }
-
-      it { expect(support.basic?).to be true }
-    end
-
-    context 'when color mode is BIT8' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BIT8 }
-
-      it { expect(support.basic?).to be true }
-    end
-
-    context 'when color mode is TRUE_COLOR' do
+    context 'when terminal supports true color' do
       let(:color_mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
 
-      it { expect(support.basic?).to be true }
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal supports 8-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ADVANCED }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal supports 4-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ANSI }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal supports 3-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::BASIC }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when terminal has no color support' do
+      let(:color_mode) { Sai::Terminal::ColorMode::NO_COLOR }
+
+      it { is_expected.to be false }
     end
   end
 
-  describe '#bit8?' do
-    context 'when color mode is NO_COLOR' do
-      let(:color_mode) { Sai::Terminal::ColorMode::NO_COLOR }
+  describe '.basic?' do
+    subject(:basic?) { described_class.basic? }
 
-      it { expect(support.bit8?).to be false }
-    end
-
-    context 'when color mode is BASIC' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BASIC }
-
-      it { expect(support.bit8?).to be false }
-    end
-
-    context 'when color mode is ANSI' do
-      let(:color_mode) { Sai::Terminal::ColorMode::ANSI }
-
-      it { expect(support.bit8?).to be false }
-    end
-
-    context 'when color mode is BIT8' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BIT8 }
-
-      it { expect(support.bit8?).to be true }
-    end
-
-    context 'when color mode is TRUE_COLOR' do
+    context 'when terminal supports true color' do
       let(:color_mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
 
-      it { expect(support.bit8?).to be true }
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal supports 8-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ADVANCED }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal supports 4-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ANSI }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal supports 3-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::BASIC }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal has no color support' do
+      let(:color_mode) { Sai::Terminal::ColorMode::NO_COLOR }
+
+      it { is_expected.to be false }
     end
   end
 
-  describe '#color?' do
-    context 'when color mode is NO_COLOR' do
-      let(:color_mode) { Sai::Terminal::ColorMode::NO_COLOR }
+  describe '.color?' do
+    subject(:color?) { described_class.color? }
 
-      it { expect(support.color?).to be false }
-    end
-
-    context 'when color mode is BASIC' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BASIC }
-
-      it { expect(support.color?).to be true }
-    end
-
-    context 'when color mode is ANSI' do
-      let(:color_mode) { Sai::Terminal::ColorMode::ANSI }
-
-      it { expect(support.color?).to be true }
-    end
-
-    context 'when color mode is BIT8' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BIT8 }
-
-      it { expect(support.color?).to be true }
-    end
-
-    context 'when color mode is TRUE_COLOR' do
+    context 'when terminal supports true color' do
       let(:color_mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
 
-      it { expect(support.color?).to be true }
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal supports 8-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ADVANCED }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal supports 4-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ANSI }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal supports 3-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::BASIC }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal has no color support' do
+      let(:color_mode) { Sai::Terminal::ColorMode::NO_COLOR }
+
+      it { is_expected.to be false }
     end
   end
 
-  describe '#true_color?' do
-    context 'when color mode is NO_COLOR' do
-      let(:color_mode) { Sai::Terminal::ColorMode::NO_COLOR }
+  describe '.true_color?' do
+    subject(:true_color?) { described_class.true_color? }
 
-      it { expect(support.true_color?).to be false }
-    end
-
-    context 'when color mode is BASIC' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BASIC }
-
-      it { expect(support.true_color?).to be false }
-    end
-
-    context 'when color mode is ANSI' do
-      let(:color_mode) { Sai::Terminal::ColorMode::ANSI }
-
-      it { expect(support.true_color?).to be false }
-    end
-
-    context 'when color mode is BIT8' do
-      let(:color_mode) { Sai::Terminal::ColorMode::BIT8 }
-
-      it { expect(support.true_color?).to be false }
-    end
-
-    context 'when color mode is TRUE_COLOR' do
+    context 'when terminal supports true color' do
       let(:color_mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
 
-      it { expect(support.true_color?).to be true }
+      it { is_expected.to be true }
+    end
+
+    context 'when terminal supports 8-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ADVANCED }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when terminal supports 4-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::ANSI }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when terminal supports 3-bit color' do
+      let(:color_mode) { Sai::Terminal::ColorMode::BASIC }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when terminal has no color support' do
+      let(:color_mode) { Sai::Terminal::ColorMode::NO_COLOR }
+
+      it { is_expected.to be false }
     end
   end
 end

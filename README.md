@@ -73,10 +73,10 @@ puts Sai.red.bold.italic.decorate('Error!')
 
 # Complex combinations
 puts Sai.bright_cyan
-       .on_blue
-       .bold
-       .italic
-       .decorate('Styled text')
+        .on_blue
+        .bold
+        .italic
+        .decorate('Styled text')
 ```
 
 ### Module Inclusion
@@ -94,7 +94,7 @@ class CLI
   end
 
   def success(message)
-    puts decorator.green.decorate(message)
+    puts decorator.with_mode(color_mode.ansi_auto).green.decorate(message)
   end
 end
 
@@ -235,6 +235,39 @@ Sai automatically detects your terminal's color capabilities and adapts the outp
 > [!NOTE]
 > This automatic downgrading ensures your application looks great across all terminal types without any extra code!
 
+### Color Mode Selection
+
+Sai provides flexible color mode selection through its `mode` interface:
+
+```ruby
+# Use automatic mode detection (default)
+Sai.with_mode(Sai.mode.auto)
+
+# Force specific color modes
+puts Sai.with_mode(Sai.mode.true_color).red.decorate('24-bit color')
+puts Sai.with_mode(Sai.mode.advanced).red.decorate('256 colors')
+puts Sai.with_mode(Sai.mode.ansi).red.decorate('16 colors')
+puts Sai.with_mode(Sai.mode.basic).red.decorate('8 colors')
+puts Sai.with_mode(Sai.mode.no_color).red.decorate('No color')
+
+# Use automatic downgrading
+puts Sai.with_mode(Sai.mode.advanced_auto).red.decorate('256 colors or less')
+puts Sai.with_mode(Sai.mode.ansi_auto).red.decorate('16 colors or less')
+puts Sai.with_mode(Sai.mode.basic_auto).red.decorate('8 colors or less')
+```
+
+> [!WARNING]
+> When using fixed color modes (like `true_color` or `advanced`), Sai will not automatically downgrade colors for
+> terminals with lower color support. For automatic color mode adjustment, use modes ending in `_auto`
+> (like `advanced_auto` or `ansi_auto`).
+
+This allows you to:
+
+* Explicitly set specific color modes
+* Use automatic mode detection (default)
+* Set maximum color modes with automatic downgrading
+* Disable colors entirely
+
 ### Terminal Support Detection
 
 You can check the terminal's capabilities:
@@ -242,7 +275,7 @@ You can check the terminal's capabilities:
 ```ruby
 # Using directly
 Sai.support.true_color? # => true/false
-Sai.support.bit8?      # => true/false
+Sai.support.advanced?   # => true/false
 Sai.support.ansi?      # => true/false
 Sai.support.basic?     # => true/false
 Sai.support.color?     # => true/false

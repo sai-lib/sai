@@ -36,7 +36,7 @@ module Sai
 
           case mode
           when Terminal::ColorMode::TRUE_COLOR then true_color(rgb, style_type)
-          when Terminal::ColorMode::BIT8 then bit8(rgb, style_type)
+          when Terminal::ColorMode::ADVANCED then advanced(rgb, style_type)
           when Terminal::ColorMode::ANSI then ansi(rgb, style_type)
           when Terminal::ColorMode::BASIC then basic(rgb, style_type)
           else
@@ -45,6 +45,29 @@ module Sai
         end
 
         private
+
+        # Convert RGB values to an 8-bit color sequence
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param rgb [Array<Integer>] the RGB components
+        # @param style_type [Symbol] the type of color (foreground or background)
+        #
+        # @return [String] the ANSI escape sequence
+        # @rbs (Array[Integer] rgb, style_type type) -> String
+        def advanced(rgb, style_type)
+          code = style_type == :background ? 48 : 38
+          color_code = if rgb.uniq.size == 1
+                         RGB.to_grayscale_index(rgb)
+                       else
+                         RGB.to_color_cube_index(rgb)
+                       end
+
+          "\e[#{code};5;#{color_code}m"
+        end
 
         # Convert RGB values to a 4-bit ANSI color sequence
         #
@@ -102,29 +125,6 @@ module Sai
           color = RGB.closest_ansi_color(r, g, b)
           code = base_color_for_style_type(ANSI::COLOR_CODES[color], style_type)
           "\e[#{code}m"
-        end
-
-        # Convert RGB values to an 8-bit color sequence
-        #
-        # @author {https://aaronmallen.me Aaron Allen}
-        # @since 0.1.0
-        #
-        # @api private
-        #
-        # @param rgb [Array<Integer>] the RGB components
-        # @param style_type [Symbol] the type of color (foreground or background)
-        #
-        # @return [String] the ANSI escape sequence
-        # @rbs (Array[Integer] rgb, style_type type) -> String
-        def bit8(rgb, style_type)
-          code = style_type == :background ? 48 : 38
-          color_code = if rgb.uniq.size == 1
-                         RGB.to_grayscale_index(rgb)
-                       else
-                         RGB.to_color_cube_index(rgb)
-                       end
-
-          "\e[#{code};5;#{color_code}m"
         end
 
         # Convert RGB values to a true color (24-bit) sequence
