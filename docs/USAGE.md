@@ -97,6 +97,19 @@ Available named colors:
 > While named colors provide convenient shortcuts, remember that Sai supports the full RGB color space. Don't feel
 > limited to just these predefined colors!
 
+### Color Manipulation
+
+Adjust the brightness of colors:
+
+```ruby
+# Darken colors
+Sai.red.darken_text(0.5).decorate('Darkened red text')
+Sai.on_blue.darken_background(0.3).decorate('Darkened blue background')
+
+# Lighten colors
+Sai.blue.lighten_text(0.5).decorate('Lightened blue text')
+Sai.on_red.lighten_background(0.3).decorate('Lightened red background')
+
 ## Text Styles
 
 Sai supports a variety of text styles:
@@ -286,6 +299,7 @@ end
   * Use named colors for standard indicators (red for errors, etc.)
   * Use RGB/Hex for brand colors or specific design requirements
   * Consider color blindness when choosing colors
+  * Use `darken_text`/`lighten_text` to create visual hierarchy or emphasis
 
 3. **Style Organization**
   * Create reusable styles for consistency

@@ -83,6 +83,128 @@ RSpec.describe Sai::Conversion::RGB do
     end
   end
 
+  describe '.darken' do
+    subject(:darken) { described_class.darken(color, amount) }
+
+    context 'when given an RGB array' do
+      let(:color) { [255, 128, 64] }
+      let(:amount) { 0.5 }
+
+      it 'is expected to darken the color by the specified amount' do
+        expect(darken).to eq([128, 64, 32])
+      end
+
+      context 'when amount would make values negative' do
+        let(:amount) { 1.0 }
+
+        it 'is expected to clamp values at 0' do
+          expect(darken).to eq([0, 0, 0])
+        end
+      end
+    end
+
+    context 'when given a hex color' do
+      let(:color) { '#FF8040' }
+      let(:amount) { 0.5 }
+
+      it 'is expected to darken the color by the specified amount' do
+        expect(darken).to eq([128, 64, 32])
+      end
+    end
+
+    context 'when given a named color' do
+      let(:color) { :red }
+      let(:amount) { 0.5 }
+
+      it 'is expected to darken the color by the specified amount' do
+        rgb = Sai::ANSI::COLOR_NAMES[:red]
+        expected = rgb.map { |c| (c * 0.5).round }
+        expect(darken).to eq(expected)
+      end
+    end
+
+    context 'when given an invalid amount' do
+      let(:color) { [255, 128, 64] }
+
+      context 'when amount is negative' do
+        let(:amount) { -0.5 }
+
+        it 'is expected to raise ArgumentError' do
+          expect { darken }.to raise_error(ArgumentError, /Invalid amount/)
+        end
+      end
+
+      context 'when amount is greater than 1.0' do
+        let(:amount) { 1.5 }
+
+        it 'is expected to raise ArgumentError' do
+          expect { darken }.to raise_error(ArgumentError, /Invalid amount/)
+        end
+      end
+    end
+  end
+
+  describe '.lighten' do
+    subject(:lighten) { described_class.lighten(color, amount) }
+
+    context 'when given an RGB array' do
+      let(:color) { [128, 64, 32] }
+      let(:amount) { 0.5 }
+
+      it 'is expected to lighten the color by the specified amount' do
+        expect(lighten).to eq([192, 96, 48])
+      end
+
+      context 'when amount would exceed 255' do
+        let(:amount) { 1.0 }
+
+        it 'is expected to clamp values at 255' do
+          expect(lighten).to eq([255, 128, 64])
+        end
+      end
+    end
+
+    context 'when given a hex color' do
+      let(:color) { '#804020' }
+      let(:amount) { 0.5 }
+
+      it 'is expected to lighten the color by the specified amount' do
+        expect(lighten).to eq([192, 96, 48])
+      end
+    end
+
+    context 'when given a named color' do
+      let(:color) { :blue }
+      let(:amount) { 0.5 }
+
+      it 'is expected to lighten the color by the specified amount' do
+        rgb = Sai::ANSI::COLOR_NAMES[:blue]
+        expected = rgb.map { |c| [255, (c * 1.5).round].min }
+        expect(lighten).to eq(expected)
+      end
+    end
+
+    context 'when given an invalid amount' do
+      let(:color) { [128, 64, 32] }
+
+      context 'when amount is negative' do
+        let(:amount) { -0.5 }
+
+        it 'is expected to raise ArgumentError' do
+          expect { lighten }.to raise_error(ArgumentError, /Invalid amount/)
+        end
+      end
+
+      context 'when amount is greater than 1.0' do
+        let(:amount) { 1.5 }
+
+        it 'is expected to raise ArgumentError' do
+          expect { lighten }.to raise_error(ArgumentError, /Invalid amount/)
+        end
+      end
+    end
+  end
+
   describe '.resolve' do
     subject(:resolve) { described_class.resolve(color) }
 

@@ -51,6 +51,26 @@ module Sai
           [red, green, blue].max < 0.3
         end
 
+        # Darken an RGB color by a percentage
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since unreleased
+        #
+        # @api private
+        #
+        # @param color [Array<Integer>, String, Symbol] the color to darken
+        # @param amount [Float] amount to darken by (0.0-1.0)
+        #
+        # @raise [ArgumentError] if amount is not between 0.0 and 1.0
+        # @return [Array<Integer>] the darkened RGB values
+        # @rbs ((Array[Integer] | String | Symbol) color, Float amount) -> Array[Integer]
+        def darken(color, amount)
+          raise ArgumentError, "Invalid amount: #{amount}" unless amount.between?(0.0, 1.0)
+
+          rgb = resolve(color)
+          rgb.map { |c| [0, (c * (1 - amount)).round].max }
+        end
+
         # Determine if a color is grayscale
         #
         # @author {https://aaronmallen.me Aaron Allen}
@@ -66,6 +86,26 @@ module Sai
         # @rbs (Float red, Float green, Float blue) -> bool
         def grayscale?(red, green, blue)
           red == green && green == blue
+        end
+
+        # Lighten an RGB color by a percentage
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since unreleased
+        #
+        # @api private
+        #
+        # @param color [Array<Integer>, String, Symbol] the color to lighten
+        # @param amount [Float] amount to lighten by (0.0-1.0)
+        #
+        # @raise [ArgumentError] if amount is not between 0.0 and 1.0
+        # @return [Array<Integer>] the lightened RGB values
+        # @rbs ((Array[Integer] | String | Symbol) color, Float amount) -> Array[Integer]
+        def lighten(color, amount)
+          raise ArgumentError, "Invalid amount: #{amount}" unless amount.between?(0.0, 1.0)
+
+          rgb = resolve(color)
+          rgb.map { |c| [255, (c * (1 + amount)).round].min }
         end
 
         # Convert a color value to RGB components

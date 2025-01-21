@@ -4,6 +4,7 @@ require 'sai'
 require 'sai/ansi'
 require 'sai/ansi/sequenced_string'
 require 'sai/conversion/color_sequence'
+require 'sai/conversion/rgb'
 
 module Sai
   # A decorator for applying ANSI styles and colors to text
@@ -12,7 +13,7 @@ module Sai
   # @since 0.1.0
   #
   # @api public
-  class Decorator
+  class Decorator # rubocop:disable Metrics/ClassLength
     # Initialize a new instance of Decorator
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -680,6 +681,51 @@ module Sai
     #   def strike: () -> Decorator
     #   def underline: () -> Decorator
 
+    # Darken the background color by a percentage
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api public
+    #
+    # @example
+    #   decorator.on_blue.darken_text(0.5).decorate('Hello, world!').to_s #=> "\e[48;2;0;0;238mHello, world!\e[0m"
+    #
+    # @param amount [Float] the amount to darken the background color (0.0...1.0)
+    #
+    # @raise [ArgumentError] if the percentage is out of range
+    # @return [Decorator] a new instance of Decorator with the darkened background color
+    # @rbs (Float amount) -> Decorator
+    def darken_background(amount)
+      raise ArgumentError, "Invalid percentage: #{amount}" unless amount >= 0.0 && amount <= 1.0
+
+      darken(amount, :background)
+    end
+    alias darken_bg darken_background
+
+    # Darken the text color by a percentage
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api public
+    #
+    # @example
+    #   decorator.blue.darken_text(0.5).decorate('Hello, world!').to_s #=> "\e[38;2;0;0;119mHello, world!\e[0m"
+    #
+    # @param amount [Float] the amount to darken the text color (0.0...1.0)
+    #
+    # @raise [ArgumentError] if the percentage is out of range
+    # @return [Decorator] a new instance of Decorator with the darkened text color
+    # @rbs (Float amount) -> Decorator
+    def darken_text(amount)
+      raise ArgumentError, "Invalid percentage: #{amount}" unless amount >= 0.0 && amount <= 1.0
+
+      darken(amount, :foreground)
+    end
+    alias darken_fg darken_text
+    alias darken_foreground darken_text
+
     # Apply the styles and colors to the text
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -729,6 +775,52 @@ module Sai
 
       dup.tap { |duped| duped.instance_variable_set(:@foreground, code) }
     end
+
+    # Lighten the background color by a percentage
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api public
+    #
+    # @example
+    #   decorator.on_blue.lighten_background(0.5).decorate('Hello, world!').to_s
+    #   #=> "\e[48;2;0;0;255mHello, world!\e[0m"
+    #
+    # @param amount [Float] the amount to lighten the background color (0.0...1.0)
+    #
+    # @raise [ArgumentError] if the percentage is out of range
+    # @return [Decorator] a new instance of Decorator with the lightened background color
+    # @rbs (Float amount) -> Decorator
+    def lighten_background(amount)
+      raise ArgumentError, "Invalid percentage: #{amount}" unless amount >= 0.0 && amount <= 1.0
+
+      lighten(amount, :background)
+    end
+    alias lighten_bg lighten_background
+
+    # Lighten the text color by a percentage
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api public
+    #
+    # @example
+    #   decorator.blue.lighten_text(0.5).decorate('Hello, world!').to_s #=> "\e[38;2;0;0;127mHello, world!\e[0m"
+    #
+    # @param amount [Float] the amount to lighten the text color (0.0...1.0)
+    #
+    # @raise [ArgumentError] if the percentage is out of range
+    # @return [Decorator] a new instance of Decorator with the lightened text color
+    # @rbs (Float amount) -> Decorator
+    def lighten_text(amount)
+      raise ArgumentError, "Invalid percentage: #{amount}" unless amount >= 0.0 && amount <= 1.0
+
+      lighten(amount, :foreground)
+    end
+    alias lighten_fg lighten_text
+    alias lighten_foreground lighten_text
 
     # Apply a hexadecimal color to the background
     #
@@ -851,6 +943,52 @@ module Sai
     def apply_style(style)
       style = style.to_s.downcase.to_sym
       dup.tap { |duped| duped.instance_variable_set(:@styles, (@styles + [style]).uniq) }
+    end
+
+    # Darken the foreground or background color by a specified amount
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param amount [Float] a value between 0.0 and 1.0 to darken the color by
+    # @param component [Symbol] the color component to darken
+    #
+    # @return [Decorator] a new instance of Decorator with the color darkened
+    # @rbs (Float amount, Symbol component) -> Decorator
+    def darken(amount, component)
+      color = instance_variable_get(:"@#{component}")
+
+      dup.tap do |duped|
+        if color
+          rgb = Conversion::RGB.darken(color, amount)
+          duped.instance_variable_set(:"@#{component}", rgb)
+        end
+      end
+    end
+
+    # Lighten the foreground or background color by a specified amount
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param amount [Float] a value between 0.0 and 1.0 to lighten the color by
+    # @param component [Symbol] the color component to lighten
+    #
+    # @return [Decorator] a new instance of Decorator with the color lightened
+    # @rbs (Float amount, Symbol component) -> Decorator
+    def lighten(amount, component)
+      color = instance_variable_get(:"@#{component}")
+
+      dup.tap do |duped|
+        if color
+          rgb = Conversion::RGB.lighten(color, amount)
+          duped.instance_variable_set(:"@#{component}", rgb)
+        end
+      end
     end
 
     # Check if text should be decorated
