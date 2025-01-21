@@ -39,6 +39,21 @@ module Sai
       # @rbs (Float red, Float green, Float blue) -> bool
       def self.dark?: (Float red, Float green, Float blue) -> bool
 
+      # Darken an RGB color by a percentage
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param color [Array<Integer>, String, Symbol] the color to darken
+      # @param amount [Float] amount to darken by (0.0-1.0)
+      #
+      # @raise [ArgumentError] if amount is not between 0.0 and 1.0
+      # @return [Array<Integer>] the darkened RGB values
+      # @rbs ((Array[Integer] | String | Symbol) color, Float amount) -> Array[Integer]
+      def self.darken: (Array[Integer] | String | Symbol color, Float amount) -> Array[Integer]
+
       # Determine if a color is grayscale
       #
       # @author {https://aaronmallen.me Aaron Allen}
@@ -53,6 +68,21 @@ module Sai
       # @return [Boolean] true if color is grayscale
       # @rbs (Float red, Float green, Float blue) -> bool
       def self.grayscale?: (Float red, Float green, Float blue) -> bool
+
+      # Lighten an RGB color by a percentage
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param color [Array<Integer>, String, Symbol] the color to lighten
+      # @param amount [Float] amount to lighten by (0.0-1.0)
+      #
+      # @raise [ArgumentError] if amount is not between 0.0 and 1.0
+      # @return [Array<Integer>] the lightened RGB values
+      # @rbs ((Array[Integer] | String | Symbol) color, Float amount) -> Array[Integer]
+      def self.lighten: (Array[Integer] | String | Symbol color, Float amount) -> Array[Integer]
 
       # Convert a color value to RGB components
       #
