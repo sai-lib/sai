@@ -53,7 +53,9 @@ require 'sai/terminal/color_mode'
 module Sai
   class << self
     ignored_decorator_methods = %i[apply call decorate encode]
-    Decorator.instance_methods(false).reject { |m| ignored_decorator_methods.include?(m) }.each do |method|
+    decorator_methods = Decorator.instance_methods(false).reject { |m| ignored_decorator_methods.include?(m) }
+    decorator_methods.concat(Decorator::NamedColors.instance_methods(false))
+    decorator_methods.each do |method|
       define_method(method) do |*arguments, **keyword_arguments|
         Decorator.new(mode: Sai.mode.auto).public_send(method, *arguments, **keyword_arguments)
       end

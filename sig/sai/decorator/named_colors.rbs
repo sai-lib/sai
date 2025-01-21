@@ -1,0 +1,94 @@
+# Generated from lib/sai/decorator/named_colors.rb with RBS::Inline
+
+module Sai
+  class Decorator
+    # Named color methods for the {Decorator} class
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @abstract This module is meant to be included in the {Decorator} class to provide named color methods
+    # @api private
+    module NamedColors
+      def black: () -> Decorator
+
+      def blue: () -> Decorator
+
+      def bright_black: () -> Decorator
+
+      def bright_blue: () -> Decorator
+
+      def bright_cyan: () -> Decorator
+
+      def bright_green: () -> Decorator
+
+      def bright_magenta: () -> Decorator
+
+      def bright_red: () -> Decorator
+
+      def bright_white: () -> Decorator
+
+      def bright_yellow: () -> Decorator
+
+      def cyan: () -> Decorator
+
+      def green: () -> Decorator
+
+      def magenta: () -> Decorator
+
+      def on_black: () -> Decorator
+
+      def on_blue: () -> Decorator
+
+      def on_bright_black: () -> Decorator
+
+      def on_bright_blue: () -> Decorator
+
+      def on_bright_cyan: () -> Decorator
+
+      def on_bright_green: () -> Decorator
+
+      def on_bright_magenta: () -> Decorator
+
+      def on_bright_red: () -> Decorator
+
+      def on_bright_white: () -> Decorator
+
+      def on_bright_yellow: () -> Decorator
+
+      def on_cyan: () -> Decorator
+
+      def on_green: () -> Decorator
+
+      def on_magenta: () -> Decorator
+
+      def on_red: () -> Decorator
+
+      def on_white: () -> Decorator
+
+      def on_yellow: () -> Decorator
+
+      def red: () -> Decorator
+
+      def white: () -> Decorator
+
+      def yellow: () -> Decorator
+
+      private
+
+      # Apply a named color to the specified style type
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since 0.1.0
+      #
+      # @api private
+      #
+      # @param style_type [Symbol] the style type to apply the color to
+      # @param color [Symbol] the color to apply
+      #
+      # @return [Decorator] a new instance of Decorator with the color applied
+      # @rbs (Conversion::ColorSequence::style_type style_type, Symbol color) -> Decorator
+      def apply_named_color: (Conversion::ColorSequence::style_type style_type, Symbol color) -> Decorator
+    end
+  end
+end
