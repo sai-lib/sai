@@ -111,23 +111,6 @@ module Sai
     #   ) -> Decorator
     def gradient: (Array[Integer] | String | Symbol start_color, Array[Integer] | String | Symbol end_color, Integer steps) -> Decorator
 
-    # Apply a hexadecimal color to the foreground
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api public
-    #
-    # @example
-    #   decorator.hex("#EB4133").decorate('Hello, world!').to_s #=> "\e[38;2;235;65;51mHello, world!\e[0m"
-    #
-    # @param code [String] the hex color code
-    #
-    # @raise [ArgumentError] if the hex code is invalid
-    # @return [Decorator] a new instance of Decorator with the hex color applied
-    # @rbs (String code) -> Decorator
-    def hex: (String code) -> Decorator
-
     # Lighten the background color by a percentage
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -192,23 +175,6 @@ module Sai
     #   Integer steps
     #   ) -> Decorator
     def on_gradient: (Array[Integer] | String | Symbol start_color, Array[Integer] | String | Symbol end_color, Integer steps) -> Decorator
-
-    # Apply a hexadecimal color to the background
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api public
-    #
-    # @example
-    #   decorator.on_hex("#EB4133").decorate('Hello, world!').to_s #=> "\e[48;2;235;65;51mHello, world!\e[0m"
-    #
-    # @param code [String] the hex color code
-    #
-    # @raise [ArgumentError] if the hex code is invalid
-    # @return [Decorator] a new instance of Decorator with the hex color applied
-    # @rbs (String code) -> Decorator
-    def on_hex: (String code) -> Decorator
 
     # Build a background rainbow gradient for text decoration
     #
