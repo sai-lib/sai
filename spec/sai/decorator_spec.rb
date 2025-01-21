@@ -157,6 +157,44 @@ RSpec.describe Sai::Decorator do
     end
   end
 
+  describe '#gradient' do
+    subject(:gradient_decorator) { decorator.gradient(start_color, end_color, steps) }
+
+    let(:decorator) { described_class.new(mode: Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:start_color) { :red }
+    let(:end_color) { :blue }
+    let(:steps) { 3 }
+    let(:text) { 'RGB' }
+
+    it { is_expected.to be_an_instance_of(described_class) }
+
+    it 'is expected to return a new instance' do
+      expect(gradient_decorator).not_to eq(decorator)
+    end
+
+    it 'is expected to set the foreground sequence on the new instance' do
+      expect(gradient_decorator.instance_variable_get(:@foreground_sequence)).to be_an(Array)
+    end
+
+    it 'is expected to create a gradient with the specified number of colors' do
+      sequence = gradient_decorator.instance_variable_get(:@foreground_sequence)
+      expect(sequence.length).to eq(steps)
+    end
+
+    it 'is expected to apply the gradient to text' do
+      result = gradient_decorator.decorate(text).to_s
+      expect(result).to match(/\e\[38;2;\d+;\d+;\d+mR\e\[0m\e\[38;2;\d+;\d+;\d+mG\e\[0m\e\[38;2;\d+;\d+;\d+mB\e\[0m/)
+    end
+
+    context 'when given invalid steps' do
+      let(:steps) { 1 }
+
+      it 'is expected to raise ArgumentError' do
+        expect { gradient_decorator }.to raise_error(ArgumentError, /Steps must be at least 2/)
+      end
+    end
+  end
+
   describe '#hex' do
     subject(:hex_decorator) { decorator.hex(code) }
 
@@ -278,6 +316,44 @@ RSpec.describe Sai::Decorator do
     end
   end
 
+  describe '#on_gradient' do
+    subject(:on_gradient_decorator) { decorator.on_gradient(start_color, end_color, steps) }
+
+    let(:decorator) { described_class.new(mode: Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:start_color) { :red }
+    let(:end_color) { :blue }
+    let(:steps) { 3 }
+    let(:text) { 'RGB' }
+
+    it { is_expected.to be_an_instance_of(described_class) }
+
+    it 'is expected to return a new instance' do
+      expect(on_gradient_decorator).not_to eq(decorator)
+    end
+
+    it 'is expected to set the background sequence on the new instance' do
+      expect(on_gradient_decorator.instance_variable_get(:@background_sequence)).to be_an(Array)
+    end
+
+    it 'is expected to create a gradient with the specified number of colors' do
+      sequence = on_gradient_decorator.instance_variable_get(:@background_sequence)
+      expect(sequence.length).to eq(steps)
+    end
+
+    it 'is expected to apply the gradient to text' do
+      result = on_gradient_decorator.decorate(text).to_s
+      expect(result).to match(/\e\[48;2;\d+;\d+;\d+mR\e\[0m\e\[48;2;\d+;\d+;\d+mG\e\[0m\e\[48;2;\d+;\d+;\d+mB\e\[0m/)
+    end
+
+    context 'when given invalid steps' do
+      let(:steps) { 1 }
+
+      it 'is expected to raise ArgumentError' do
+        expect { on_gradient_decorator }.to raise_error(ArgumentError, /Steps must be at least 2/)
+      end
+    end
+  end
+
   describe '#on_hex' do
     subject(:on_hex_decorator) { decorator.on_hex(code) }
 
@@ -349,6 +425,42 @@ RSpec.describe Sai::Decorator do
     end
   end
 
+  describe '#on_rainbow' do
+    subject(:on_rainbow_decorator) { decorator.on_rainbow(steps) }
+
+    let(:decorator) { described_class.new(mode: Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:steps) { 6 }
+    let(:text) { 'RAINBOW' }
+
+    it { is_expected.to be_an_instance_of(described_class) }
+
+    it 'is expected to return a new instance' do
+      expect(on_rainbow_decorator).not_to eq(decorator)
+    end
+
+    it 'is expected to set the background sequence on the new instance' do
+      expect(on_rainbow_decorator.instance_variable_get(:@background_sequence)).to be_an(Array)
+    end
+
+    it 'is expected to create a sequence with the specified number of colors' do
+      sequence = on_rainbow_decorator.instance_variable_get(:@background_sequence)
+      expect(sequence.length).to eq(steps)
+    end
+
+    it 'is expected to apply rainbow colors to text' do
+      result = on_rainbow_decorator.decorate(text).to_s
+      expect(result).to match(/(\e\[48;2;\d+;\d+;\d+m[A-Z]\e\[0m){6}/)
+    end
+
+    context 'when given invalid steps' do
+      let(:steps) { 1 }
+
+      it 'is expected to raise ArgumentError' do
+        expect { on_rainbow_decorator }.to raise_error(ArgumentError, /Steps must be at least 2/)
+      end
+    end
+  end
+
   describe '#on_rgb' do
     subject(:on_rgb_decorator) { decorator.on_rgb(red, green, blue) }
 
@@ -381,6 +493,42 @@ RSpec.describe Sai::Decorator do
 
       it 'is expected to raise an ArgumentError' do
         expect { on_rgb_decorator }.to raise_error(ArgumentError, 'Invalid RGB value: 300, 65, 51')
+      end
+    end
+  end
+
+  describe '#rainbow' do
+    subject(:rainbow_decorator) { decorator.rainbow(steps) }
+
+    let(:decorator) { described_class.new(mode: Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:steps) { 6 }
+    let(:text) { 'RAINBOW' }
+
+    it { is_expected.to be_an_instance_of(described_class) }
+
+    it 'is expected to return a new instance' do
+      expect(rainbow_decorator).not_to eq(decorator)
+    end
+
+    it 'is expected to set the foreground sequence on the new instance' do
+      expect(rainbow_decorator.instance_variable_get(:@foreground_sequence)).to be_an(Array)
+    end
+
+    it 'is expected to create a sequence with the specified number of colors' do
+      sequence = rainbow_decorator.instance_variable_get(:@foreground_sequence)
+      expect(sequence.length).to eq(steps)
+    end
+
+    it 'is expected to apply rainbow colors to text' do
+      result = rainbow_decorator.decorate(text).to_s
+      expect(result).to match(/(\e\[38;2;\d+;\d+;\d+m[A-Z]\e\[0m){6}/)
+    end
+
+    context 'when given invalid steps' do
+      let(:steps) { 1 }
+
+      it 'is expected to raise ArgumentError' do
+        expect { rainbow_decorator }.to raise_error(ArgumentError, /Steps must be at least 2/)
       end
     end
   end

@@ -10,8 +10,8 @@ module Sai
     # @since 0.1.0
     #
     # @api private
-    module RGB
-      class << self
+    module RGB # rubocop:disable Metrics/ModuleLength
+      class << self # rubocop:disable Metrics/ClassLength
         # Get closest ANSI color for RGB values
         #
         # @author {https://aaronmallen.me Aaron Allen}
@@ -71,6 +71,33 @@ module Sai
           rgb.map { |c| [0, (c * (1 - amount)).round].max }
         end
 
+        # Generate a gradient between two colors with a specified number of steps
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since unreleased
+        #
+        # @api private
+        #
+        # @param start_color [Array<Integer>, String, Symbol] the starting color
+        # @param end_color [Array<Integer>, String, Symbol] the ending color
+        # @param steps [Integer] the number of colors to generate (minimum 2)
+        #
+        # @raise [ArgumentError] if steps is less than 2
+        # @return [Array<Array<Integer>>] the gradient colors as RGB values
+        # @rbs (
+        #   (Array[Integer] | String | Symbol) start_color,
+        #   (Array[Integer] | String | Symbol) end_color,
+        #   Integer steps
+        #   ) -> Array[Array[Integer]]
+        def gradient(start_color, end_color, steps)
+          raise ArgumentError, "Steps must be at least 2, got: #{steps}" if steps < 2
+
+          (0...steps).map do |i|
+            step = i.to_f / (steps - 1)
+            interpolate_color(start_color, end_color, step)
+          end
+        end
+
         # Determine if a color is grayscale
         #
         # @author {https://aaronmallen.me Aaron Allen}
@@ -86,6 +113,38 @@ module Sai
         # @rbs (Float red, Float green, Float blue) -> bool
         def grayscale?(red, green, blue)
           red == green && green == blue
+        end
+
+        # Interpolate between two colors to create a gradient step
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since unreleased
+        #
+        # @api private
+        #
+        # @param start_color [Array<Integer>, String, Symbol] the starting color
+        # @param end_color [Array<Integer>, String, Symbol] the ending color
+        # @param step [Float] the interpolation step (0.0-1.0)
+        #
+        # @raise [ArgumentError] if step is not between 0.0 and 1.0
+        # @return [Array<Integer>] the interpolated RGB values
+        # @rbs (
+        #   (Array[Integer] | String | Symbol) start_color,
+        #   (Array[Integer] | String | Symbol) end_color,
+        #   Float step
+        #   ) -> Array[Integer]
+        def interpolate_color(start_color, end_color, step)
+          raise ArgumentError, "Invalid step: #{step}" unless step.between?(0.0, 1.0)
+
+          start_rgb = resolve(start_color)
+          end_rgb = resolve(end_color)
+
+          start_rgb.zip(end_rgb).map do |values|
+            start_val, end_val = values
+            next 0 unless start_val && end_val # Handle potential nil values
+
+            (start_val + ((end_val - start_val) * step)).round.clamp(0, 255)
+          end
         end
 
         # Lighten an RGB color by a percentage
@@ -106,6 +165,28 @@ module Sai
 
           rgb = resolve(color)
           rgb.map { |c| [255, (c * (1 + amount)).round].min }
+        end
+
+        # Generate a rainbow gradient with a specified number of steps
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since unreleased
+        #
+        # @api private
+        #
+        # @param steps [Integer] the number of colors to generate (minimum 2)
+        #
+        # @raise [ArgumentError] if steps is less than 2
+        # @return [Array<Array<Integer>>] the rainbow gradient colors as RGB values
+        # @rbs (Integer steps) -> Array[Array[Integer]]
+        def rainbow_gradient(steps)
+          raise ArgumentError, "Steps must be at least 2, got: #{steps}" if steps < 2
+
+          hue_step = 360.0 / steps
+          (0...steps).map do |i|
+            hue = (i * hue_step) % 360
+            hsv_to_rgb(hue, 1.0, 1.0)
+          end
         end
 
         # Convert a color value to RGB components
@@ -166,6 +247,27 @@ module Sai
 
         private
 
+        # Calculate the intermediate HSV components
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since unreleased
+        #
+        # @api private
+        #
+        # @param value [Float] the value component
+        # @param saturation [Float] the saturation component
+        # @param hue_remainder [Float] the remainder of hue / 60
+        #
+        # @return [Array<Float>] the primary, secondary, and tertiary components
+        # @rbs (Float value, Float saturation, Float hue_remainder) -> [Float, Float, Float]
+        def calculate_hsv_components(value, saturation, hue_remainder)
+          primary = value * (1 - saturation)
+          secondary = value * (1 - (saturation * hue_remainder))
+          tertiary = value * (1 - (saturation * (1 - hue_remainder)))
+
+          [primary, secondary, tertiary] #: [Float, Float, Float]
+        end
+
         # Check if RGB values represent cyan
         #
         # @author {https://aaronmallen.me Aaron Allen}
@@ -203,6 +305,33 @@ module Sai
           ]
         end
 
+        # Convert HSV values to RGB
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since unreleased
+        #
+        # @api private
+        #
+        # @param hue [Float] the hue component (0-360)
+        # @param saturation [Float] the saturation component (0-1)
+        # @param value [Float] the value component (0-1)
+        #
+        # @return [Array<Integer>] the RGB values
+        # @rbs (Float hue, Float saturation, Float value) -> Array[Integer]
+        def hsv_to_rgb(hue, saturation, value)
+          hue_sector = (hue / 60.0).floor.to_i # Explicitly convert to Integer
+          hue_remainder = (hue / 60.0) - hue_sector
+
+          components = calculate_hsv_components(value, saturation, hue_remainder)
+          primary, secondary, tertiary = *components # Destructure with splat to handle potential nil
+
+          # Ensure we have valid values before proceeding
+          return [0, 0, 0] unless primary && secondary && tertiary
+
+          rgb = select_rgb_values(hue_sector, value, primary, secondary, tertiary)
+          normalize_rgb(rgb)
+        end
+
         # Check if RGB values represent magenta
         #
         # @author {https://aaronmallen.me Aaron Allen}
@@ -236,6 +365,21 @@ module Sai
           ANSI::COLOR_NAMES.fetch(color_name.to_sym) do
             raise ArgumentError, "Unknown color name: #{color_name}"
           end
+        end
+
+        # Convert RGB values from 0-1 range to 0-255 range
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since unreleased
+        #
+        # @api private
+        #
+        # @param rgb [Array<Float>] RGB values in 0-1 range
+        #
+        # @return [Array<Integer>] RGB values in 0-255 range
+        # @rbs (Array[Float] rgb) -> Array[Integer]
+        def normalize_rgb(rgb)
+          rgb.map { |c| (c * 255).round.clamp(0, 255) }
         end
 
         # Determine if RGB values represent a primary color
@@ -319,6 +463,32 @@ module Sai
           return :cyan if cyan?(red, green, blue)
 
           :white
+        end
+
+        # Select RGB values based on the hue sector
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since unreleased
+        #
+        # @api private
+        #
+        # @param sector [Integer] the hue sector (0-5)
+        # @param value [Float] the value component
+        # @param primary [Float] primary component from HSV calculation
+        # @param secondary [Float] secondary component from HSV calculation
+        # @param tertiary [Float] tertiary component from HSV calculation
+        #
+        # @return [Array<Float>] the RGB values before normalization
+        # @rbs (Integer sector, Float value, Float primary, Float secondary, Float tertiary) -> Array[Float]
+        def select_rgb_values(sector, value, primary, secondary, tertiary)
+          case sector % 6
+          when 0 then [value, tertiary, primary]
+          when 1 then [secondary, value, primary]
+          when 2 then [primary, value, tertiary]
+          when 3 then [primary, secondary, value]
+          when 4 then [tertiary, primary, value]
+          else [value, primary, secondary]
+          end
         end
 
         # Validate RGB values
