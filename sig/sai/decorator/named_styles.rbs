@@ -1,0 +1,72 @@
+# Generated from lib/sai/decorator/named_styles.rb with RBS::Inline
+
+module Sai
+  class Decorator
+    # Named style methods for the {Decorator} class
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @abstract This module is meant to be included in the {Decorator} class to provide named style methods
+    # @api private
+    module NamedStyles
+      def blink: () -> Decorator
+
+      def bold: () -> Decorator
+
+      def conceal: () -> Decorator
+
+      def dim: () -> Decorator
+
+      def italic: () -> Decorator
+
+      def no_blink: () -> Decorator
+
+      def no_conceal: () -> Decorator
+
+      def no_italic: () -> Decorator
+
+      def no_reverse: () -> Decorator
+
+      def no_strike: () -> Decorator
+
+      def no_underline: () -> Decorator
+
+      def normal_intensity: () -> Decorator
+
+      def rapid_blink: () -> Decorator
+
+      def reverse: () -> Decorator
+
+      def strike: () -> Decorator
+
+      def underline: () -> Decorator
+
+      private
+
+      # Apply a style to the text
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since 0.1.0
+      #
+      # @api private
+      #
+      # @param style [String, Symbol] the style to apply
+      #
+      # @return [Decorator] a new instance of Decorator with the style applied
+      # @rbs (String | Symbol style) -> Decorator
+      def apply_style: (String | Symbol style) -> Decorator
+
+      # Get style sequences
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Array<String>] ANSI sequences for styles
+      # @rbs () -> Array[String]
+      def style_sequences: () -> Array[String]
+    end
+  end
+end

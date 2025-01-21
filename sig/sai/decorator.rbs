@@ -10,6 +10,8 @@ module Sai
   class Decorator
     include NamedColors
 
+    include NamedStyles
+
     # Initialize a new instance of Decorator
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -22,38 +24,6 @@ module Sai
     # @return [Decorator] the new instance of Decorator
     # @rbs (?mode: Integer) -> void
     def initialize: (?mode: Integer) -> void
-
-    def blink: () -> Decorator
-
-    def bold: () -> Decorator
-
-    def conceal: () -> Decorator
-
-    def dim: () -> Decorator
-
-    def italic: () -> Decorator
-
-    def no_blink: () -> Decorator
-
-    def no_conceal: () -> Decorator
-
-    def no_italic: () -> Decorator
-
-    def no_reverse: () -> Decorator
-
-    def no_strike: () -> Decorator
-
-    def no_underline: () -> Decorator
-
-    def normal_intensity: () -> Decorator
-
-    def rapid_blink: () -> Decorator
-
-    def reverse: () -> Decorator
-
-    def strike: () -> Decorator
-
-    def underline: () -> Decorator
 
     # Darken the background color by a percentage
     #
@@ -359,19 +329,6 @@ module Sai
     # @rbs (String text) -> ANSI::SequencedString
     def apply_sequence_gradient: (String text) -> ANSI::SequencedString
 
-    # Apply a style to the text
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api private
-    #
-    # @param style [String, Symbol] the style to apply
-    #
-    # @return [Decorator] a new instance of Decorator with the style applied
-    # @rbs (String | Symbol style) -> self
-    def apply_style: (String | Symbol style) -> self
-
     # Build color sequences for a single character
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -550,16 +507,5 @@ module Sai
     # @return [Array<Array<Integer>>] stretched color sequence
     # @rbs (Array[Array[Integer]] colors, Integer target_length) -> Array[Array[Integer]]
     def stretch_colors: (Array[Array[Integer]] colors, Integer target_length) -> Array[Array[Integer]]
-
-    # Get style sequences
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @return [Array<String>] ANSI sequences for styles
-    # @rbs () -> Array[String]
-    def style_sequences: () -> Array[String]
   end
 end
