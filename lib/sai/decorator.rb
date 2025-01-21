@@ -8,6 +8,7 @@ require 'sai/conversion/rgb'
 require 'sai/decorator/hex_colors'
 require 'sai/decorator/named_colors'
 require 'sai/decorator/named_styles'
+require 'sai/decorator/rgb_colors'
 
 module Sai
   # A decorator for applying ANSI styles and colors to text
@@ -20,6 +21,7 @@ module Sai
     include HexColors
     include NamedColors
     include NamedStyles
+    include RGBColors
 
     # Initialize a new instance of Decorator
     #
@@ -237,31 +239,6 @@ module Sai
       dup.tap { |duped| duped.instance_variable_set(:@background_sequence, colors) }
     end
 
-    # Apply an RGB color to the background
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api public
-    #
-    # @example
-    #   decorator.on_rgb(235, 65, 51).decorate('Hello, world!').to_s #=> "\e[48;2;235;65;51mHello, world!\e[0m"
-    #
-    # @param red [Integer] the red component
-    # @param green [Integer] the green component
-    # @param blue [Integer] the blue component
-    #
-    # @raise [ArgumentError] if the RGB values are out of range
-    # @return [Decorator] a new instance of Decorator with the RGB color applied
-    # @rbs (Integer red, Integer green, Integer blue) -> Decorator
-    def on_rgb(red, green, blue)
-      [red, green, blue].each do |value|
-        raise ArgumentError, "Invalid RGB value: #{red}, #{green}, #{blue}" unless value >= 0 && value <= 255
-      end
-
-      dup.tap { |duped| duped.instance_variable_set(:@background, [red, green, blue]) }
-    end
-
     # Build a foreground rainbow gradient for text decoration
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -281,31 +258,6 @@ module Sai
     def rainbow(steps)
       colors = Conversion::RGB.rainbow_gradient(steps)
       dup.tap { |duped| duped.instance_variable_set(:@foreground_sequence, colors) }
-    end
-
-    # Apply an RGB color to the foreground
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api public
-    #
-    # @example
-    #   decorator.rgb(235, 65, 51).decorate('Hello, world!').to_s #=> "\e[38;2;235;65;51mHello, world!\e[0m"
-    #
-    # @param red [Integer] the red component
-    # @param green [Integer] the green component
-    # @param blue [Integer] the blue component
-    #
-    # @raise [ArgumentError] if the RGB values are out of range
-    # @return [Decorator] a new instance of Decorator with the RGB color applied
-    # @rbs (Integer red, Integer green, Integer blue) -> Decorator
-    def rgb(red, green, blue)
-      [red, green, blue].each do |value|
-        raise ArgumentError, "Invalid RGB value: #{red}, #{green}, #{blue}" unless value >= 0 && value <= 255
-      end
-
-      dup.tap { |duped| duped.instance_variable_set(:@foreground, [red, green, blue]) }
     end
 
     # Apply a specific color mode to the decorator

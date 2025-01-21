@@ -8,9 +8,13 @@ module Sai
   #
   # @api public
   class Decorator
+    include HexColors
+
     include NamedColors
 
     include NamedStyles
+
+    include RGBColors
 
     # Initialize a new instance of Decorator
     #
@@ -194,25 +198,6 @@ module Sai
     # @rbs (Integer steps) -> Decorator
     def on_rainbow: (Integer steps) -> Decorator
 
-    # Apply an RGB color to the background
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api public
-    #
-    # @example
-    #   decorator.on_rgb(235, 65, 51).decorate('Hello, world!').to_s #=> "\e[48;2;235;65;51mHello, world!\e[0m"
-    #
-    # @param red [Integer] the red component
-    # @param green [Integer] the green component
-    # @param blue [Integer] the blue component
-    #
-    # @raise [ArgumentError] if the RGB values are out of range
-    # @return [Decorator] a new instance of Decorator with the RGB color applied
-    # @rbs (Integer red, Integer green, Integer blue) -> Decorator
-    def on_rgb: (Integer red, Integer green, Integer blue) -> Decorator
-
     # Build a foreground rainbow gradient for text decoration
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -230,25 +215,6 @@ module Sai
     # @return [Decorator] a new instance of Decorator with foreground rainbow colors
     # @rbs (Integer steps) -> Decorator
     def rainbow: (Integer steps) -> Decorator
-
-    # Apply an RGB color to the foreground
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api public
-    #
-    # @example
-    #   decorator.rgb(235, 65, 51).decorate('Hello, world!').to_s #=> "\e[38;2;235;65;51mHello, world!\e[0m"
-    #
-    # @param red [Integer] the red component
-    # @param green [Integer] the green component
-    # @param blue [Integer] the blue component
-    #
-    # @raise [ArgumentError] if the RGB values are out of range
-    # @return [Decorator] a new instance of Decorator with the RGB color applied
-    # @rbs (Integer red, Integer green, Integer blue) -> Decorator
-    def rgb: (Integer red, Integer green, Integer blue) -> Decorator
 
     # Apply a specific color mode to the decorator
     #

@@ -57,6 +57,7 @@ module Sai
     decorator_methods.concat(Decorator::HexColors.instance_methods(false))
     decorator_methods.concat(Decorator::NamedColors.instance_methods(false))
     decorator_methods.concat(Decorator::NamedStyles.instance_methods(false))
+    decorator_methods.concat(Decorator::RGBColors.instance_methods(false))
     decorator_methods.each do |method|
       define_method(method) do |*arguments, **keyword_arguments|
         Decorator.new(mode: Sai.mode.auto).public_send(method, *arguments, **keyword_arguments)
