@@ -10,6 +10,8 @@ module Sai
   class Decorator
     include ColorManipulations
 
+    include Gradients
+
     include HexColors
 
     include NamedColors
@@ -53,90 +55,6 @@ module Sai
 
     alias encode decorate
 
-    # Build a foreground gradient between two colors for text decoration
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api public
-    #
-    # @example Create a foreground gradient from red to blue
-    #   decorator.gradient(:red, :blue, 10).decorate('Hello, World!')
-    #   #=> "\e[38;2;255;0;0mH\e[0m\e[38;2;204;0;51me\e[0m..."
-    #
-    # @param start_color [Array<Integer>, String, Symbol] the starting color
-    # @param end_color [Array<Integer>, String, Symbol] the ending color
-    # @param steps [Integer] the number of gradient steps (minimum 2)
-    #
-    # @raise [ArgumentError] if steps is less than 2
-    # @return [Decorator] a new instance of Decorator with foreground gradient colors
-    # @rbs (
-    #   Array[Integer] | String | Symbol start_color,
-    #   Array[Integer] | String | Symbol end_color,
-    #   Integer steps
-    #   ) -> Decorator
-    def gradient: (Array[Integer] | String | Symbol start_color, Array[Integer] | String | Symbol end_color, Integer steps) -> Decorator
-
-    # Build a background gradient between two colors for text decoration
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api public
-    #
-    # @example Create a background gradient from red to blue
-    #   decorator.on_gradient(:red, :blue, 10).decorate('Hello, World!')
-    #   #=> "\e[48;2;255;0;0mH\e[0m\e[48;2;204;0;51me\e[0m..."
-    #
-    # @param start_color [Array<Integer>, String, Symbol] the starting color
-    # @param end_color [Array<Integer>, String, Symbol] the ending color
-    # @param steps [Integer] the number of gradient steps (minimum 2)
-    #
-    # @raise [ArgumentError] if steps is less than 2
-    # @return [Decorator] a new instance of Decorator with background gradient colors
-    # @rbs (
-    #   Array[Integer] | String | Symbol start_color,
-    #   Array[Integer] | String | Symbol end_color,
-    #   Integer steps
-    #   ) -> Decorator
-    def on_gradient: (Array[Integer] | String | Symbol start_color, Array[Integer] | String | Symbol end_color, Integer steps) -> Decorator
-
-    # Build a background rainbow gradient for text decoration
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api public
-    #
-    # @example Create a rainbow background gradient
-    #   decorator.on_rainbow(6).decorate('Hello, World!')
-    #   #=> "\e[48;2;255;0;0mH\e[0m\e[48;2;255;255;0me\e[0m..."
-    #
-    # @param steps [Integer] the number of colors to generate (minimum 2)
-    #
-    # @raise [ArgumentError] if steps is less than 2
-    # @return [Decorator] a new instance of Decorator with background rainbow colors
-    # @rbs (Integer steps) -> Decorator
-    def on_rainbow: (Integer steps) -> Decorator
-
-    # Build a foreground rainbow gradient for text decoration
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api public
-    #
-    # @example Create a rainbow text gradient
-    #   decorator.rainbow(6).decorate('Hello, World!')
-    #   #=> "\e[38;2;255;0;0mH\e[0m\e[38;2;255;255;0me\e[0m..."
-    #
-    # @param steps [Integer] the number of colors to generate (minimum 2)
-    #
-    # @raise [ArgumentError] if steps is less than 2
-    # @return [Decorator] a new instance of Decorator with foreground rainbow colors
-    # @rbs (Integer steps) -> Decorator
-    def rainbow: (Integer steps) -> Decorator
-
     # Apply a specific color mode to the decorator
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -155,145 +73,6 @@ module Sai
 
     private
 
-    # Adjust number of colors to match text length
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param colors [Array<Array<Integer>>] original color sequence
-    # @param text_length [Integer] desired number of colors
-    #
-    # @return [Array<Array<Integer>>] adjusted color sequence
-    # @rbs (Array[Array[Integer]] colors, Integer text_length) -> Array[Array[Integer]]
-    def adjust_colors_to_text_length: (Array[Array[Integer]] colors, Integer text_length) -> Array[Array[Integer]]
-
-    # Apply color sequence gradients to text
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param text [String] the text to apply the gradient to
-    #
-    # @return [ANSI::SequencedString] the text with gradient applied
-    # @rbs (String text) -> ANSI::SequencedString
-    def apply_sequence_gradient: (String text) -> ANSI::SequencedString
-
-    # Build color sequences for a single character
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param colors [Hash] color sequences for foreground and background
-    # @param index [Integer] character position
-    #
-    # @return [Array<String>] ANSI sequences for the character
-    # @rbs (Hash[Symbol, Array[Array[Integer]]] colors, Integer index) -> Array[String]
-    def build_color_sequences: (Hash[Symbol, Array[Array[Integer]]] colors, Integer index) -> Array[String]
-
-    # Build gradient text from characters and color sequences
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param chars [Array<String>] text characters
-    # @param colors [Hash] color sequences for foreground and background
-    #
-    # @return [Array<String>] colored characters
-    # @rbs (Array[String] chars, Hash[Symbol, Array[Array[Integer]]] colors) -> Array[String]
-    def build_gradient_text: (Array[String] chars, Hash[Symbol, Array[Array[Integer]]] colors) -> Array[String]
-
-    # Calculate indices and progress for color interpolation
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param position [Integer] current position in sequence
-    # @param step_size [Float] size of each step
-    # @param max_index [Integer] maximum index allowed
-    #
-    # @return [Hash] interpolation indices and progress
-    # @rbs (Integer position, Float step_size, Integer max_index) -> Hash[Symbol, Integer | Float]
-    def calculate_interpolation_indices: (Integer position, Float step_size, Integer max_index) -> Hash[Symbol, Integer | Float]
-
-    # Get background sequence for a character
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param colors [Array<Array<Integer>>, nil] background color sequence
-    # @param index [Integer] character position
-    #
-    # @return [String, nil] ANSI sequence for background
-    # @rbs (Array[Array[Integer]]? colors, Integer index) -> String?
-    def get_background_sequence: (Array[Array[Integer]]? colors, Integer index) -> String?
-
-    # Get foreground sequence for a character
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param colors [Array<Array<Integer>>, nil] foreground color sequence
-    # @param index [Integer] character position
-    #
-    # @return [String, nil] ANSI sequence for foreground
-    # @rbs (Array[Array[Integer]]? colors, Integer index) -> String?
-    def get_foreground_sequence: (Array[Array[Integer]]? colors, Integer index) -> String?
-
-    # Interpolate between two colors in a sequence
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param colors [Array<Array<Integer>>] color sequence
-    # @param indices [Hash] interpolation indices and progress
-    #
-    # @return [Array<Integer>] interpolated color
-    # @rbs (Array[Array[Integer]] colors, Hash[Symbol, Integer | Float]) -> Array[Integer]
-    def interpolate_sequence_colors: (Array[Array[Integer]] colors, Hash[Symbol, Integer | Float]) -> Array[Integer]
-
-    # Prepare foreground and background color sequences for text
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param text_length [Integer] length of text to color
-    #
-    # @return [Hash] adjusted color sequences
-    # @rbs (Integer text_length) -> Hash[Symbol, Array[Array[Integer]]]
-    def prepare_color_sequences: (Integer text_length) -> Hash[Symbol, Array[Array[Integer]]]
-
-    # Prepare a single color sequence
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param sequence [Array<Array<Integer>>, nil] color sequence to prepare
-    # @param text_length [Integer] length of text to color
-    #
-    # @return [Array<Array<Integer>>, nil] adjusted color sequence
-    # @rbs (Array[Array[Integer]]? sequence, Integer text_length) -> Array[Array[Integer]]?
-    def prepare_sequence: (Array[Array[Integer]]? sequence, Integer text_length) -> Array[Array[Integer]]?
-
     # Check if text should be decorated
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -304,33 +83,5 @@ module Sai
     # @return [Boolean] `true` if text should be decorated, `false` otherwise
     # @rbs () -> bool
     def should_decorate?: () -> bool
-
-    # Shrink a color sequence to fit desired length
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param colors [Array<Array<Integer>>] original color sequence
-    # @param target_length [Integer] desired number of colors
-    #
-    # @return [Array<Array<Integer>>] shrunk color sequence
-    # @rbs (Array[Array[Integer]] colors, Integer target_length) -> Array[Array[Integer]]
-    def shrink_colors: (Array[Array[Integer]] colors, Integer target_length) -> Array[Array[Integer]]
-
-    # Stretch a color sequence to fit desired length
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param colors [Array<Array<Integer>>] original color sequence
-    # @param target_length [Integer] desired number of colors
-    #
-    # @return [Array<Array<Integer>>] stretched color sequence
-    # @rbs (Array[Array[Integer]] colors, Integer target_length) -> Array[Array[Integer]]
-    def stretch_colors: (Array[Array[Integer]] colors, Integer target_length) -> Array[Array[Integer]]
   end
 end

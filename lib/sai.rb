@@ -55,6 +55,7 @@ module Sai
     ignored_decorator_methods = %i[apply call decorate encode]
     decorator_methods = Decorator.instance_methods(false).reject { |m| ignored_decorator_methods.include?(m) }
     decorator_methods.concat(Decorator::ColorManipulations.instance_methods(false))
+    decorator_methods.concat(Decorator::Gradients.instance_methods(false))
     decorator_methods.concat(Decorator::HexColors.instance_methods(false))
     decorator_methods.concat(Decorator::NamedColors.instance_methods(false))
     decorator_methods.concat(Decorator::NamedStyles.instance_methods(false))
