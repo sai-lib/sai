@@ -9,6 +9,8 @@ This guide provides comprehensive documentation for using Sai in your applicatio
   * [RGB Colors](#rgb-colors)
   * [Hex Colors](#hex-colors)
   * [Named Colors](#named-colors)
+  * [Color Manipulation](#color-manipulation)
+  * [Gradient and Rainbow Effects](#gradient-and-rainbow-effects)
 * [Text Styles](#text-styles)
 * [ANSI Sequence Manipulation](#ansi-sequence-manipulation)
 * [Color Mode Management](#color-mode-management)
@@ -109,6 +111,30 @@ Sai.on_blue.darken_background(0.3).decorate('Darkened blue background')
 # Lighten colors
 Sai.blue.lighten_text(0.5).decorate('Lightened blue text')
 Sai.on_red.lighten_background(0.3).decorate('Lightened red background')
+```
+
+### Gradient and Rainbow Effects
+
+Create dynamic color transitions across text:
+
+```ruby
+# Text gradients (foreground)
+Sai.gradient('#000000', '#FFFFFF', 5).decorate('Black to white gradient')
+Sai.gradient(:red, :blue, 10).decorate('Red to blue gradient')
+Sai.rainbow(6).decorate('Rainbow text')
+
+# Background gradients
+Sai.on_gradient('#FF0000', '#0000FF', 8).decorate('Red to blue background')
+Sai.on_gradient(:yellow, :green, 5).decorate('Yellow to green background')
+Sai.on_rainbow(6).decorate('Rainbow background')
+```
+
+Gradients can use any combination of color formats (hex, RGB, or named colors) and will automatically adjust to fit your
+text length. Spaces in text are preserved without color effects.
+
+> [!TIP]
+> The number of gradient steps affects the smoothness of the transition. More steps create smoother gradients, but
+> consider terminal performance for very long text.
 
 ## Text Styles
 
