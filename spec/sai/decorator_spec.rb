@@ -25,6 +25,92 @@ RSpec.describe Sai::Decorator do
     end
   end
 
+  describe '#darken_background' do
+    subject(:darken_background) { decorator.darken_background(amount) }
+
+    let(:decorator) { described_class.new(mode: mode).on_blue }
+    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:amount) { 0.5 }
+
+    it { is_expected.to be_an_instance_of(described_class) }
+
+    it 'is expected to return a new instance' do
+      expect(darken_background).not_to eq(decorator)
+    end
+
+    it 'is expected to set the darkened background color on the new instance' do
+      rgb = Sai::ANSI::COLOR_NAMES[:blue].map { |c| (c * 0.5).round }
+      expect(darken_background.instance_variable_get(:@background)).to eq(rgb)
+    end
+
+    it 'is expected not to modify the original instance' do
+      original_background = decorator.instance_variable_get(:@background)
+      darken_background
+      expect(decorator.instance_variable_get(:@background)).to eq(original_background)
+    end
+
+    context 'when given an invalid amount' do
+      context 'when amount is negative' do
+        let(:amount) { -0.5 }
+
+        it 'is expected to raise ArgumentError' do
+          expect { darken_background }.to raise_error(ArgumentError, /Invalid percentage/)
+        end
+      end
+
+      context 'when amount is greater than 1.0' do
+        let(:amount) { 1.5 }
+
+        it 'is expected to raise ArgumentError' do
+          expect { darken_background }.to raise_error(ArgumentError, /Invalid percentage/)
+        end
+      end
+    end
+  end
+
+  describe '#darken_text' do
+    subject(:darken_text) { decorator.darken_text(amount) }
+
+    let(:decorator) { described_class.new(mode: mode).red }
+    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:amount) { 0.5 }
+
+    it { is_expected.to be_an_instance_of(described_class) }
+
+    it 'is expected to return a new instance' do
+      expect(darken_text).not_to eq(decorator)
+    end
+
+    it 'is expected to set the darkened foreground color on the new instance' do
+      rgb = Sai::ANSI::COLOR_NAMES[:red].map { |c| (c * 0.5).round }
+      expect(darken_text.instance_variable_get(:@foreground)).to eq(rgb)
+    end
+
+    it 'is expected not to modify the original instance' do
+      original_foreground = decorator.instance_variable_get(:@foreground)
+      darken_text
+      expect(decorator.instance_variable_get(:@foreground)).to eq(original_foreground)
+    end
+
+    context 'when given an invalid amount' do
+      context 'when amount is negative' do
+        let(:amount) { -0.5 }
+
+        it 'is expected to raise ArgumentError' do
+          expect { darken_text }.to raise_error(ArgumentError, /Invalid percentage/)
+        end
+      end
+
+      context 'when amount is greater than 1.0' do
+        let(:amount) { 1.5 }
+
+        it 'is expected to raise ArgumentError' do
+          expect { darken_text }.to raise_error(ArgumentError, /Invalid percentage/)
+        end
+      end
+    end
+  end
+
   describe '#decorate' do
     subject(:decorated_text) { decorator.decorate(text) }
 
@@ -102,6 +188,92 @@ RSpec.describe Sai::Decorator do
 
       it 'is expected to raise an ArgumentError' do
         expect { hex_decorator }.to raise_error(ArgumentError, 'Invalid hex color code: invalid')
+      end
+    end
+  end
+
+  describe '#lighten_background' do
+    subject(:lighten_background) { decorator.lighten_background(amount) }
+
+    let(:decorator) { described_class.new(mode: mode).on_red }
+    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:amount) { 0.5 }
+
+    it { is_expected.to be_an_instance_of(described_class) }
+
+    it 'is expected to return a new instance' do
+      expect(lighten_background).not_to eq(decorator)
+    end
+
+    it 'is expected to set the lightened background color on the new instance' do
+      rgb = Sai::ANSI::COLOR_NAMES[:red].map { |c| [255, (c * 1.5).round].min }
+      expect(lighten_background.instance_variable_get(:@background)).to eq(rgb)
+    end
+
+    it 'is expected not to modify the original instance' do
+      original_background = decorator.instance_variable_get(:@background)
+      lighten_background
+      expect(decorator.instance_variable_get(:@background)).to eq(original_background)
+    end
+
+    context 'when given an invalid amount' do
+      context 'when amount is negative' do
+        let(:amount) { -0.5 }
+
+        it 'is expected to raise ArgumentError' do
+          expect { lighten_background }.to raise_error(ArgumentError, /Invalid percentage/)
+        end
+      end
+
+      context 'when amount is greater than 1.0' do
+        let(:amount) { 1.5 }
+
+        it 'is expected to raise ArgumentError' do
+          expect { lighten_background }.to raise_error(ArgumentError, /Invalid percentage/)
+        end
+      end
+    end
+  end
+
+  describe '#lighten_text' do
+    subject(:lighten_text) { decorator.lighten_text(amount) }
+
+    let(:decorator) { described_class.new(mode: mode).blue }
+    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:amount) { 0.5 }
+
+    it { is_expected.to be_an_instance_of(described_class) }
+
+    it 'is expected to return a new instance' do
+      expect(lighten_text).not_to eq(decorator)
+    end
+
+    it 'is expected to set the lightened foreground color on the new instance' do
+      rgb = Sai::ANSI::COLOR_NAMES[:blue].map { |c| [255, (c * 1.5).round].min }
+      expect(lighten_text.instance_variable_get(:@foreground)).to eq(rgb)
+    end
+
+    it 'is expected not to modify the original instance' do
+      original_foreground = decorator.instance_variable_get(:@foreground)
+      lighten_text
+      expect(decorator.instance_variable_get(:@foreground)).to eq(original_foreground)
+    end
+
+    context 'when given an invalid amount' do
+      context 'when amount is negative' do
+        let(:amount) { -0.5 }
+
+        it 'is expected to raise ArgumentError' do
+          expect { lighten_text }.to raise_error(ArgumentError, /Invalid percentage/)
+        end
+      end
+
+      context 'when amount is greater than 1.0' do
+        let(:amount) { 1.5 }
+
+        it 'is expected to raise ArgumentError' do
+          expect { lighten_text }.to raise_error(ArgumentError, /Invalid percentage/)
+        end
       end
     end
   end
