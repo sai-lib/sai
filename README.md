@@ -15,6 +15,10 @@ puts Sai.rgb(255, 128, 0).bold.decorate('Warning: Battery Low')
 puts Sai.hex('#4834d4').italic.decorate('Processing request...')
 puts Sai.bright_cyan.on_blue.underline.decorate('Download Complete!')
 
+# Adjust color brightness
+puts Sai.red.darken_text(0.3).decorate('Subtle Error Message')
+puts Sai.blue.lighten_text(0.5).decorate('Highlighted Info')
+
 # Analyze and manipulate ANSI-encoded text
 text = Sai.sequence("\e[31mError:\e[0m Connection failed")
 puts text.without_color  # Keep formatting, remove colors
@@ -65,6 +69,10 @@ puts Sai.bright_blue.on_white.decorate('Info')
 # Using RGB colors
 puts Sai.rgb(255, 128, 0).decorate('Custom color')
 puts Sai.on_rgb(0, 255, 128).decorate('Custom background')
+
+# Color manipulation
+puts Sai.blue.lighten_text(0.5).decorate('Lightened blue')
+puts Sai.red.darken_text(0.3).decorate('Darkened red')
 
 # Applying styles
 puts Sai.bold.underline.decorate('Important')
