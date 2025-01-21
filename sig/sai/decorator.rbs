@@ -8,6 +8,8 @@ module Sai
   #
   # @api public
   class Decorator
+    include ColorManipulations
+
     include HexColors
 
     include NamedColors
@@ -28,46 +30,6 @@ module Sai
     # @return [Decorator] the new instance of Decorator
     # @rbs (?mode: Integer) -> void
     def initialize: (?mode: Integer) -> void
-
-    # Darken the background color by a percentage
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api public
-    #
-    # @example
-    #   decorator.on_blue.darken_text(0.5).decorate('Hello, world!').to_s #=> "\e[48;2;0;0;238mHello, world!\e[0m"
-    #
-    # @param amount [Float] the amount to darken the background color (0.0...1.0)
-    #
-    # @raise [ArgumentError] if the percentage is out of range
-    # @return [Decorator] a new instance of Decorator with the darkened background color
-    # @rbs (Float amount) -> Decorator
-    def darken_background: (Float amount) -> Decorator
-
-    alias darken_bg darken_background
-
-    # Darken the text color by a percentage
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api public
-    #
-    # @example
-    #   decorator.blue.darken_text(0.5).decorate('Hello, world!').to_s #=> "\e[38;2;0;0;119mHello, world!\e[0m"
-    #
-    # @param amount [Float] the amount to darken the text color (0.0...1.0)
-    #
-    # @raise [ArgumentError] if the percentage is out of range
-    # @return [Decorator] a new instance of Decorator with the darkened text color
-    # @rbs (Float amount) -> Decorator
-    def darken_text: (Float amount) -> Decorator
-
-    alias darken_fg darken_text
-
-    alias darken_foreground darken_text
 
     # Apply the styles and colors to the text
     #
@@ -114,47 +76,6 @@ module Sai
     #   Integer steps
     #   ) -> Decorator
     def gradient: (Array[Integer] | String | Symbol start_color, Array[Integer] | String | Symbol end_color, Integer steps) -> Decorator
-
-    # Lighten the background color by a percentage
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api public
-    #
-    # @example
-    #   decorator.on_blue.lighten_background(0.5).decorate('Hello, world!').to_s
-    #   #=> "\e[48;2;0;0;255mHello, world!\e[0m"
-    #
-    # @param amount [Float] the amount to lighten the background color (0.0...1.0)
-    #
-    # @raise [ArgumentError] if the percentage is out of range
-    # @return [Decorator] a new instance of Decorator with the lightened background color
-    # @rbs (Float amount) -> Decorator
-    def lighten_background: (Float amount) -> Decorator
-
-    alias lighten_bg lighten_background
-
-    # Lighten the text color by a percentage
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api public
-    #
-    # @example
-    #   decorator.blue.lighten_text(0.5).decorate('Hello, world!').to_s #=> "\e[38;2;0;0;127mHello, world!\e[0m"
-    #
-    # @param amount [Float] the amount to lighten the text color (0.0...1.0)
-    #
-    # @raise [ArgumentError] if the percentage is out of range
-    # @return [Decorator] a new instance of Decorator with the lightened text color
-    # @rbs (Float amount) -> Decorator
-    def lighten_text: (Float amount) -> Decorator
-
-    alias lighten_fg lighten_text
-
-    alias lighten_foreground lighten_text
 
     # Build a background gradient between two colors for text decoration
     #
@@ -304,20 +225,6 @@ module Sai
     # @rbs (Integer position, Float step_size, Integer max_index) -> Hash[Symbol, Integer | Float]
     def calculate_interpolation_indices: (Integer position, Float step_size, Integer max_index) -> Hash[Symbol, Integer | Float]
 
-    # Darken the foreground or background color by a specified amount
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param amount [Float] a value between 0.0 and 1.0 to darken the color by
-    # @param component [Symbol] the color component to darken
-    #
-    # @return [Decorator] a new instance of Decorator with the color darkened
-    # @rbs (Float amount, Symbol component) -> Decorator
-    def darken: (Float amount, Symbol component) -> Decorator
-
     # Get background sequence for a character
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -359,20 +266,6 @@ module Sai
     # @return [Array<Integer>] interpolated color
     # @rbs (Array[Array[Integer]] colors, Hash[Symbol, Integer | Float]) -> Array[Integer]
     def interpolate_sequence_colors: (Array[Array[Integer]] colors, Hash[Symbol, Integer | Float]) -> Array[Integer]
-
-    # Lighten the foreground or background color by a specified amount
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
-    #
-    # @api private
-    #
-    # @param amount [Float] a value between 0.0 and 1.0 to lighten the color by
-    # @param component [Symbol] the color component to lighten
-    #
-    # @return [Decorator] a new instance of Decorator with the color lightened
-    # @rbs (Float amount, Symbol component) -> Decorator
-    def lighten: (Float amount, Symbol component) -> Decorator
 
     # Prepare foreground and background color sequences for text
     #
