@@ -62,3 +62,7 @@ build-iPhoneSimulator/
 
 # RBS generated files
 /.gem_rbs_collection/
+
+# Version Manager Files
+mise.toml
+.tool-versions
