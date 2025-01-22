@@ -17,6 +17,8 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 * [#10](https://github.com/aaronmallen/sai/pull/10) - Refactor `Sai::Decorator` into component modules by
   [@aaronmallen](https://github.com/aaronmallen)
+* [#11](https://github.com/aaronmallen/sai/pull/11) - Refactor `Sai::Conversion::RGB` into component modules by
+  [@aaronmallen](https://github.com/aaronmallen)
 
 ## [0.3.0] - 2025-01-20
 
