@@ -61,9 +61,9 @@ module Sai
         def advanced(rgb, style_type)
           code = style_type == :background ? 48 : 38
           color_code = if rgb.uniq.size == 1
-                         RGB.to_grayscale_index(rgb)
+                         RGB.index.grayscale(rgb)
                        else
-                         RGB.to_color_cube_index(rgb)
+                         RGB.index.color_cube(rgb)
                        end
 
           "\e[#{code};5;#{color_code}m"
@@ -86,7 +86,7 @@ module Sai
           brightness = (r + g + b) / 3.0
           is_bright = brightness > 0.5
 
-          color = RGB.closest_ansi_color(r, g, b)
+          color = RGB.classify.closest_ansi_color(r, g, b)
           code = base_color_for_style_type(ANSI::COLOR_CODES[color], style_type)
           code += 60 if is_bright
           "\e[#{code}m"
@@ -122,7 +122,7 @@ module Sai
         # @rbs (Array[Integer] rgb, style_type style_type) -> String
         def basic(rgb, style_type)
           r, g, b = rgb.map { |c| c / 255.0 } #: [Float, Float, Float]
-          color = RGB.closest_ansi_color(r, g, b)
+          color = RGB.classify.closest_ansi_color(r, g, b)
           code = base_color_for_style_type(ANSI::COLOR_CODES[color], style_type)
           "\e[#{code}m"
         end

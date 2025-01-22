@@ -36,7 +36,7 @@ module Sai
       #   Integer steps
       #   ) -> Decorator
       def gradient(start_color, end_color, steps)
-        colors = Conversion::RGB.gradient(start_color, end_color, steps)
+        colors = Conversion::RGB.transform.gradient(start_color, end_color, steps)
         dup.tap { |duped| duped.instance_variable_set(:@foreground_sequence, colors) } #: Decorator
       end
 
@@ -63,7 +63,7 @@ module Sai
       #   Integer steps
       #   ) -> Decorator
       def on_gradient(start_color, end_color, steps)
-        colors = Conversion::RGB.gradient(start_color, end_color, steps)
+        colors = Conversion::RGB.transform.gradient(start_color, end_color, steps)
         dup.tap { |duped| duped.instance_variable_set(:@background_sequence, colors) } #: Decorator
       end
 
@@ -84,7 +84,7 @@ module Sai
       # @return [Decorator] a new instance of Decorator with background rainbow colors
       # @rbs (Integer steps) -> Decorator
       def on_rainbow(steps)
-        colors = Conversion::RGB.rainbow_gradient(steps)
+        colors = Conversion::RGB.transform.rainbow_gradient(steps)
         dup.tap { |duped| duped.instance_variable_set(:@background_sequence, colors) } #: Decorator
       end
 
@@ -105,7 +105,7 @@ module Sai
       # @return [Decorator] a new instance of Decorator with foreground rainbow colors
       # @rbs (Integer steps) -> Decorator
       def rainbow(steps)
-        colors = Conversion::RGB.rainbow_gradient(steps)
+        colors = Conversion::RGB.transform.rainbow_gradient(steps)
         dup.tap { |duped| duped.instance_variable_set(:@foreground_sequence, colors) } #: Decorator
       end
 

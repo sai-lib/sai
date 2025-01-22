@@ -9,134 +9,27 @@ module Sai
     #
     # @api private
     module RGB
-      # Get closest ANSI color for RGB values
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param red [Float] the red component (0-1)
-      # @param green [Float] the green component (0-1)
-      # @param blue [Float] the blue component (0-1)
-      #
-      # @return [Symbol] the closest ANSI color name
-      # @rbs (Float red, Float green, Float blue) -> Symbol
-      def self.closest_ansi_color: (Float red, Float green, Float blue) -> Symbol
-
-      # Determine if a color is dark
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param red [Float] the red component (0-1)
-      # @param green [Float] the green component (0-1)
-      # @param blue [Float] the blue component (0-1)
-      #
-      # @return [Boolean] true if color is dark
-      # @rbs (Float red, Float green, Float blue) -> bool
-      def self.dark?: (Float red, Float green, Float blue) -> bool
-
-      # Darken an RGB color by a percentage
+      # Color classification utilities
       #
       # @author {https://aaronmallen.me Aaron Allen}
       # @since unreleased
       #
       # @api private
       #
-      # @param color [Array<Integer>, String, Symbol] the color to darken
-      # @param amount [Float] amount to darken by (0.0-1.0)
-      #
-      # @raise [ArgumentError] if amount is not between 0.0 and 1.0
-      # @return [Array<Integer>] the darkened RGB values
-      # @rbs ((Array[Integer] | String | Symbol) color, Float amount) -> Array[Integer]
-      def self.darken: (Array[Integer] | String | Symbol color, Float amount) -> Array[Integer]
+      # @return [Module<ColorClassifier>] the ColorClassifier module
+      # @rbs () -> singleton(ColorClassifier)
+      def self.classify: () -> singleton(ColorClassifier)
 
-      # Generate a gradient between two colors with a specified number of steps
+      # Color indexing utilities
       #
       # @author {https://aaronmallen.me Aaron Allen}
       # @since unreleased
       #
       # @api private
       #
-      # @param start_color [Array<Integer>, String, Symbol] the starting color
-      # @param end_color [Array<Integer>, String, Symbol] the ending color
-      # @param steps [Integer] the number of colors to generate (minimum 2)
-      #
-      # @raise [ArgumentError] if steps is less than 2
-      # @return [Array<Array<Integer>>] the gradient colors as RGB values
-      # @rbs (
-      #   (Array[Integer] | String | Symbol) start_color,
-      #   (Array[Integer] | String | Symbol) end_color,
-      #   Integer steps
-      #   ) -> Array[Array[Integer]]
-      def self.gradient: (Array[Integer] | String | Symbol start_color, Array[Integer] | String | Symbol end_color, Integer steps) -> Array[Array[Integer]]
-
-      # Determine if a color is grayscale
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param red [Float] the red component (0-1)
-      # @param green [Float] the green component (0-1)
-      # @param blue [Float] the blue component (0-1)
-      #
-      # @return [Boolean] true if color is grayscale
-      # @rbs (Float red, Float green, Float blue) -> bool
-      def self.grayscale?: (Float red, Float green, Float blue) -> bool
-
-      # Interpolate between two colors to create a gradient step
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param start_color [Array<Integer>, String, Symbol] the starting color
-      # @param end_color [Array<Integer>, String, Symbol] the ending color
-      # @param step [Float] the interpolation step (0.0-1.0)
-      #
-      # @raise [ArgumentError] if step is not between 0.0 and 1.0
-      # @return [Array<Integer>] the interpolated RGB values
-      # @rbs (
-      #   (Array[Integer] | String | Symbol) start_color,
-      #   (Array[Integer] | String | Symbol) end_color,
-      #   Float step
-      #   ) -> Array[Integer]
-      def self.interpolate_color: (Array[Integer] | String | Symbol start_color, Array[Integer] | String | Symbol end_color, Float step) -> Array[Integer]
-
-      # Lighten an RGB color by a percentage
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param color [Array<Integer>, String, Symbol] the color to lighten
-      # @param amount [Float] amount to lighten by (0.0-1.0)
-      #
-      # @raise [ArgumentError] if amount is not between 0.0 and 1.0
-      # @return [Array<Integer>] the lightened RGB values
-      # @rbs ((Array[Integer] | String | Symbol) color, Float amount) -> Array[Integer]
-      def self.lighten: (Array[Integer] | String | Symbol color, Float amount) -> Array[Integer]
-
-      # Generate a rainbow gradient with a specified number of steps
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param steps [Integer] the number of colors to generate (minimum 2)
-      #
-      # @raise [ArgumentError] if steps is less than 2
-      # @return [Array<Array<Integer>>] the rainbow gradient colors as RGB values
-      # @rbs (Integer steps) -> Array[Array[Integer]]
-      def self.rainbow_gradient: (Integer steps) -> Array[Array[Integer]]
+      # @return [Module<ColorIndexer>] the ColorIndexer module
+      # @rbs () -> singleton(ColorIndexer)
+      def self.index: () -> singleton(ColorIndexer)
 
       # Convert a color value to RGB components
       #
@@ -152,236 +45,16 @@ module Sai
       # @rbs (Array[Integer] | String | Symbol color) -> Array[Integer]
       def self.resolve: (Array[Integer] | String | Symbol color) -> Array[Integer]
 
-      # Convert RGB values to 256-color cube index
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param rgb [Array<Integer>] RGB values (0-255)
-      #
-      # @return [Integer] the color cube index
-      # @rbs (Array[Integer] rgb) -> Integer
-      def self.to_color_cube_index: (Array[Integer] rgb) -> Integer
-
-      # Convert RGB values to grayscale index
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param rgb [Array<Integer>] RGB values
-      #
-      # @return [Integer] the grayscale index
-      # @rbs (Array[Integer] rgb) -> Integer
-      def self.to_grayscale_index: (Array[Integer] rgb) -> Integer
-
-      # Calculate the intermediate HSV components
+      # Transform RGB values
       #
       # @author {https://aaronmallen.me Aaron Allen}
       # @since unreleased
       #
       # @api private
       #
-      # @param value [Float] the value component
-      # @param saturation [Float] the saturation component
-      # @param hue_remainder [Float] the remainder of hue / 60
-      #
-      # @return [Array<Float>] the primary, secondary, and tertiary components
-      # @rbs (Float value, Float saturation, Float hue_remainder) -> [Float, Float, Float]
-      private def self.calculate_hsv_components: (Float value, Float saturation, Float hue_remainder) -> [ Float, Float, Float ]
-
-      # Check if RGB values represent cyan
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param red [Float] the red component (0-1)
-      # @param green [Float] the green component (0-1)
-      # @param blue [Float] the blue component (0-1)
-      #
-      # @return [Boolean] true if color is cyan
-      # @rbs (Float red, Float green, Float blue) -> bool
-      private def self.cyan?: (Float red, Float green, Float blue) -> bool
-
-      # Convert a hex string to RGB values
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param hex [String] the hex color code
-      #
-      # @return [Array<Integer>] the RGB components
-      # @rbs (String hex) -> Array[Integer]
-      private def self.hex_to_rgb: (String hex) -> Array[Integer]
-
-      # Convert HSV values to RGB
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param hue [Float] the hue component (0-360)
-      # @param saturation [Float] the saturation component (0-1)
-      # @param value [Float] the value component (0-1)
-      #
-      # @return [Array<Integer>] the RGB values
-      # @rbs (Float hue, Float saturation, Float value) -> Array[Integer]
-      private def self.hsv_to_rgb: (Float hue, Float saturation, Float value) -> Array[Integer]
-
-      # Check if RGB values represent magenta
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param red [Float] the red component (0-1)
-      # @param green [Float] the green component (0-1)
-      # @param blue [Float] the blue component (0-1)
-      #
-      # @return [Boolean] true if color is magenta
-      # @rbs (Float red, Float green, Float blue) -> bool
-      private def self.magenta?: (Float red, Float green, Float blue) -> bool
-
-      # Convert a named color to RGB values
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param color_name [String] the color name
-      #
-      # @raise [ArgumentError] if the color name is unknown
-      # @return [Array<Integer>] the RGB components
-      # @rbs (String color_name) -> Array[Integer]
-      private def self.named_to_rgb: (String color_name) -> Array[Integer]
-
-      # Convert RGB values from 0-1 range to 0-255 range
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param rgb [Array<Float>] RGB values in 0-1 range
-      #
-      # @return [Array<Integer>] RGB values in 0-255 range
-      # @rbs (Array[Float] rgb) -> Array[Integer]
-      private def self.normalize_rgb: (Array[Float] rgb) -> Array[Integer]
-
-      # Determine if RGB values represent a primary color
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param red [Float] the red component (0-1)
-      # @param green [Float] the green component (0-1)
-      # @param blue [Float] the blue component (0-1)
-      #
-      # @return [Boolean] true if color is primary
-      # @rbs (Float red, Float green, Float blue) -> bool
-      private def self.primary?: (Float red, Float green, Float blue) -> bool
-
-      # Get the closest primary color
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param red [Float] the red component (0-1)
-      # @param green [Float] the green component (0-1)
-      # @param blue [Float] the blue component (0-1)
-      #
-      # @return [Symbol] the primary color name
-      # @rbs (Float red, Float green, Float blue) -> Symbol
-      private def self.primary_color: (Float red, Float green, Float blue) -> Symbol
-
-      # Determine if RGB values represent a secondary color
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param red [Float] the red component (0-1)
-      # @param green [Float] the green component (0-1)
-      # @param blue [Float] the blue component (0-1)
-      #
-      # @return [Boolean] true if color is secondary
-      # @rbs (Float red, Float green, Float blue) -> bool
-      private def self.secondary?: (Float red, Float green, Float blue) -> bool
-
-      # Get the closest secondary color
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param red [Float] the red component (0-1)
-      # @param green [Float] the green component (0-1)
-      # @param blue [Float] the blue component (0-1)
-      #
-      # @return [Symbol] the secondary color name
-      # @rbs (Float red, Float green, Float blue) -> Symbol
-      private def self.secondary_color: (Float red, Float green, Float blue) -> Symbol
-
-      # Select RGB values based on the hue sector
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param sector [Integer] the hue sector (0-5)
-      # @param value [Float] the value component
-      # @param primary [Float] primary component from HSV calculation
-      # @param secondary [Float] secondary component from HSV calculation
-      # @param tertiary [Float] tertiary component from HSV calculation
-      #
-      # @return [Array<Float>] the RGB values before normalization
-      # @rbs (Integer sector, Float value, Float primary, Float secondary, Float tertiary) -> Array[Float]
-      private def self.select_rgb_values: (Integer sector, Float value, Float primary, Float secondary, Float tertiary) -> Array[Float]
-
-      # Validate RGB values
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param color [Array<Integer>] the RGB components to validate
-      # @return [Array<Integer>] the validated RGB components
-      # @raise [ArgumentError] if the RGB values are invalid
-      # @rbs (Array[Integer] color) -> Array[Integer]
-      private def self.validate_rgb: (Array[Integer] color) -> Array[Integer]
-
-      # Check if RGB values represent yellow
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param red [Float] the red component (0-1)
-      # @param green [Float] the green component (0-1)
-      # @param blue [Float] the blue component (0-1)
-      #
-      # @return [Boolean] true if color is yellow
-      # @rbs (Float red, Float green, Float blue) -> bool
-      private def self.yellow?: (Float red, Float green, Float blue) -> bool
+      # @return [Module<ColorTransformer>] the color transformer
+      # @rbs () -> singleton(ColorTransformer)
+      def self.transform: () -> singleton(ColorTransformer)
     end
   end
 end

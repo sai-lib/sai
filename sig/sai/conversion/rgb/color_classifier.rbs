@@ -1,0 +1,165 @@
+# Generated from lib/sai/conversion/rgb/color_classifier.rb with RBS::Inline
+
+module Sai
+  module Conversion
+    module RGB
+      # Classify color characteristics
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      module ColorClassifier
+        # Get closest ANSI color for RGB values
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param red [Float] the red component (0-1)
+        # @param green [Float] the green component (0-1)
+        # @param blue [Float] the blue component (0-1)
+        #
+        # @return [Symbol] the closest ANSI color name
+        # @rbs (Float red, Float green, Float blue) -> Symbol
+        def self.closest_ansi_color: (Float red, Float green, Float blue) -> Symbol
+
+        # Determine if a color is dark
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param red [Float] the red component (0-1)
+        # @param green [Float] the green component (0-1)
+        # @param blue [Float] the blue component (0-1)
+        #
+        # @return [Boolean] true if color is dark
+        # @rbs (Float red, Float green, Float blue) -> bool
+        def self.dark?: (Float red, Float green, Float blue) -> bool
+
+        # Determine if a color is grayscale
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param red [Float] the red component (0-1)
+        # @param green [Float] the green component (0-1)
+        # @param blue [Float] the blue component (0-1)
+        #
+        # @return [Boolean] true if color is grayscale
+        # @rbs (Float red, Float green, Float blue) -> bool
+        def self.grayscale?: (Float red, Float green, Float blue) -> bool
+
+        # Determine if RGB values represent a primary color
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param red [Float] the red component (0-1)
+        # @param green [Float] the green component (0-1)
+        # @param blue [Float] the blue component (0-1)
+        #
+        # @return [Boolean] true if color is primary
+        # @rbs (Float red, Float green, Float blue) -> bool
+        def self.primary?: (Float red, Float green, Float blue) -> bool
+
+        # Get the closest primary color
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param red [Float] the red component (0-1)
+        # @param green [Float] the green component (0-1)
+        # @param blue [Float] the blue component (0-1)
+        #
+        # @return [Symbol] the primary color name
+        # @rbs (Float red, Float green, Float blue) -> Symbol
+        def self.primary_color: (Float red, Float green, Float blue) -> Symbol
+
+        # Determine if RGB values represent a secondary color
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param red [Float] the red component (0-1)
+        # @param green [Float] the green component (0-1)
+        # @param blue [Float] the blue component (0-1)
+        #
+        # @return [Boolean] true if color is secondary
+        # @rbs (Float red, Float green, Float blue) -> bool
+        def self.secondary?: (Float red, Float green, Float blue) -> bool
+
+        # Get the closest secondary color
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param red [Float] the red component (0-1)
+        # @param green [Float] the green component (0-1)
+        # @param blue [Float] the blue component (0-1)
+        #
+        # @return [Symbol] the secondary color name
+        # @rbs (Float red, Float green, Float blue) -> Symbol
+        def self.secondary_color: (Float red, Float green, Float blue) -> Symbol
+
+        # Check if RGB values represent cyan
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param red [Float] the red component (0-1)
+        # @param green [Float] the green component (0-1)
+        # @param blue [Float] the blue component (0-1)
+        #
+        # @return [Boolean] true if color is cyan
+        # @rbs (Float red, Float green, Float blue) -> bool
+        private def self.cyan?: (Float red, Float green, Float blue) -> bool
+
+        # Check if RGB values represent magenta
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param red [Float] the red component (0-1)
+        # @param green [Float] the green component (0-1)
+        # @param blue [Float] the blue component (0-1)
+        #
+        # @return [Boolean] true if color is magenta
+        # @rbs (Float red, Float green, Float blue) -> bool
+        private def self.magenta?: (Float red, Float green, Float blue) -> bool
+
+        # Check if RGB values represent yellow
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param red [Float] the red component (0-1)
+        # @param green [Float] the green component (0-1)
+        # @param blue [Float] the blue component (0-1)
+        #
+        # @return [Boolean] true if color is yellow
+        # @rbs (Float red, Float green, Float blue) -> bool
+        private def self.yellow?: (Float red, Float green, Float blue) -> bool
+      end
+    end
+  end
+end

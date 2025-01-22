@@ -1,0 +1,41 @@
+# Generated from lib/sai/conversion/rgb/color_indexer.rb with RBS::Inline
+
+module Sai
+  module Conversion
+    module RGB
+      # Color indexing utilities
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      module ColorIndexer
+        # Convert RGB values to 256-color cube index
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param rgb [Array<Integer>] RGB values (0-255)
+        #
+        # @return [Integer] the color cube index
+        # @rbs (Array[Integer] rgb) -> Integer
+        def self.color_cube: (Array[Integer] rgb) -> Integer
+
+        # Convert RGB values to grayscale index
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since 0.1.0
+        #
+        # @api private
+        #
+        # @param rgb [Array<Integer>] RGB values
+        #
+        # @return [Integer] the grayscale index
+        # @rbs (Array[Integer] rgb) -> Integer
+        def self.grayscale: (Array[Integer] rgb) -> Integer
+      end
+    end
+  end
+end
