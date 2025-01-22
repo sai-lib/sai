@@ -439,7 +439,7 @@ module Sai
       # Register a named color with an RGB or Hexadecimal value
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.2
       #
       # @api private
       #
@@ -460,7 +460,7 @@ module Sai
       # Install the color methods onto {Sai} and {Sai::Decorator}
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.2
       #
       # @api private
       #
@@ -476,7 +476,7 @@ module Sai
       # Provision a color for the registry
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.2
       #
       # @api private
       #
@@ -494,7 +494,7 @@ module Sai
       # The Sai named colors registry
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.2
       #
       # @api private
       #
@@ -508,7 +508,7 @@ module Sai
       # A Mutex for thread safety
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.2
       #
       # @api private
       #

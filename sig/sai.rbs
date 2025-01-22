@@ -1577,7 +1577,7 @@ module Sai
   # Register a custom name and color
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since unreleased
+  # @since 0.3.2
   #
   # @api public
   #

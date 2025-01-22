@@ -1474,7 +1474,7 @@ module Sai
       # Install a color method on the {Decorator} class
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.2
       #
       # @api private
       #
