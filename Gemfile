@@ -5,7 +5,7 @@ gemspec
 
 group :development, :test do
   gem 'domainic-dev-test', github: 'domainic/domainic-dev-test', tag: '0.0.1', require: false
-  gem 'rubocop-domainic-dev', github: 'domainic/rubocop-domainic-dev', tag: '0.0.2', require: false
+  gem 'rubocop-domainic-dev', github: 'domainic/rubocop-domainic-dev', tag: '0.0.3', require: false
 end
 
 group :doc do
