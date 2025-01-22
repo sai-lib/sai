@@ -178,21 +178,6 @@ module Sai
       # @rbs (Array[Integer] rgb) -> Integer
       def self.to_grayscale_index: (Array[Integer] rgb) -> Integer
 
-      # Calculate the intermediate HSV components
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param value [Float] the value component
-      # @param saturation [Float] the saturation component
-      # @param hue_remainder [Float] the remainder of hue / 60
-      #
-      # @return [Array<Float>] the primary, secondary, and tertiary components
-      # @rbs (Float value, Float saturation, Float hue_remainder) -> [Float, Float, Float]
-      private def self.calculate_hsv_components: (Float value, Float saturation, Float hue_remainder) -> [ Float, Float, Float ]
-
       # Check if RGB values represent cyan
       #
       # @author {https://aaronmallen.me Aaron Allen}
@@ -208,34 +193,6 @@ module Sai
       # @rbs (Float red, Float green, Float blue) -> bool
       private def self.cyan?: (Float red, Float green, Float blue) -> bool
 
-      # Convert a hex string to RGB values
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param hex [String] the hex color code
-      #
-      # @return [Array<Integer>] the RGB components
-      # @rbs (String hex) -> Array[Integer]
-      private def self.hex_to_rgb: (String hex) -> Array[Integer]
-
-      # Convert HSV values to RGB
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param hue [Float] the hue component (0-360)
-      # @param saturation [Float] the saturation component (0-1)
-      # @param value [Float] the value component (0-1)
-      #
-      # @return [Array<Integer>] the RGB values
-      # @rbs (Float hue, Float saturation, Float value) -> Array[Integer]
-      private def self.hsv_to_rgb: (Float hue, Float saturation, Float value) -> Array[Integer]
-
       # Check if RGB values represent magenta
       #
       # @author {https://aaronmallen.me Aaron Allen}
@@ -250,33 +207,6 @@ module Sai
       # @return [Boolean] true if color is magenta
       # @rbs (Float red, Float green, Float blue) -> bool
       private def self.magenta?: (Float red, Float green, Float blue) -> bool
-
-      # Convert a named color to RGB values
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param color_name [String] the color name
-      #
-      # @raise [ArgumentError] if the color name is unknown
-      # @return [Array<Integer>] the RGB components
-      # @rbs (String color_name) -> Array[Integer]
-      private def self.named_to_rgb: (String color_name) -> Array[Integer]
-
-      # Convert RGB values from 0-1 range to 0-255 range
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param rgb [Array<Float>] RGB values in 0-1 range
-      #
-      # @return [Array<Integer>] RGB values in 0-255 range
-      # @rbs (Array[Float] rgb) -> Array[Integer]
-      private def self.normalize_rgb: (Array[Float] rgb) -> Array[Integer]
 
       # Determine if RGB values represent a primary color
       #
@@ -337,36 +267,6 @@ module Sai
       # @return [Symbol] the secondary color name
       # @rbs (Float red, Float green, Float blue) -> Symbol
       private def self.secondary_color: (Float red, Float green, Float blue) -> Symbol
-
-      # Select RGB values based on the hue sector
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param sector [Integer] the hue sector (0-5)
-      # @param value [Float] the value component
-      # @param primary [Float] primary component from HSV calculation
-      # @param secondary [Float] secondary component from HSV calculation
-      # @param tertiary [Float] tertiary component from HSV calculation
-      #
-      # @return [Array<Float>] the RGB values before normalization
-      # @rbs (Integer sector, Float value, Float primary, Float secondary, Float tertiary) -> Array[Float]
-      private def self.select_rgb_values: (Integer sector, Float value, Float primary, Float secondary, Float tertiary) -> Array[Float]
-
-      # Validate RGB values
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param color [Array<Integer>] the RGB components to validate
-      # @return [Array<Integer>] the validated RGB components
-      # @raise [ArgumentError] if the RGB values are invalid
-      # @rbs (Array[Integer] color) -> Array[Integer]
-      private def self.validate_rgb: (Array[Integer] color) -> Array[Integer]
 
       # Check if RGB values represent yellow
       #

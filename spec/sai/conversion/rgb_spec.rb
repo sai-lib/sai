@@ -379,66 +379,6 @@ RSpec.describe Sai::Conversion::RGB do
     end
   end
 
-  describe '.resolve' do
-    subject(:resolve) { described_class.resolve(color) }
-
-    context 'when given an RGB array' do
-      let(:color) { [255, 128, 0] }
-
-      it 'is expected to return the same RGB values' do
-        expect(resolve).to eq([255, 128, 0])
-      end
-
-      context 'when given invalid RGB values' do
-        let(:color) { [300, -1, 128] }
-
-        it 'is expected to raise ArgumentError' do
-          expect { resolve }.to raise_error(ArgumentError, /Invalid RGB values/)
-        end
-      end
-    end
-
-    context 'when given a hex color string' do
-      let(:color) { '#FF8000' }
-
-      it 'is expected to convert to RGB values' do
-        expect(resolve).to eq([255, 128, 0])
-      end
-
-      context 'when given hex without #' do
-        let(:color) { 'FF8000' }
-
-        it 'is expected to convert to RGB values' do
-          expect(resolve).to eq([255, 128, 0])
-        end
-      end
-    end
-
-    context 'when given a named color' do
-      let(:color) { 'red' }
-
-      it 'is expected to convert to RGB values' do
-        expect(resolve).to eq(Sai::ANSI::COLOR_NAMES[:red])
-      end
-
-      context 'when given unknown color name' do
-        let(:color) { 'not_a_color' }
-
-        it 'is expected to raise ArgumentError' do
-          expect { resolve }.to raise_error(ArgumentError, /Unknown color name/)
-        end
-      end
-    end
-
-    context 'when given invalid input', rbs: :skip do
-      let(:color) { 123 }
-
-      it 'is expected to raise ArgumentError' do
-        expect { resolve }.to raise_error(ArgumentError, /Invalid color format/)
-      end
-    end
-  end
-
   describe '.to_color_cube_index' do
     subject(:to_color_cube_index) { described_class.to_color_cube_index(rgb) }
 
