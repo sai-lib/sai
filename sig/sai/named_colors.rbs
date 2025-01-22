@@ -61,5 +61,40 @@ module Sai
     #
     # @return [Array<Symbol>] the color names
     def self.names: () -> untyped
+
+    # Register a named color with an RGB or Hexadecimal value
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param name [String, Symbol] the name of the color being registered
+    # @param rgb_or_hex [Array<Integer>, String] the RGB or Hexadecimal value of the color
+    #
+    # @return [Boolean] `true` if the color was registered
+    # @rbs (String | Symbol name, Array[Integer] | String rgb_or_hex) -> void
+    def self.register: (String | Symbol name, Array[Integer] | String rgb_or_hex) -> void
+
+    # The Sai named colors registry
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @return [Hash{Symbol => Array<Integer>}] the named colors registry
+    private def self.registry: () -> untyped
+
+    # A Mutex for thread safety
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @return [Mutex] the thread lock
+    # @rbs () -> Mutex
+    private def self.thread_lock: () -> Mutex
   end
 end
