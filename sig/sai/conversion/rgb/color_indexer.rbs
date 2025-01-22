@@ -6,7 +6,7 @@ module Sai
       # Color indexing utilities
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       module ColorIndexer

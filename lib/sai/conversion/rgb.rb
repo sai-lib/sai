@@ -19,7 +19,7 @@ module Sai
         # Color classification utilities
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.1
         #
         # @api private
         #
@@ -32,7 +32,7 @@ module Sai
         # Color indexing utilities
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.1
         #
         # @api private
         #
@@ -61,7 +61,7 @@ module Sai
         # Transform RGB values
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.1
         #
         # @api private
         #

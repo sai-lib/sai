@@ -5,7 +5,7 @@ module Sai
     # Color manipulation methods for the {Decorator} class
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.3.1
     #
     # @abstract This module is meant to be included in the {Decorator} class to provide color manipulation methods
     # @api private
@@ -13,7 +13,7 @@ module Sai
       # Darken the background color by a percentage
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api public
       #
@@ -35,7 +35,7 @@ module Sai
       # Darken the text color by a percentage
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api public
       #
@@ -58,7 +58,7 @@ module Sai
       # Lighten the background color by a percentage
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api public
       #
@@ -81,7 +81,7 @@ module Sai
       # Lighten the text color by a percentage
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api public
       #
@@ -106,7 +106,7 @@ module Sai
       # Darken the foreground or background color by a specified amount
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -131,7 +131,7 @@ module Sai
       # Lighten the foreground or background color by a specified amount
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #

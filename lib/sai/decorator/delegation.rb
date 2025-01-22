@@ -13,14 +13,14 @@ module Sai
     # Delegates all methods from the Decorator class and its component modules
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.3.1
     #
     # @api private
     module Delegation
       # The list of component modules to delegate methods from
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -39,7 +39,7 @@ module Sai
         # Install delegated methods on the given class or module
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.1
         #
         # @api private
         #
@@ -63,7 +63,7 @@ module Sai
         # Collect all methods from the Decorator class and its component modules
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.3.1
         #
         # @api private
         #

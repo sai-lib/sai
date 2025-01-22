@@ -44,8 +44,8 @@ If you have suggestions on how this process could be improved, please submit a p
 
 |  Version  | Support |
 |:---------:|:-------:|
-|  `0.3.0`  |    ✅    |
-| `> 0.3.0' |    ❌    |
+|  `0.3.1`  |    ✅    |
+| `> 0.3.1' |    ❌    |
 
 ### Key
 

@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 ## [Unreleased]
 
+## [0.3.1] - 2025-01-22
+
 ### Added 
 
 * [#8](https://github.com/aaronmallen/sai/pull/8) - Add color manipulation methods for darkening and lightening colors 
@@ -62,6 +64,7 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 <!-- versions -->
 
-[Unreleased]: https://github.com/aaronmallen/sai/compare/0.3.0..HEAD
+[Unreleased]: https://github.com/aaronmallen/sai/compare/0.3.1..HEAD
+[0.3.1]: https://github.com/aaronmallen/sai/compare/0.3.0..0.3.1
 [0.3.0]: https://github.com/aaronmallen/sai/compare/0.2.0..0.3.0
 [0.2.0]: https://github.com/aaronmallen/sai/compare/0.1.0..0.2.0

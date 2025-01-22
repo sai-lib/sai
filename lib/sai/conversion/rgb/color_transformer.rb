@@ -8,7 +8,7 @@ module Sai
       # Perform color transformations
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       module ColorTransformer
@@ -16,7 +16,7 @@ module Sai
           # Darken an RGB color by a percentage
           #
           # @author {https://aaronmallen.me Aaron Allen}
-          # @since unreleased
+          # @since 0.3.1
           #
           # @api private
           #
@@ -36,7 +36,7 @@ module Sai
           # Generate a gradient between two colors with a specified number of steps
           #
           # @author {https://aaronmallen.me Aaron Allen}
-          # @since unreleased
+          # @since 0.3.1
           #
           # @api private
           #
@@ -63,7 +63,7 @@ module Sai
           # Interpolate between two colors to create a gradient step
           #
           # @author {https://aaronmallen.me Aaron Allen}
-          # @since unreleased
+          # @since 0.3.1
           #
           # @api private
           #
@@ -95,7 +95,7 @@ module Sai
           # Lighten an RGB color by a percentage
           #
           # @author {https://aaronmallen.me Aaron Allen}
-          # @since unreleased
+          # @since 0.3.1
           #
           # @api private
           #
@@ -115,7 +115,7 @@ module Sai
           # Generate a rainbow gradient with a specified number of steps
           #
           # @author {https://aaronmallen.me Aaron Allen}
-          # @since unreleased
+          # @since 0.3.1
           #
           # @api private
           #

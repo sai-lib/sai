@@ -5,7 +5,7 @@ module Sai
     # RGB color methods for the {Decorator} class
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.3.1
     #
     # @abstract This module is meant to be included in the {Decorator} class to provide RGB color methods
     # @api private
