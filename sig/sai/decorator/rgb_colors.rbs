@@ -1,0 +1,52 @@
+# Generated from lib/sai/decorator/rgb_colors.rb with RBS::Inline
+
+module Sai
+  class Decorator
+    # RGB color methods for the {Decorator} class
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @abstract This module is meant to be included in the {Decorator} class to provide RGB color methods
+    # @api private
+    module RGBColors
+      # Apply an RGB color to the background
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since 0.1.0
+      #
+      # @api public
+      #
+      # @example
+      #   decorator.on_rgb(235, 65, 51).decorate('Hello, world!').to_s #=> "\e[48;2;235;65;51mHello, world!\e[0m"
+      #
+      # @param red [Integer] the red component
+      # @param green [Integer] the green component
+      # @param blue [Integer] the blue component
+      #
+      # @raise [ArgumentError] if the RGB values are out of range
+      # @return [Decorator] a new instance of Decorator with the RGB color applied
+      # @rbs (Integer red, Integer green, Integer blue) -> Decorator
+      def on_rgb: (Integer red, Integer green, Integer blue) -> Decorator
+
+      # Apply an RGB color to the foreground
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since 0.1.0
+      #
+      # @api public
+      #
+      # @example
+      #   decorator.rgb(235, 65, 51).decorate('Hello, world!').to_s #=> "\e[38;2;235;65;51mHello, world!\e[0m"
+      #
+      # @param red [Integer] the red component
+      # @param green [Integer] the green component
+      # @param blue [Integer] the blue component
+      #
+      # @raise [ArgumentError] if the RGB values are out of range
+      # @return [Decorator] a new instance of Decorator with the RGB color applied
+      # @rbs (Integer red, Integer green, Integer blue) -> Decorator
+      def rgb: (Integer red, Integer green, Integer blue) -> Decorator
+    end
+  end
+end

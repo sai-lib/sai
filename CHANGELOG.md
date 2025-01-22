@@ -13,6 +13,11 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 * [#9](https://github.com/aaronmallen/sai/pull/9) - Add gradient and rainbow color effects for text and backgrounds by
   [@aaronmallen](https://github.com/aaronmallen)
 
+### Changed
+
+* [#10](https://github.com/aaronmallen/sai/pull/10) - Refactor `Sai::Decorator` into component modules by
+  [@aaronmallen](https://github.com/aaronmallen)
+
 ## [0.3.0] - 2025-01-20
 
 ### Added

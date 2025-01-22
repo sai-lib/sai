@@ -6,6 +6,7 @@ require 'sai/ansi/sequenced_string'
 require 'sai/conversion/color_sequence'
 require 'sai/conversion/rgb'
 require 'sai/decorator'
+require 'sai/decorator/delegation'
 require 'sai/mode_selector'
 require 'sai/support'
 require 'sai/terminal/capabilities'
@@ -52,29 +53,6 @@ require 'sai/terminal/color_mode'
 #   Sai.support.true_color? # => true
 module Sai
   class << self
-    ignored_decorator_methods = %i[apply call decorate encode]
-    Decorator.instance_methods(false).reject { |m| ignored_decorator_methods.include?(m) }.each do |method|
-      define_method(method) do |*arguments, **keyword_arguments|
-        Decorator.new(mode: Sai.mode.auto).public_send(method, *arguments, **keyword_arguments)
-      end
-    end
-
-    # The Sai {ModeSelector mode selector}
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.2.0
-    #
-    # @api public
-    #
-    # @example
-    #   Sai.mode.auto #=> 4
-    #
-    # @return [ModeSelector] the mode selector
-    # @rbs () -> singleton(ModeSelector)
-    def mode
-      ModeSelector
-    end
-
     # @rbs!
     #   def black: () -> Decorator
     #   def blink: () -> Decorator
@@ -90,9 +68,20 @@ module Sai
     #   def bright_yellow: () -> Decorator
     #   def conceal: () -> Decorator
     #   def cyan: () -> Decorator
+    #   def darken_bg: () -> Decorator
+    #   def darken_background: () -> Decorator
+    #   def darken_fg: () -> Decorator
+    #   def darken_foreground: () -> Decorator
+    #   def darken_text: () -> Decorator
     #   def dim: () -> Decorator
+    #   def gradient: () -> Decorator
     #   def green: () -> Decorator
     #   def italic: () -> Decorator
+    #   def lighten_bg: () -> Decorator
+    #   def lighten_background: () -> Decorator
+    #   def lighten_fg: () -> Decorator
+    #   def lighten_foreground: () -> Decorator
+    #   def lighten_text: () -> Decorator
     #   def magenta: () -> Decorator
     #   def no_blink: () -> Decorator
     #   def no_conceal: () -> Decorator
@@ -112,11 +101,14 @@ module Sai
     #   def on_bright_white: () -> Decorator
     #   def on_bright_yellow: () -> Decorator
     #   def on_cyan: () -> Decorator
+    #   def on_gradient: () -> Decorator
     #   def on_green: () -> Decorator
     #   def on_magenta: () -> Decorator
+    #   def on_rainbow: () -> Decorator
     #   def on_red: () -> Decorator
     #   def on_white: () -> Decorator
     #   def on_yellow: () -> Decorator
+    #   def rainbow: () -> Decorator
     #   def rapid_blink: () -> Decorator
     #   def red: () -> Decorator
     #   def reverse: () -> Decorator
@@ -124,6 +116,23 @@ module Sai
     #   def underline: () -> Decorator
     #   def white: () -> Decorator
     #   def yellow: () -> Decorator
+    Decorator::Delegation.install(self)
+
+    # The Sai {ModeSelector mode selector}
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.2.0
+    #
+    # @api public
+    #
+    # @example
+    #   Sai.mode.auto #=> 4
+    #
+    # @return [ModeSelector] the mode selector
+    # @rbs () -> singleton(ModeSelector)
+    def mode
+      ModeSelector
+    end
 
     # Sequence a string with ANSI escape codes
     #
