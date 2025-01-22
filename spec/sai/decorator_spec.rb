@@ -598,7 +598,7 @@ RSpec.describe Sai::Decorator do
   end
 
   # Test each named color method
-  Sai::ANSI::COLOR_NAMES.each_key do |color|
+  Sai::NamedColors.names.each do |color|
     describe "##{color}" do
       subject(:color_decorator) { decorator.public_send(color) }
 
