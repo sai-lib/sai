@@ -11,6 +11,23 @@ RSpec.describe Sai do
     it { is_expected.to eq(Sai::ModeSelector) }
   end
 
+  describe '.register' do
+    subject(:register) { described_class.register(color_name, color_value) }
+
+    before do
+      allow(Sai::NamedColors).to receive(:register)
+    end
+
+    let(:color_name) { :test }
+    let(:color_value) { '#FF0000' }
+
+    it 'is expected to register the color' do
+      register
+
+      expect(Sai::NamedColors).to have_received(:register).with(color_name, color_value)
+    end
+  end
+
   describe '.sequence' do
     subject(:sequence) { described_class.sequence(text) }
 
