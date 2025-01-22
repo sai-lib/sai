@@ -1471,6 +1471,19 @@ module Sai
 
       def yellow_system: () -> Decorator
 
+      # Install a color method on the {Decorator} class
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param color_name [Symbol] the name of the color to install
+      #
+      # @return [void]
+      # @rbs (Symbol color_name) -> void
+      def self.install: (Symbol color_name) -> void
+
       private
 
       # Apply a named color to the specified style type

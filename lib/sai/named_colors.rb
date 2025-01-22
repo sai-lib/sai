@@ -449,14 +449,47 @@ module Sai
       # @return [Boolean] `true` if the color was registered
       # @rbs (String | Symbol name, Array[Integer] | String rgb_or_hex) -> void
       def register(name, rgb_or_hex)
-        rgb = Conversion::RGB.resolve(rgb_or_hex)
         key = name.to_s.downcase.to_sym
-        registry[key] = rgb
-        @names = nil
+        provision_color(key, rgb_or_hex)
+        install_color(key)
         true
       end
 
       private
+
+      # Install the color methods onto {Sai} and {Sai::Decorator}
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param name [Symbol] the name of the color to install
+      #
+      # @return [void]
+      # @rbs (Symbol name) -> void
+      def install_color(name)
+        Sai::Decorator::NamedColors.install(name)
+        Sai::Decorator::Delegation.install(Sai)
+      end
+
+      # Provision a color for the registry
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param name [Symbol] the name of the color to register
+      # @param rgb_or_hex [Array<Integer>, String] the RGB or Hexadecimal value of the color
+      #
+      # @return [void]
+      # @rbs (Symbol name, Array[Integer] | String rgb_or_hex) -> void
+      def provision_color(name, rgb_or_hex)
+        rgb = Conversion::RGB.resolve(rgb_or_hex)
+        registry[name] = rgb
+        @names = nil
+      end
 
       # The Sai named colors registry
       #

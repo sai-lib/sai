@@ -13,6 +13,7 @@ RSpec.describe Sai::NamedColors do
       :@registry,
       described_class::CSS.merge(described_class::XTERM).merge(described_class::ANSI)
     )
+    described_class.names.each { |name| Sai::Decorator::NamedColors.install(name) }
     described_class.instance_variable_set(:@names, nil)
   end
 
@@ -73,6 +74,13 @@ RSpec.describe Sai::NamedColors do
 
     let(:name) { :test_color }
     let(:value) { [100, 100, 100] }
+    let(:decorator) { Sai::Decorator.new }
+
+    after do
+      # Clean up test methods
+      Sai::Decorator.undef_method(name) if Sai::Decorator.method_defined?(name)
+      Sai::Decorator.undef_method(:"on_#{name}") if Sai::Decorator.method_defined?(:"on_#{name}")
+    end
 
     it 'is expected to register a new color' do
       register
@@ -84,13 +92,27 @@ RSpec.describe Sai::NamedColors do
       expect(described_class.names).to include(name)
     end
 
+    it 'is expected to install color methods on Decorator' do
+      register
+      expect(decorator).to respond_to(name).and(respond_to(:"on_#{name}"))
+    end
+
     context 'when registering multiple colors concurrently' do
+      after do
+        # Clean up concurrent test methods
+        50.times do |i|
+          color_name = :"color_#{i}"
+          Sai::Decorator.undef_method(color_name) if Sai::Decorator.method_defined?(color_name)
+          Sai::Decorator.undef_method(:"on_#{color_name}") if Sai::Decorator.method_defined?(:"on_#{color_name}")
+        end
+      end
+
       it 'is expected to handle concurrent registration safely' do
         colors = Array.new(50) { |i| [:"color_#{i}", [i, i, i]] }
 
         threads = colors.map do |color_name, color_value|
           Thread.new do
-            sleep(rand(0.001..0.005)) # Add some randomness to thread timing
+            sleep(rand(0.001..0.005))
             described_class.register(color_name, color_value)
           end
         end
@@ -99,7 +121,9 @@ RSpec.describe Sai::NamedColors do
 
         registered_colors = colors.all? do |color_name, color_value|
           described_class[color_name] == color_value &&
-            described_class.names.include?(color_name)
+            described_class.names.include?(color_name) &&
+            decorator.respond_to?(color_name) &&
+            decorator.respond_to?(:"on_#{color_name}")
         end
 
         expect(registered_colors).to be true
@@ -119,6 +143,13 @@ RSpec.describe Sai::NamedColors do
         original_names = described_class.names
         register
         expect(described_class.names.length).to eq(original_names.length)
+      end
+
+      it 'is expected to update the existing color methods' do
+        register
+        expect(decorator.with_mode(Sai.mode.true_color).send(name).decorate('test').to_s).to(
+          eq("\e[38;2;255;0;0mtest\e[0m")
+        )
       end
     end
   end

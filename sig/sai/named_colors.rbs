@@ -76,6 +76,33 @@ module Sai
     # @rbs (String | Symbol name, Array[Integer] | String rgb_or_hex) -> void
     def self.register: (String | Symbol name, Array[Integer] | String rgb_or_hex) -> void
 
+    # Install the color methods onto {Sai} and {Sai::Decorator}
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param name [Symbol] the name of the color to install
+    #
+    # @return [void]
+    # @rbs (Symbol name) -> void
+    private def self.install_color: (Symbol name) -> void
+
+    # Provision a color for the registry
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param name [Symbol] the name of the color to register
+    # @param rgb_or_hex [Array<Integer>, String] the RGB or Hexadecimal value of the color
+    #
+    # @return [void]
+    # @rbs (Symbol name, Array[Integer] | String rgb_or_hex) -> void
+    private def self.provision_color: (Symbol name, Array[Integer] | String rgb_or_hex) -> void
+
     # The Sai named colors registry
     #
     # @author {https://aaronmallen.me Aaron Allen}
