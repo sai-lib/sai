@@ -15,7 +15,7 @@ RSpec.describe Sai do
     subject(:register) { described_class.register(color_name, color_value) }
 
     before do
-      allow(Sai::NamedColors).to receive(:register)
+      allow(Sai::Registry).to receive(:register)
     end
 
     let(:color_name) { :test }
@@ -24,7 +24,7 @@ RSpec.describe Sai do
     it 'is expected to register the color' do
       register
 
-      expect(Sai::NamedColors).to have_received(:register).with(color_name, color_value)
+      expect(Sai::Registry).to have_received(:register).with(color_name, color_value)
     end
   end
 

@@ -5,3 +5,10 @@ Domainic::Dev::Test::CoverageReporter.start if ENV['COVERAGE'] == 'true'
 Domainic::Dev::Test.setup
 
 require 'sai'
+
+RSpec.configure do |config|
+  config.after do
+    Sai::Registry.instance_variable_set(:@lookup, {})
+    Sai::Registry.instance_variable_set(:@names, nil)
+  end
+end

@@ -9,6 +9,7 @@ require 'sai/decorator'
 require 'sai/decorator/delegation'
 require 'sai/mode_selector'
 require 'sai/named_colors'
+require 'sai/registry'
 require 'sai/support'
 require 'sai/terminal/capabilities'
 require 'sai/terminal/color_mode'
@@ -852,7 +853,7 @@ module Sai
     # @return [void]
     # @rbs (String | Symbol name, Array[Integer] | String rgb_or_hex) -> void
     def register(name, rgb_or_hex)
-      NamedColors.register(name, rgb_or_hex)
+      Registry.register(name, rgb_or_hex)
     end
 
     # Sequence a string with ANSI escape codes
