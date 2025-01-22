@@ -52,6 +52,7 @@ module Sai
           methods = collect_delegatable_methods.reject { |m| ignored_methods.include?(m) }
 
           methods.each do |method|
+            klass.undef_method(method) if klass.method_defined?(method)
             klass.define_method(method) do |*args, **kwargs|
               Decorator.new(mode: Sai.mode.auto).public_send(method, *args, **kwargs)
             end

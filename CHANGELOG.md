@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 ## [Unreleased]
 
+### Added
+
+* [#15](https://github.com/aaronmallen/sai/pull/15) - Add support for registering custom named colors by
+  [@aaronmallen](https://github.com/aaronmallen)
+
 ## [0.3.1] - 2025-01-22
 
 ### Added 

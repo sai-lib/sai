@@ -107,6 +107,20 @@ For a complete list of available colors, see:
 * [Online Color Reference](https://github.com/aaronmallen/sai/blob/main/docs/AVAILABLE_NAMED_COLORS.md)
 * `Sai::NamedColors.names` in your code
 
+#### Registering Custom Named Colors
+
+Sai allows you to register custom named colors for easy reuse with `Sai.register`:
+
+```ruby
+# Register custom colors
+Sai.register(:my_color, '#CF4C5F')
+
+# or alternatively 
+Sai.register(:my_color, [207, 76, 95])
+
+Sai.my_color.decorate('Hello, world!')
+```
+
 ### Color Manipulation
 
 Adjust the brightness of colors:

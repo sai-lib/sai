@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sai/conversion/rgb'
+
 module Sai
   # A collection of named colors and their RGB values
   #
@@ -406,32 +408,115 @@ module Sai
     }.freeze #: Hash[Symbol, Array[Integer]]
     # rubocop:enable Naming/VariableNumber
 
-    # Look up an RGB value by color name
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.3.1
-    #
-    # @api private
-    #
-    # @param name [String, Symbol] the color name
-    #
-    # @return [Array<Integer>] the RGB value
-    # @rbs (String | Symbol name) -> Array[Integer]?
-    def self.[](name)
-      key = name.to_sym
-      ANSI.fetch(key, XTERM.fetch(key, CSS.fetch(key, nil)))
-    end
+    class << self
+      # Look up an RGB value by color name
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since 0.3.1
+      #
+      # @api private
+      #
+      # @param name [String, Symbol] the color name
+      #
+      # @return [Array<Integer>] the RGB value
+      # @rbs (String | Symbol name) -> Array[Integer]?
+      def [](name)
+        registry[name.to_sym]
+      end
 
-    # Get a list of all color names
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.3.1
-    #
-    # @api private
-    #
-    # @return [Array<Symbol>] the color names
-    def self.names
-      (ANSI.keys + CSS.keys + XTERM.keys).uniq.sort
+      # Get a list of all color names
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since 0.3.1
+      #
+      # @api private
+      #
+      # @return [Array<Symbol>] the color names
+      def names
+        @names ||= registry.keys.uniq.sort
+      end
+
+      # Register a named color with an RGB or Hexadecimal value
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param name [String, Symbol] the name of the color being registered
+      # @param rgb_or_hex [Array<Integer>, String] the RGB or Hexadecimal value of the color
+      #
+      # @return [Boolean] `true` if the color was registered
+      # @rbs (String | Symbol name, Array[Integer] | String rgb_or_hex) -> void
+      def register(name, rgb_or_hex)
+        key = name.to_s.downcase.to_sym
+        provision_color(key, rgb_or_hex)
+        install_color(key)
+        true
+      end
+
+      private
+
+      # Install the color methods onto {Sai} and {Sai::Decorator}
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param name [Symbol] the name of the color to install
+      #
+      # @return [void]
+      # @rbs (Symbol name) -> void
+      def install_color(name)
+        Sai::Decorator::NamedColors.install(name)
+        Sai::Decorator::Delegation.install(Sai)
+      end
+
+      # Provision a color for the registry
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param name [Symbol] the name of the color to register
+      # @param rgb_or_hex [Array<Integer>, String] the RGB or Hexadecimal value of the color
+      #
+      # @return [void]
+      # @rbs (Symbol name, Array[Integer] | String rgb_or_hex) -> void
+      def provision_color(name, rgb_or_hex)
+        rgb = Conversion::RGB.resolve(rgb_or_hex)
+        registry[name] = rgb
+        @names = nil
+      end
+
+      # The Sai named colors registry
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Hash{Symbol => Array<Integer>}] the named colors registry
+      def registry
+        thread_lock.synchronize do
+          @registry ||= CSS.merge(XTERM).merge(ANSI)
+        end
+      end
+
+      # A Mutex for thread safety
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Mutex] the thread lock
+      # @rbs () -> Mutex
+      def thread_lock
+        @thread_lock ||= Mutex.new
+      end
     end
   end
 end

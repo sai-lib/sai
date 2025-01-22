@@ -749,14 +749,26 @@ module Sai
       #   def yellow_green: () -> Decorator
       #   def yellow_system: () -> Decorator
 
-      Sai::NamedColors.names.each do |color|
-        define_method(color) do
-          apply_named_color(:foreground, color)
-        end
-        define_method(:"on_#{color}") do
-          apply_named_color(:background, color)
+      # Install a color method on the {Decorator} class
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param color_name [Symbol] the name of the color to install
+      #
+      # @return [void]
+      # @rbs (Symbol color_name) -> void
+      def self.install(color_name)
+        { color_name => :foreground, :"on_#{color_name}" => :background }.each do |method_name, style_type|
+          # @type var style_type: Sai::Conversion::ColorSequence::style_type
+          Sai::Decorator.undef_method(method_name) if Sai::Decorator.method_defined?(method_name)
+          Sai::Decorator.define_method(method_name) { apply_named_color(style_type, color_name) }
         end
       end
+
+      Sai::NamedColors.names.each { |color| Sai::Decorator::NamedColors.install(color) }
 
       private
 

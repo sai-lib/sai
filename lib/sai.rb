@@ -833,6 +833,28 @@ module Sai
       ModeSelector
     end
 
+    # Register a custom name and color
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api public
+    #
+    # @example Register a color
+    #   Sai.register(:my_color, '#CF4C5F')
+    #   Sai.register(:my_color, [207, 76, 95])
+    #
+    #   Sai.my_color.decorate('Hello, world!').to_s #=> "\e[38;2;207;76;95mHello, world!\e[0m"
+    #
+    # @param name [String, Symbol] the name of the color to register
+    # @param rgb_or_hex [Array<Integer>, String] the RGB values or hex code to register
+    #
+    # @return [void]
+    # @rbs (String | Symbol name, Array[Integer] | String rgb_or_hex) -> void
+    def register(name, rgb_or_hex)
+      NamedColors.register(name, rgb_or_hex)
+    end
+
     # Sequence a string with ANSI escape codes
     #
     # @author {https://aaronmallen.me Aaron Allen}
