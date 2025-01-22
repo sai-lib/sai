@@ -61,9 +61,9 @@ module Sai
         def advanced(rgb, style_type)
           code = style_type == :background ? 48 : 38
           color_code = if rgb.uniq.size == 1
-                         RGB.to_grayscale_index(rgb)
+                         RGB.index.grayscale(rgb)
                        else
-                         RGB.to_color_cube_index(rgb)
+                         RGB.index.color_cube(rgb)
                        end
 
           "\e[#{code};5;#{color_code}m"

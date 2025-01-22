@@ -12,13 +12,24 @@ module Sai
       # Color classification utilities
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
+      # @since unreleased
       #
       # @api private
       #
       # @return [Module<ColorClassifier>] the ColorClassifier module
       # @rbs () -> singleton(ColorClassifier)
       def self.classify: () -> singleton(ColorClassifier)
+
+      # Color indexing utilities
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Module<ColorIndexer>] the ColorIndexer module
+      # @rbs () -> singleton(ColorIndexer)
+      def self.index: () -> singleton(ColorIndexer)
 
       # Convert a color value to RGB components
       #
@@ -33,32 +44,6 @@ module Sai
       # @return [Array<Integer>] the RGB components
       # @rbs (Array[Integer] | String | Symbol color) -> Array[Integer]
       def self.resolve: (Array[Integer] | String | Symbol color) -> Array[Integer]
-
-      # Convert RGB values to 256-color cube index
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param rgb [Array<Integer>] RGB values (0-255)
-      #
-      # @return [Integer] the color cube index
-      # @rbs (Array[Integer] rgb) -> Integer
-      def self.to_color_cube_index: (Array[Integer] rgb) -> Integer
-
-      # Convert RGB values to grayscale index
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.1.0
-      #
-      # @api private
-      #
-      # @param rgb [Array<Integer>] RGB values
-      #
-      # @return [Integer] the grayscale index
-      # @rbs (Array[Integer] rgb) -> Integer
-      def self.to_grayscale_index: (Array[Integer] rgb) -> Integer
 
       # Transform RGB values
       #
