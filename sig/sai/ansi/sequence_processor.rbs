@@ -19,16 +19,6 @@ module Sai
       # @return [Regexp] the pattern
       SEQUENCE_PATTERN: Regexp
 
-      # Matches the code portion of style sequences
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.3.0
-      #
-      # @api private
-      #
-      # @return [Regexp] the pattern
-      STYLE_CODE_PATTERN: Regexp
-
       # Initialize a new instance of SequenceProcessor and parse the provided string
       #
       # @author {https://aaronmallen.me Aaron Allen}
@@ -68,34 +58,6 @@ module Sai
 
       private
 
-      # Applies 24-bit truecolor (e.g., 38;2;R;G;B or 48;2;R;G;B)
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.3.0
-      #
-      # @api private
-      #
-      # @param codes_array [Array<Integer>]
-      # @param index [Integer]
-      #
-      # @return [Integer] the updated index (consumed 5 codes)
-      # @rbs (Array[Integer] codes_array, Integer index) -> Integer
-      def apply_24bit_color: (Array[Integer] codes_array, Integer index) -> Integer
-
-      # Applies 256-color mode (e.g., 38;5;160 or 48;5;21)
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.3.0
-      #
-      # @api private
-      #
-      # @param codes_array [Array<Integer>]
-      # @param index [Integer]
-      #
-      # @return [Integer] the updated index (consumed 3 codes)
-      # @rbs (Array[Integer] codes_array, Integer index) -> Integer
-      def apply_256_color: (Array[Integer] codes_array, Integer index) -> Integer
-
       # Applies the appropriate action for the provided ANSI sequence
       #
       # @author {https://aaronmallen.me Aaron Allen}
@@ -108,19 +70,6 @@ module Sai
       # @return [void]
       # @rbs (String sequence) -> void
       def apply_ansi_sequence: (String sequence) -> void
-
-      # Applies a basic color (FG or BG) in the range 30..37 (FG) or 40..47 (BG)
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.3.0
-      #
-      # @api private
-      #
-      # @param code [Integer] the numeric color code
-      #
-      # @return [void]
-      # @rbs (Integer code) -> void
-      def apply_basic_color: (Integer code) -> void
 
       # Parse all numeric codes in the provided string, applying them in order (just like a real ANSI terminal)
       #
@@ -153,30 +102,6 @@ module Sai
       # @return [Integer] the updated index after consuming needed codes
       # @rbs (Array[Integer] codes_array, Integer index) -> Integer
       def apply_single_code: (Array[Integer] codes_array, Integer index) -> Integer
-
-      # Applies a single style code (e.g. 1=bold, 2=dim, 4=underline, etc.) if it matches
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.3.0
-      #
-      # @api private
-      #
-      # @param code [Integer] the numeric code to check
-      #
-      # @return [void]
-      # @rbs (Integer code) -> void
-      def apply_style_code: (Integer code) -> void
-
-      # Creates and returns a fresh, blank segment
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since 0.3.0
-      #
-      # @api private
-      #
-      # @return [Hash{Symbol => Object}] a new, empty segment
-      # @rbs () -> Hash[Symbol, untyped]
-      def blank_segment: () -> Hash[Symbol, untyped]
 
       # Scans the string for ANSI sequences or individual characters
       #
