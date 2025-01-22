@@ -8,7 +8,7 @@ module Sai
       # Convert colors between different color space formats
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       module ColorSpace
@@ -16,7 +16,7 @@ module Sai
           # Convert HSV values to RGB
           #
           # @author {https://aaronmallen.me Aaron Allen}
-          # @since unreleased
+          # @since 0.3.1
           #
           # @api private
           #
@@ -69,7 +69,7 @@ module Sai
           # Calculate the intermediate HSV components
           #
           # @author {https://aaronmallen.me Aaron Allen}
-          # @since unreleased
+          # @since 0.3.1
           #
           # @api private
           #
@@ -129,7 +129,7 @@ module Sai
           # Convert RGB values from 0-1 range to 0-255 range
           #
           # @author {https://aaronmallen.me Aaron Allen}
-          # @since unreleased
+          # @since 0.3.1
           #
           # @api private
           #
@@ -144,7 +144,7 @@ module Sai
           # Select RGB values based on the hue sector
           #
           # @author {https://aaronmallen.me Aaron Allen}
-          # @since unreleased
+          # @since 0.3.1
           #
           # @api private
           #

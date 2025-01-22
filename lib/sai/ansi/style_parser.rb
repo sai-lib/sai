@@ -5,14 +5,14 @@ module Sai
     # Handles parsing of ANSI style codes
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.3.1
     #
     # @api private
     class StyleParser
       # Matches the code portion of style sequences
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -23,7 +23,7 @@ module Sai
       # The current segment being processed
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -33,7 +33,7 @@ module Sai
       # Initialize a new instance of StyleParser
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -48,7 +48,7 @@ module Sai
       # Parse a style code
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #

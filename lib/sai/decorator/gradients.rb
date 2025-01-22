@@ -8,7 +8,7 @@ module Sai
     # Color gradient methods for the {Decorator} class
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.3.1
     #
     # @abstract This module is meant to be included in the {Decorator} class to provide color gradient methods
     # @api private
@@ -16,7 +16,7 @@ module Sai
       # Build a foreground gradient between two colors for text decoration
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api public
       #
@@ -43,7 +43,7 @@ module Sai
       # Build a background gradient between two colors for text decoration
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api public
       #
@@ -70,7 +70,7 @@ module Sai
       # Build a background rainbow gradient for text decoration
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api public
       #
@@ -91,7 +91,7 @@ module Sai
       # Build a foreground rainbow gradient for text decoration
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api public
       #
@@ -114,7 +114,7 @@ module Sai
       # Adjust number of colors to match text length
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -133,7 +133,7 @@ module Sai
       # Apply color sequence gradients to text
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -155,7 +155,7 @@ module Sai
       # Build color sequences for a single character
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -176,7 +176,7 @@ module Sai
       # Build gradient text from characters and color sequences
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -197,7 +197,7 @@ module Sai
       # Calculate indices and progress for color interpolation
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -219,7 +219,7 @@ module Sai
       # Get background sequence for a character
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -239,7 +239,7 @@ module Sai
       # Get foreground sequence for a character
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -259,7 +259,7 @@ module Sai
       # Interpolate between two colors in a sequence
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -289,7 +289,7 @@ module Sai
       # Prepare foreground and background color sequences for text
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -307,7 +307,7 @@ module Sai
       # Prepare a single color sequence
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -323,7 +323,7 @@ module Sai
       # Shrink a color sequence to fit desired length
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #
@@ -341,7 +341,7 @@ module Sai
       # Stretch a color sequence to fit desired length
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.3.1
       #
       # @api private
       #

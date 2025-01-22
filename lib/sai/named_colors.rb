@@ -4,14 +4,14 @@ module Sai
   # A collection of named colors and their RGB values
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since unreleased
+  # @since 0.3.1
   #
   # @api private
   module NamedColors
     # Standard ANSI color names and their RGB values
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.3.1
     #
     # @api private
     #
@@ -38,7 +38,7 @@ module Sai
     # CSS color names and their RGB values
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.3.1
     #
     # @api private
     #
@@ -149,7 +149,7 @@ module Sai
     # XTERM color names and their RGB values
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.3.1
     #
     # @api private
     #
@@ -409,7 +409,7 @@ module Sai
     # Look up an RGB value by color name
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.3.1
     #
     # @api private
     #
@@ -425,7 +425,7 @@ module Sai
     # Get a list of all color names
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.3.1
     #
     # @api private
     #
