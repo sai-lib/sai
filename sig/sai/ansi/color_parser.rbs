@@ -1,0 +1,77 @@
+# Generated from lib/sai/ansi/color_parser.rb with RBS::Inline
+
+module Sai
+  module ANSI
+    # Handles parsing of ANSI color codes
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    class ColorParser
+      # The current segment being processed
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Hash] the current segment being processed
+      attr_reader segment: Hash[Symbol, untyped]
+
+      # Initialize a new instance of ColorParser
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param segment [Hash] the segment to update
+      #
+      # @return [ColorParser] the new instance of ColorParser
+      # @rbs (Hash[Symbol, untyped] segment) -> void
+      def initialize: (Hash[Symbol, untyped] segment) -> void
+
+      # Parse a 256-color code
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param codes [Array<Integer>] array of color codes
+      # @param index [Integer] current position in array
+      #
+      # @return [Integer] new position in array
+      # @rbs (Array[Integer] codes, Integer index) -> Integer
+      def parse256: (Array[Integer] codes, Integer index) -> Integer
+
+      # Parse a 24-bit color code
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param codes [Array<Integer>] array of color codes
+      # @param index [Integer] current position in array
+      #
+      # @return [Integer] new position in array
+      # @rbs (Array[Integer] codes, Integer index) -> Integer
+      def parse_24bit: (Array[Integer] codes, Integer index) -> Integer
+
+      # Parse a basic color code
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param code [Integer] the color code
+      #
+      # @return [void]
+      # @rbs (Integer code) -> void
+      def parse_basic: (Integer code) -> void
+    end
+  end
+end

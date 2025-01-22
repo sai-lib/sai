@@ -19,6 +19,8 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
   [@aaronmallen](https://github.com/aaronmallen)
 * [#11](https://github.com/aaronmallen/sai/pull/11) - Refactor `Sai::Conversion::RGB` into component modules by
   [@aaronmallen](https://github.com/aaronmallen)
+* [#12](https://github.com/aaronmallen/sai/pull/12) - Refactor ANSI sequence processing into specialized parser classes
+  by [@aaronmallen](https://github.com/aaronmallen)
 
 ## [0.3.0] - 2025-01-20
 
