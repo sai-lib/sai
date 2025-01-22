@@ -37,7 +37,7 @@ RSpec.describe Sai::Conversion::RGB::ColorTransformer do
       let(:amount) { 0.5 }
 
       it 'is expected to darken the color by the specified amount' do
-        rgb = Sai::ANSI::COLOR_NAMES[:red]
+        rgb = Sai::NamedColors[:red]
         expected = rgb.map { |c| (c * 0.5).round }
         expect(darken).to eq(expected)
       end
@@ -101,8 +101,8 @@ RSpec.describe Sai::Conversion::RGB::ColorTransformer do
       let(:steps) { 3 }
 
       it 'is expected to return an array of RGB colors' do
-        start_rgb = Sai::ANSI::COLOR_NAMES[:red]
-        end_rgb = Sai::ANSI::COLOR_NAMES[:blue]
+        start_rgb = Sai::NamedColors[:red]
+        end_rgb = Sai::NamedColors[:blue]
         expect(gradient).to eq([
                                  start_rgb,
                                  [103, 0, 119],
@@ -117,7 +117,7 @@ RSpec.describe Sai::Conversion::RGB::ColorTransformer do
       let(:steps) { 3 }
 
       it 'is expected to return an array of RGB colors' do
-        end_rgb = Sai::ANSI::COLOR_NAMES[:blue]
+        end_rgb = Sai::NamedColors[:blue]
         expect(gradient).to eq([
                                  [255, 0, 0],
                                  [128, 0, (end_rgb[2] / 2.0).round],
@@ -228,7 +228,7 @@ RSpec.describe Sai::Conversion::RGB::ColorTransformer do
       let(:amount) { 0.5 }
 
       it 'is expected to lighten the color by the specified amount' do
-        rgb = Sai::ANSI::COLOR_NAMES[:blue]
+        rgb = Sai::NamedColors[:blue]
         expected = rgb.map { |c| [255, (c * 1.5).round].min }
         expect(lighten).to eq(expected)
       end

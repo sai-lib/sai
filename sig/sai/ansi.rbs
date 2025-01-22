@@ -18,16 +18,6 @@ module Sai
     # @return [Hash{Symbol => Integer}] the color codes
     COLOR_CODES: untyped
 
-    # Standard ANSI color names and their RGB values
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api private
-    #
-    # @return [Hash{Symbol => Array<Integer>}] the color names and RGB values
-    COLOR_NAMES: untyped
-
     # ANSI escape sequence for resetting text formatting
     #
     # @author {https://aaronmallen.me Aaron Allen}

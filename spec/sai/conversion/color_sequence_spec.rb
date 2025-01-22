@@ -39,7 +39,7 @@ RSpec.describe Sai::Conversion::ColorSequence do
         let(:color) { 'red' }
 
         it 'is expected to return sequence for named color' do
-          rgb = Sai::ANSI::COLOR_NAMES[:red]
+          rgb = Sai::NamedColors[:red]
           expect(resolve).to eq("\e[38;2;#{rgb.join(';')}m")
         end
       end

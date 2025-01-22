@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
   by [@aaronmallen](https://github.com/aaronmallen)
 * [#9](https://github.com/aaronmallen/sai/pull/9) - Add gradient and rainbow color effects for text and backgrounds by
   [@aaronmallen](https://github.com/aaronmallen)
+* [#13](https://github.com/aaronmallen/sai/pull/13) - Add support for over 360 named colors expanding the color palette
+  by [@aaronmallen](https://github.com/aaronmallen)
 
 ### Changed
 

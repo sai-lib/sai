@@ -39,7 +39,7 @@ RSpec.describe Sai::Decorator do
     end
 
     it 'is expected to set the darkened background color on the new instance' do
-      rgb = Sai::ANSI::COLOR_NAMES[:blue].map { |c| (c * 0.5).round }
+      rgb = Sai::NamedColors[:blue].map { |c| (c * 0.5).round }
       expect(darken_background.instance_variable_get(:@background)).to eq(rgb)
     end
 
@@ -82,7 +82,7 @@ RSpec.describe Sai::Decorator do
     end
 
     it 'is expected to set the darkened foreground color on the new instance' do
-      rgb = Sai::ANSI::COLOR_NAMES[:red].map { |c| (c * 0.5).round }
+      rgb = Sai::NamedColors[:red].map { |c| (c * 0.5).round }
       expect(darken_text.instance_variable_get(:@foreground)).to eq(rgb)
     end
 
@@ -244,7 +244,7 @@ RSpec.describe Sai::Decorator do
     end
 
     it 'is expected to set the lightened background color on the new instance' do
-      rgb = Sai::ANSI::COLOR_NAMES[:red].map { |c| [255, (c * 1.5).round].min }
+      rgb = Sai::NamedColors[:red].map { |c| [255, (c * 1.5).round].min }
       expect(lighten_background.instance_variable_get(:@background)).to eq(rgb)
     end
 
@@ -287,7 +287,7 @@ RSpec.describe Sai::Decorator do
     end
 
     it 'is expected to set the lightened foreground color on the new instance' do
-      rgb = Sai::ANSI::COLOR_NAMES[:blue].map { |c| [255, (c * 1.5).round].min }
+      rgb = Sai::NamedColors[:blue].map { |c| [255, (c * 1.5).round].min }
       expect(lighten_text.instance_variable_get(:@foreground)).to eq(rgb)
     end
 
@@ -598,7 +598,7 @@ RSpec.describe Sai::Decorator do
   end
 
   # Test each named color method
-  Sai::ANSI::COLOR_NAMES.each_key do |color|
+  Sai::NamedColors.names.each do |color|
     describe "##{color}" do
       subject(:color_decorator) { decorator.public_send(color) }
 

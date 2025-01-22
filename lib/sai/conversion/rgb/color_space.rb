@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sai/ansi'
+require 'sai/named_colors'
 
 module Sai
   module Conversion
@@ -120,9 +120,10 @@ module Sai
           # @return [Array<Integer>] the RGB components
           # @rbs (String color_name) -> Array[Integer]
           def named_to_rgb(color_name)
-            ANSI::COLOR_NAMES.fetch(color_name.to_sym) do
-              raise ArgumentError, "Unknown color name: #{color_name}"
-            end
+            color = NamedColors[color_name.to_sym]
+            raise ArgumentError, "Unknown color name: #{color_name}" unless color
+
+            color
           end
 
           # Convert RGB values from 0-1 range to 0-255 range

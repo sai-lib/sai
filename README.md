@@ -33,7 +33,7 @@ harmony to terminal interfaces through its sophisticated color management.
 
 * Rich color support (True Color, 256 colors, ANSI, and basic modes)
 * Automatic terminal capability detection and color mode adaptation
-* RGB, Hex, and named color support with bright variants
+* RGB, Hex, and named color (**over 360 named colors**) support with bright variants
 * Comprehensive text styling (bold, italic, underline, etc.)
 * Advanced ANSI sequence parsing and manipulation
 * Intelligent color downgrading for compatibility
