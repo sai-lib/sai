@@ -1,0 +1,59 @@
+# Generated from lib/sai/ansi/style_parser.rb with RBS::Inline
+
+module Sai
+  module ANSI
+    # Handles parsing of ANSI style codes
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    class StyleParser
+      # Matches the code portion of style sequences
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Regexp] the pattern
+      STYLE_CODE_PATTERN: Regexp
+
+      # The current segment being processed
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Hash] the current segment being processed
+      attr_reader segment: Hash[Symbol, untyped]
+
+      # Initialize a new instance of StyleParser
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param segment [Hash] the segment to update
+      #
+      # @return [StyleParser] the new instance of StyleParser
+      # @rbs (Hash[Symbol, untyped] segment) -> void
+      def initialize: (Hash[Symbol, untyped] segment) -> void
+
+      # Parse a style code
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param code [Integer] the style code
+      #
+      # @return [void]
+      # @rbs (Integer code) -> void
+      def parse: (Integer code) -> void
+    end
+  end
+end
