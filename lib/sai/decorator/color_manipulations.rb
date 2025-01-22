@@ -122,7 +122,7 @@ module Sai
 
         dup.tap do |duped|
           if color
-            rgb = Conversion::RGB.darken(color, amount)
+            rgb = Conversion::RGB.transform.darken(color, amount)
             duped.instance_variable_set(:"@#{component}", rgb)
           end
         end
@@ -147,7 +147,7 @@ module Sai
 
         dup.tap do |duped|
           if color
-            rgb = Conversion::RGB.lighten(color, amount)
+            rgb = Conversion::RGB.transform.lighten(color, amount)
             duped.instance_variable_set(:"@#{component}", rgb)
           end
         end

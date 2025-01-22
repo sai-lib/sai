@@ -20,90 +20,6 @@ module Sai
       # @rbs () -> singleton(ColorClassifier)
       def self.classify: () -> singleton(ColorClassifier)
 
-      # Darken an RGB color by a percentage
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param color [Array<Integer>, String, Symbol] the color to darken
-      # @param amount [Float] amount to darken by (0.0-1.0)
-      #
-      # @raise [ArgumentError] if amount is not between 0.0 and 1.0
-      # @return [Array<Integer>] the darkened RGB values
-      # @rbs ((Array[Integer] | String | Symbol) color, Float amount) -> Array[Integer]
-      def self.darken: (Array[Integer] | String | Symbol color, Float amount) -> Array[Integer]
-
-      # Generate a gradient between two colors with a specified number of steps
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param start_color [Array<Integer>, String, Symbol] the starting color
-      # @param end_color [Array<Integer>, String, Symbol] the ending color
-      # @param steps [Integer] the number of colors to generate (minimum 2)
-      #
-      # @raise [ArgumentError] if steps is less than 2
-      # @return [Array<Array<Integer>>] the gradient colors as RGB values
-      # @rbs (
-      #   (Array[Integer] | String | Symbol) start_color,
-      #   (Array[Integer] | String | Symbol) end_color,
-      #   Integer steps
-      #   ) -> Array[Array[Integer]]
-      def self.gradient: (Array[Integer] | String | Symbol start_color, Array[Integer] | String | Symbol end_color, Integer steps) -> Array[Array[Integer]]
-
-      # Interpolate between two colors to create a gradient step
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param start_color [Array<Integer>, String, Symbol] the starting color
-      # @param end_color [Array<Integer>, String, Symbol] the ending color
-      # @param step [Float] the interpolation step (0.0-1.0)
-      #
-      # @raise [ArgumentError] if step is not between 0.0 and 1.0
-      # @return [Array<Integer>] the interpolated RGB values
-      # @rbs (
-      #   (Array[Integer] | String | Symbol) start_color,
-      #   (Array[Integer] | String | Symbol) end_color,
-      #   Float step
-      #   ) -> Array[Integer]
-      def self.interpolate_color: (Array[Integer] | String | Symbol start_color, Array[Integer] | String | Symbol end_color, Float step) -> Array[Integer]
-
-      # Lighten an RGB color by a percentage
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param color [Array<Integer>, String, Symbol] the color to lighten
-      # @param amount [Float] amount to lighten by (0.0-1.0)
-      #
-      # @raise [ArgumentError] if amount is not between 0.0 and 1.0
-      # @return [Array<Integer>] the lightened RGB values
-      # @rbs ((Array[Integer] | String | Symbol) color, Float amount) -> Array[Integer]
-      def self.lighten: (Array[Integer] | String | Symbol color, Float amount) -> Array[Integer]
-
-      # Generate a rainbow gradient with a specified number of steps
-      #
-      # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
-      #
-      # @api private
-      #
-      # @param steps [Integer] the number of colors to generate (minimum 2)
-      #
-      # @raise [ArgumentError] if steps is less than 2
-      # @return [Array<Array<Integer>>] the rainbow gradient colors as RGB values
-      # @rbs (Integer steps) -> Array[Array[Integer]]
-      def self.rainbow_gradient: (Integer steps) -> Array[Array[Integer]]
-
       # Convert a color value to RGB components
       #
       # @author {https://aaronmallen.me Aaron Allen}
@@ -143,6 +59,17 @@ module Sai
       # @return [Integer] the grayscale index
       # @rbs (Array[Integer] rgb) -> Integer
       def self.to_grayscale_index: (Array[Integer] rgb) -> Integer
+
+      # Transform RGB values
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Module<ColorTransformer>] the color transformer
+      # @rbs () -> singleton(ColorTransformer)
+      def self.transform: () -> singleton(ColorTransformer)
     end
   end
 end
