@@ -37,8 +37,10 @@ RSpec.describe Sai::Conversion::RGB::ColorTransformer do
       let(:amount) { 0.5 }
 
       it 'is expected to darken the color by the specified amount' do
-        rgb = Sai::NamedColors[:red]
+        rgb = [205, 0, 0]
+        Sai::Registry.register(color, rgb)
         expected = rgb.map { |c| (c * 0.5).round }
+
         expect(darken).to eq(expected)
       end
     end
@@ -96,13 +98,18 @@ RSpec.describe Sai::Conversion::RGB::ColorTransformer do
     end
 
     context 'when given valid named colors' do
+      before do
+        Sai::Registry.register(start_color, [205, 0, 0])
+        Sai::Registry.register(end_color, [0, 0, 238])
+      end
+
       let(:start_color) { :red }
       let(:end_color) { :blue }
       let(:steps) { 3 }
 
       it 'is expected to return an array of RGB colors' do
-        start_rgb = Sai::NamedColors[:red]
-        end_rgb = Sai::NamedColors[:blue]
+        start_rgb = Sai::Registry[:red]
+        end_rgb = Sai::Registry[:blue]
         expect(gradient).to eq([
                                  start_rgb,
                                  [103, 0, 119],
@@ -112,12 +119,16 @@ RSpec.describe Sai::Conversion::RGB::ColorTransformer do
     end
 
     context 'when mixing color formats' do
+      before do
+        Sai::Registry.register(end_color, [0, 0, 238])
+      end
+
       let(:start_color) { '#FF0000' }
       let(:end_color) { :blue }
       let(:steps) { 3 }
 
       it 'is expected to return an array of RGB colors' do
-        end_rgb = Sai::NamedColors[:blue]
+        end_rgb = Sai::Registry[:blue]
         expect(gradient).to eq([
                                  [255, 0, 0],
                                  [128, 0, (end_rgb[2] / 2.0).round],
@@ -224,11 +235,13 @@ RSpec.describe Sai::Conversion::RGB::ColorTransformer do
     end
 
     context 'when given a named color' do
+      before { Sai::Registry.register(color, [0, 0, 238]) }
+
       let(:color) { :blue }
       let(:amount) { 0.5 }
 
       it 'is expected to lighten the color by the specified amount' do
-        rgb = Sai::NamedColors[:blue]
+        rgb = Sai::Registry[:blue]
         expected = rgb.map { |c| [255, (c * 1.5).round].min }
         expect(lighten).to eq(expected)
       end

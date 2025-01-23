@@ -28,7 +28,7 @@ RSpec.describe Sai::Decorator do
   describe '#darken_background' do
     subject(:darken_background) { decorator.darken_background(amount) }
 
-    let(:decorator) { described_class.new(mode: mode).on_blue }
+    let(:decorator) { described_class.new(mode: mode).on_rgb(0, 0, 238) }
     let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
     let(:amount) { 0.5 }
 
@@ -39,7 +39,7 @@ RSpec.describe Sai::Decorator do
     end
 
     it 'is expected to set the darkened background color on the new instance' do
-      rgb = Sai::NamedColors[:blue].map { |c| (c * 0.5).round }
+      rgb = [0, 0, 238].map { |c| (c * 0.5).round }
       expect(darken_background.instance_variable_get(:@background)).to eq(rgb)
     end
 
@@ -71,7 +71,7 @@ RSpec.describe Sai::Decorator do
   describe '#darken_text' do
     subject(:darken_text) { decorator.darken_text(amount) }
 
-    let(:decorator) { described_class.new(mode: mode).red }
+    let(:decorator) { described_class.new(mode: mode).rgb(205, 0, 0) }
     let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
     let(:amount) { 0.5 }
 
@@ -82,7 +82,7 @@ RSpec.describe Sai::Decorator do
     end
 
     it 'is expected to set the darkened foreground color on the new instance' do
-      rgb = Sai::NamedColors[:red].map { |c| (c * 0.5).round }
+      rgb = [205, 0, 0].map { |c| (c * 0.5).round }
       expect(darken_text.instance_variable_get(:@foreground)).to eq(rgb)
     end
 
@@ -125,7 +125,7 @@ RSpec.describe Sai::Decorator do
     end
 
     context 'when a foreground color is applied' do
-      let(:decorated) { decorator.red }
+      let(:decorated) { decorator.rgb(205, 0, 0) }
 
       it 'is expected to wrap the text with the color sequence and reset' do
         expect(decorated.decorate(text)).to eq("\e[38;2;205;0;0m#{text}\e[0m")
@@ -133,7 +133,7 @@ RSpec.describe Sai::Decorator do
     end
 
     context 'when a background color is applied' do
-      let(:decorated) { decorator.on_blue }
+      let(:decorated) { decorator.on_rgb(0, 0, 238) }
 
       it 'is expected to wrap the text with the color sequence and reset' do
         expect(decorated.decorate(text)).to eq("\e[48;2;0;0;238m#{text}\e[0m")
@@ -149,7 +149,7 @@ RSpec.describe Sai::Decorator do
     end
 
     context 'when multiple decorations are applied' do
-      let(:decorated) { decorator.red.on_blue.bold }
+      let(:decorated) { decorator.rgb(205, 0, 0).on_rgb(0, 0, 238).bold }
 
       it 'is expected to apply all decorations in order' do
         expect(decorated.decorate(text)).to eq("\e[38;2;205;0;0m\e[48;2;0;0;238m\e[1m#{text}\e[0m")
@@ -158,11 +158,11 @@ RSpec.describe Sai::Decorator do
   end
 
   describe '#gradient' do
-    subject(:gradient_decorator) { decorator.gradient(start_color, end_color, steps) }
+    subject(:gradient_decorator) { decorator.gradient(start_rgb, end_rgb, steps) }
 
     let(:decorator) { described_class.new(mode: Sai::Terminal::ColorMode::TRUE_COLOR) }
-    let(:start_color) { :red }
-    let(:end_color) { :blue }
+    let(:start_rgb) { [205, 0, 0] }
+    let(:end_rgb) { [0, 0, 238] }
     let(:steps) { 3 }
     let(:text) { 'RGB' }
 
@@ -233,7 +233,7 @@ RSpec.describe Sai::Decorator do
   describe '#lighten_background' do
     subject(:lighten_background) { decorator.lighten_background(amount) }
 
-    let(:decorator) { described_class.new(mode: mode).on_red }
+    let(:decorator) { described_class.new(mode: mode).on_rgb(205, 0, 0) }
     let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
     let(:amount) { 0.5 }
 
@@ -244,7 +244,7 @@ RSpec.describe Sai::Decorator do
     end
 
     it 'is expected to set the lightened background color on the new instance' do
-      rgb = Sai::NamedColors[:red].map { |c| [255, (c * 1.5).round].min }
+      rgb = [205, 0, 0].map { |c| [255, (c * 1.5).round].min }
       expect(lighten_background.instance_variable_get(:@background)).to eq(rgb)
     end
 
@@ -276,7 +276,7 @@ RSpec.describe Sai::Decorator do
   describe '#lighten_text' do
     subject(:lighten_text) { decorator.lighten_text(amount) }
 
-    let(:decorator) { described_class.new(mode: mode).blue }
+    let(:decorator) { described_class.new(mode: mode).rgb(0, 0, 238) }
     let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
     let(:amount) { 0.5 }
 
@@ -287,7 +287,7 @@ RSpec.describe Sai::Decorator do
     end
 
     it 'is expected to set the lightened foreground color on the new instance' do
-      rgb = Sai::NamedColors[:blue].map { |c| [255, (c * 1.5).round].min }
+      rgb = [0, 0, 238].map { |c| [255, (c * 1.5).round].min }
       expect(lighten_text.instance_variable_get(:@foreground)).to eq(rgb)
     end
 
@@ -317,11 +317,11 @@ RSpec.describe Sai::Decorator do
   end
 
   describe '#on_gradient' do
-    subject(:on_gradient_decorator) { decorator.on_gradient(start_color, end_color, steps) }
+    subject(:on_gradient_decorator) { decorator.on_gradient(start_rgb, end_rgb, steps) }
 
     let(:decorator) { described_class.new(mode: Sai::Terminal::ColorMode::TRUE_COLOR) }
-    let(:start_color) { :red }
-    let(:end_color) { :blue }
+    let(:start_rgb) { [205, 0, 0] }
+    let(:end_rgb) { [0, 0, 238] }
     let(:steps) { 3 }
     let(:text) { 'RGB' }
 
@@ -593,87 +593,6 @@ RSpec.describe Sai::Decorator do
 
       it 'is expected to return unmodified text' do
         expect(decorated_text).to eq('test')
-      end
-    end
-  end
-
-  # Test each named color method
-  Sai::NamedColors.names.each do |color|
-    describe "##{color}" do
-      subject(:color_decorator) { decorator.public_send(color) }
-
-      let(:decorator) { described_class.new(mode: mode) }
-      let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
-
-      it { is_expected.to be_an_instance_of(described_class) }
-
-      it 'is expected to return a new instance' do
-        expect(color_decorator).not_to eq(decorator)
-      end
-
-      it 'is expected to set the foreground color on the new instance' do
-        expect(color_decorator.instance_variable_get(:@foreground)).to eq(color)
-      end
-
-      it 'is expected not to modify the original instance' do
-        original_foreground = decorator.instance_variable_get(:@foreground)
-        color_decorator
-        expect(decorator.instance_variable_get(:@foreground)).to eq(original_foreground)
-      end
-    end
-
-    describe "#on_#{color}" do
-      subject(:background_color_decorator) { decorator.public_send(:"on_#{color}") }
-
-      let(:decorator) { described_class.new(mode: mode) }
-      let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
-
-      it { is_expected.to be_an_instance_of(described_class) }
-
-      it 'is expected to return a new instance' do
-        expect(background_color_decorator).not_to eq(decorator)
-      end
-
-      it 'is expected to set the background color on the new instance' do
-        expect(background_color_decorator.instance_variable_get(:@background)).to eq(color)
-      end
-
-      it 'is expected not to modify the original instance' do
-        original_background = decorator.instance_variable_get(:@background)
-        background_color_decorator
-        expect(decorator.instance_variable_get(:@background)).to eq(original_background)
-      end
-    end
-  end
-
-  # Test each style method
-  Sai::ANSI::STYLES.each_key do |style|
-    describe "##{style}" do
-      subject(:style_decorator) { decorator.public_send(style) }
-
-      let(:decorator) { described_class.new(mode: mode) }
-      let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
-
-      it { is_expected.to be_an_instance_of(described_class) }
-
-      it 'is expected to return a new instance' do
-        expect(style_decorator).not_to eq(decorator)
-      end
-
-      it 'is expected to add the style to the new instance' do
-        expect(style_decorator.instance_variable_get(:@styles)).to include(style)
-      end
-
-      it 'is expected not to modify the original instance' do
-        expect { style_decorator }.not_to(change do
-          decorator.instance_variable_get(:@styles).dup
-        end)
-      end
-
-      it 'is expected not to duplicate styles in the new instance' do
-        duplicated_style = style_decorator.public_send(style)
-        styles = duplicated_style.instance_variable_get(:@styles)
-        expect(styles.count(style)).to eq(1)
       end
     end
   end

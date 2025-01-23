@@ -135,14 +135,6 @@ RSpec.describe Sai do
       end
     end
 
-    describe '.red' do
-      include_examples 'a delegated method without arguments', :red
-    end
-
-    describe '.blue' do
-      include_examples 'a delegated method without arguments', :blue
-    end
-
     describe '.bold' do
       include_examples 'a delegated method without arguments', :bold
     end

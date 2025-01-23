@@ -19,6 +19,7 @@ RSpec.describe Sai::Conversion::RGB do
     subject(:resolve) { described_class.resolve(color) }
 
     before do
+      Sai::Registry.register(:red, [255, 0, 0])
       allow(Sai::Conversion::RGB::ColorSpace).to receive(:resolve).and_call_original
     end
 

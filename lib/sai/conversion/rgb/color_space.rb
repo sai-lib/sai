@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sai/named_colors'
+require 'sai/registry'
 
 module Sai
   module Conversion
@@ -120,7 +120,7 @@ module Sai
           # @return [Array<Integer>] the RGB components
           # @rbs (String color_name) -> Array[Integer]
           def named_to_rgb(color_name)
-            color = NamedColors[color_name.to_sym]
+            color = Registry[color_name.to_sym]
             raise ArgumentError, "Unknown color name: #{color_name}" unless color
 
             color
