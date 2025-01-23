@@ -11,11 +11,10 @@ module Sai
   # @note For each named color, two methods are dynamically generated:
   #   * color_name - Applies the color to the foreground
   #   * on_color_name - Applies the color to the backgroundAll color methods return {Decorator}
-  # @see Sai::NamedColors Sai::NamedColors for available color names
   #
   # @example Using a named color
-  #   decorator.azure.decorate('Hello')      #=> "\e[38;2;0;127;255mHello\e[0m"
-  #   decorator.on_azure.decorate('Hello')   #=> "\e[48;2;0;127;255mHello\e[0m"
+  #   decorator.blue.decorate('Hello').to_s      #=> "\e[38;2;0;0;238mHello\e[0m"
+  #   decorator.on_blue.decorate('Hello').to_s   #=> "\e[48;2;0;0;238mHello\e[0m"
   class Decorator
     include ColorManipulations
 

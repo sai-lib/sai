@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 ## [Unreleased]
 
+### Changed
+
+* [#17](https://github.com/aaronmallen/sai/pull/17) - Refactor color registration and delegation system by
+  [@aaronmallen](https://github.com/aaronmallen)
+
 ## [0.3.2] - 2025-01-22
 
 ### Added
