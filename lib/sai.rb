@@ -226,3 +226,4 @@ end
 
 Sai::Registry.subscribe(Sai)
 Sai::Registry.subscribe(Sai::Decorator)
+Sai::ANSI.install

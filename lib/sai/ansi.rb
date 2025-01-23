@@ -8,6 +8,33 @@ module Sai
   #
   # @api private
   module ANSI
+    # Standard ANSI color names and their RGB values
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.3.1
+    #
+    # @api private
+    #
+    # @return [Hash{Symbol => Array<Integer>}] the color names and RGB values
+    COLORS = {
+      black: [0, 0, 0],
+      red: [205, 0, 0],
+      green: [0, 205, 0],
+      yellow: [205, 205, 0],
+      blue: [0, 0, 238],
+      magenta: [205, 0, 205],
+      cyan: [0, 205, 205],
+      white: [229, 229, 229],
+      bright_black: [127, 127, 127],
+      bright_red: [255, 0, 0],
+      bright_green: [0, 255, 0],
+      bright_yellow: [255, 255, 0],
+      bright_blue: [92, 92, 255],
+      bright_magenta: [255, 0, 255],
+      bright_cyan: [0, 255, 255],
+      bright_white: [255, 255, 255]
+    }.freeze # Hash[Symbol, Array[Integer]]
+
     # ANSI color code mappings
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -63,5 +90,18 @@ module Sai
       no_conceal: 28,
       no_strike: 29
     }.freeze # Hash[Symbol, Integer]
+
+    # Install the ANSI colors
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @return [void]
+    # @rbs () -> void
+    def self.install
+      COLORS.each_pair { |name, color| Sai.register(name, color) }
+    end
   end
 end

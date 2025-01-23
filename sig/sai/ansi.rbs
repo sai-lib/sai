@@ -8,6 +8,16 @@ module Sai
   #
   # @api private
   module ANSI
+    # Standard ANSI color names and their RGB values
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.3.1
+    #
+    # @api private
+    #
+    # @return [Hash{Symbol => Array<Integer>}] the color names and RGB values
+    COLORS: untyped
+
     # ANSI color code mappings
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -37,5 +47,16 @@ module Sai
     #
     # @return [Hash{Symbol => Integer}] the style codes
     STYLES: untyped
+
+    # Install the ANSI colors
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @return [void]
+    # @rbs () -> void
+    def self.install: () -> void
   end
 end
