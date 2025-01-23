@@ -54,7 +54,7 @@ module Sai
           def resolve(color)
             case color
             when Array then validate_rgb(color)
-            when /^#?([A-Fa-f0-9]{6})$/
+            when /^#?([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/
               hex_to_rgb(
                 Regexp.last_match(1) # steep:ignore ArgumentTypeMismatch
               )
@@ -100,6 +100,8 @@ module Sai
           # @rbs (String hex) -> Array[Integer]
           def hex_to_rgb(hex)
             hex = hex.delete_prefix('#')
+            hex = hex.chars.map { |c| c * 2 }.join if hex.size == 3
+
             [
               hex[0..1].to_i(16), # steep:ignore UnexpectedPositionalArgument
               hex[2..3].to_i(16), # steep:ignore UnexpectedPositionalArgument

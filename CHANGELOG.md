@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 ## [Unreleased]
 
+### Added
+
+* [#19](https://github.com/aaronmallen/sai/pull/19) - Add short hex color support by
+  [@aaronmallen](https://github.com/aaronmallen)
+
 ## [0.4.0] - 2025-01-23
 
 ### Changed

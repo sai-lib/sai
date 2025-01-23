@@ -111,17 +111,35 @@ RSpec.describe Sai::Conversion::RGB::ColorSpace do
     end
 
     context 'when given a hex color string' do
-      let(:color) { '#FF8000' }
-
-      it 'is expected to convert to RGB values' do
-        expect(resolve).to eq([255, 128, 0])
-      end
-
-      context 'when given hex without #' do
-        let(:color) { 'FF8000' }
+      context 'when given a 6-digit hex code' do
+        let(:color) { '#FF8000' }
 
         it 'is expected to convert to RGB values' do
           expect(resolve).to eq([255, 128, 0])
+        end
+
+        context 'when given hex without #' do
+          let(:color) { 'FF8000' }
+
+          it 'is expected to convert to RGB values' do
+            expect(resolve).to eq([255, 128, 0])
+          end
+        end
+      end
+
+      context 'when given a 3-digit hex code' do
+        let(:color) { '#F80' }
+
+        it 'is expected to convert to RGB values' do
+          expect(resolve).to eq([255, 136, 0])
+        end
+
+        context 'when given hex without #' do
+          let(:color) { 'F80' }
+
+          it 'is expected to convert to RGB values' do
+            expect(resolve).to eq([255, 136, 0])
+          end
         end
       end
     end
