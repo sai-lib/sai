@@ -4,7 +4,7 @@
 [![Sai Codacy grade](https://img.shields.io/codacy/grade/0f9a91b573ed4768a773867b95ed4894/main?style=for-the-badge&logo=codacy&logoColor=white&logoSize=auto)](https://app.codacy.com/gh/aaronmallen/sai)
 [![Sai Codacy coverage](https://img.shields.io/codacy/coverage/0f9a91b573ed4768a773867b95ed4894/main?style=for-the-badge&logo=codacy&logoColor=white&logoSize=auto)](https://app.codacy.com/gh/aaronmallen/sai/coverage)
 [![Sai License](https://img.shields.io/github/license/aaronmallen/sai?style=for-the-badge&logo=opensourceinitiative&logoColor=white&logoSize=auto)](./LICENSE)
-[![Sai Docs](https://img.shields.io/badge/rubydoc-blue?style=for-the-badge&logo=readthedocs&logoColor=white&logoSize=auto&label=docs)](https://rubydoc.info/gems/sai/0.3.2)
+[![Sai Docs](https://img.shields.io/badge/rubydoc-blue?style=for-the-badge&logo=readthedocs&logoColor=white&logoSize=auto&label=docs)](https://rubydoc.info/gems/sai/0.4.0)
 [![Sai Open Issues](https://img.shields.io/github/issues-search/aaronmallen/sai?query=state%3Aopen&style=for-the-badge&logo=github&logoColor=white&logoSize=auto&label=issues&color=red)](https://github.com/aaronmallen/sai/issues?q=state%3Aopen%20)
 
 An elegant color management system for crafting sophisticated CLI applications
@@ -39,6 +39,27 @@ harmony to terminal interfaces through its sophisticated color management.
 * Intelligent color downgrading for compatibility
 * Respects NO_COLOR environment variable
 
+## Extended Color Palettes
+
+Looking for additional color palettes? Check out [Sai-Mei](https://github.com/aaronmallen/sai-mei), which extends Sai
+with many curated color collections, including:
+
+* Web colors from CSS Color Module Level 4
+* Tailwind CSS color system
+* Extended 256-color xterm palette
+
+```ruby
+# Install Sai-Mei alongside Sai
+gem 'sai'
+gem 'sai-mei'
+
+# Then use sophisticated color palettes
+require 'sai/mei'
+Sai::Mei.css.install      # CSS colors
+Sai::Mei.tailwind.install # Tailwind colors
+Sai::Mei.xterm.install    # Terminal 256 colors
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -54,7 +75,7 @@ gem install sai
 ```
 
 > [!IMPORTANT]  
-> If you're upgrading from version 0.2.0, please see our [Migration Guide](docs/migrations/0.2.0-0.3.0.md) for
+> If you're upgrading from version 0.3.1, please see our [Migration Guide](docs/migrations/0.3.1-0.4.0.md) for
 > important changes.
 
 ## Quick Start
@@ -88,7 +109,7 @@ puts text.stripped        # Get plain text
 ## Documentation
 
 * [Complete Usage Guide](docs/USAGE.md) - Comprehensive documentation of all features
-* [API Documentation](https://rubydoc.info/gems/sai/0.3.2) - Detailed API reference
+* [API Documentation](https://rubydoc.info/gems/sai/0.4.0) - Detailed API reference
 
 ## Contributing
 

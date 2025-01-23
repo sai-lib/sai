@@ -5,7 +5,7 @@ module Sai
     # Provides method delegation to the {Decorator} class for classes or modules that include it
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.4.0
     #
     # @abstract Include in a class or module to provide method delegation to the {Decorator} class
     # @api private
@@ -81,7 +81,7 @@ module Sai
       # Apply a specific color mode to the {Decorator} instance
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.4.0
       #
       # @api private
       #
