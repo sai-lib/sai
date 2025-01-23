@@ -6,7 +6,7 @@ require 'sai/ansi/sequenced_string'
 require 'sai/conversion/color_sequence'
 require 'sai/conversion/rgb'
 require 'sai/decorator'
-require 'sai/decorator/delegation'
+require 'sai/decorator/delegator'
 require 'sai/mode_selector'
 require 'sai/registry'
 require 'sai/support'
@@ -54,42 +54,7 @@ require 'sai/terminal/color_mode'
 #   Sai.support.true_color? # => true
 module Sai
   class << self
-    # @rbs!
-    #   def blink: () -> Decorator
-    #   def bold: () -> Decorator
-    #   def conceal: () -> Decorator
-    #   def darken_background: () -> Decorator
-    #   def darken_bg: () -> Decorator
-    #   def darken_fg: () -> Decorator
-    #   def darken_foreground: () -> Decorator
-    #   def darken_text: () -> Decorator
-    #   def dim: () -> Decorator
-    #   def gradient: () -> Decorator
-    #   def hex: () -> Decorator
-    #   def italic: () -> Decorator
-    #   def lighten_background: () -> Decorator
-    #   def lighten_bg: () -> Decorator
-    #   def lighten_fg: () -> Decorator
-    #   def lighten_foreground: () -> Decorator
-    #   def lighten_text: () -> Decorator
-    #   def no_blink: () -> Decorator
-    #   def no_conceal: () -> Decorator
-    #   def no_italic: () -> Decorator
-    #   def no_reverse: () -> Decorator
-    #   def no_strike: () -> Decorator
-    #   def no_underline: () -> Decorator
-    #   def normal_intensity: () -> Decorator
-    #   def on_gradient: () -> Decorator
-    #   def on_hex: () -> Decorator
-    #   def on_rainbow: () -> Decorator
-    #   def on_rgb: () -> Decorator
-    #   def rainbow: () -> Decorator
-    #   def rapid_blink: () -> Decorator
-    #   def reverse: () -> Decorator
-    #   def rgb: () -> Decorator
-    #   def strike: () -> Decorator
-    #   def underline: () -> Decorator
-    Decorator::Delegation.install(self)
+    include Decorator::Delegator
 
     # The Sai {ModeSelector mode selector}
     #
