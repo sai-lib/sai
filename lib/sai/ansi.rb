@@ -94,7 +94,7 @@ module Sai
     # Install the ANSI colors
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.4.0
     #
     # @api private
     #

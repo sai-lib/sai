@@ -137,7 +137,7 @@ module Sai
     # Handle a color registration
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since unreleased
+    # @since 0.4.0
     #
     # @api private
     #

@@ -21,7 +21,7 @@ module Sai
       # Inject ClassMethods into the including class
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.4.0
       #
       # @api private
       #
@@ -36,7 +36,7 @@ module Sai
       # NamedColors ClassMethods
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.4.0
       #
       # @api private
       module ClassMethods
@@ -45,7 +45,7 @@ module Sai
         # Handle a color registration
         #
         # @author {https://aaronmallen.me Aaron Allen}
-        # @since unreleased
+        # @since 0.4.0
         #
         # @api private
         #

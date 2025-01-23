@@ -4,7 +4,7 @@ module Sai
   # The named color registry
   #
   # @author {https://aaronmallen.me Aaron Allen}
-  # @since unreleased
+  # @since 0.4.0
   #
   # @api private
   module Registry
@@ -39,7 +39,7 @@ module Sai
       # Register a named color with an RGB or Hexadecimal value
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.4.0
       #
       # @api private
       #
@@ -59,7 +59,7 @@ module Sai
       # Subscribe to registry changes
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.4.0
       #
       # @api private
       #
@@ -76,7 +76,7 @@ module Sai
       # Broadcast a color registration to all subscribers
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.4.0
       #
       # @api private
       #
@@ -95,7 +95,7 @@ module Sai
       # The Sai named colors lookup
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.4.0
       #
       # @api private
       #
@@ -107,7 +107,7 @@ module Sai
       # The registry subscribers
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.4.0
       #
       # @api private
       #
@@ -120,7 +120,7 @@ module Sai
       # A Mutex for thread safety
       #
       # @author {https://aaronmallen.me Aaron Allen}
-      # @since unreleased
+      # @since 0.4.0
       #
       # @api private
       #
