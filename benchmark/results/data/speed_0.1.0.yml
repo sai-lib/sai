@@ -1,0 +1,59 @@
+---
+metadata:
+  timestamp: '2025-01-23T21:10:57Z'
+  gem_version: 0.1.0
+  ruby_version: 3.1.6
+  ruby_platform: arm64-darwin24
+  ruby_engine: ruby
+  cpu_info: Apple M2 Max
+  os_info: macOS 15.2
+results:
+  Raw ANSI:
+    :ips: 11552908.920013856
+    :stddev: 74881
+    :stddev_percentage: 0.6481571050065041
+    :microseconds_per_op: 0.08655828648208547
+    :iterations: 58198089
+    :samples: 51
+  named color:
+    :ips: 477604.9083945547
+    :stddev: 18833
+    :stddev_percentage: 3.9432174311830672
+    :microseconds_per_op: 2.0937808268375018
+    :iterations: 2406950
+    :samples: 50
+  named background color:
+    :ips: 467029.578909803
+    :stddev: 14741
+    :stddev_percentage: 3.156331133117998
+    :microseconds_per_op: 2.1411920040146515
+    :iterations: 2335392
+    :samples: 48
+  rbg color:
+    :ips: 481026.06863426225
+    :stddev: 15798
+    :stddev_percentage: 3.2842294898598663
+    :microseconds_per_op: 2.078889409963202
+    :iterations: 2426454
+    :samples: 46
+  hex color:
+    :ips: 452124.6096701655
+    :stddev: 10349
+    :stddev_percentage: 2.288970734760449
+    :microseconds_per_op: 2.2117796258193536
+    :iterations: 2268384
+    :samples: 48
+  multiple styles:
+    :ips: 317448.4575804962
+    :stddev: 8132
+    :stddev_percentage: 2.5616757006727457
+    :microseconds_per_op: 3.1501176840540404
+    :iterations: 1601369
+    :samples: 49
+  long string:
+    :ips: 415597.9845915071
+    :stddev: 4021
+    :stddev_percentage: 0.9675215350123164
+    :microseconds_per_op: 2.406171437484
+    :iterations: 2085450
+    :samples: 50

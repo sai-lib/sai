@@ -1,0 +1,108 @@
+---
+metadata:
+  timestamp: '2025-01-23T21:28:41Z'
+  gem_version: 0.4.0
+  ruby_version: 3.1.6
+  ruby_platform: arm64-darwin24
+  ruby_engine: ruby
+  cpu_info: Apple M2 Max
+  os_info: macOS 15.2
+results:
+  Raw ANSI:
+    memory_allocated_bytes: 232
+    memory_retained_bytes: 0
+    objects_allocated: 2
+    objects_retained: 0
+    strings_allocated: 1
+    strings_retained: 0
+  named color:
+    memory_allocated_bytes: 4568
+    memory_retained_bytes: 0
+    objects_allocated: 71
+    objects_retained: 0
+    strings_allocated: 22
+    strings_retained: 0
+  named background color:
+    memory_allocated_bytes: 4168
+    memory_retained_bytes: 128
+    objects_allocated: 69
+    objects_retained: 2
+    strings_allocated: 22
+    strings_retained: 1
+  rbg color:
+    memory_allocated_bytes: 4568
+    memory_retained_bytes: 128
+    objects_allocated: 75
+    objects_retained: 2
+    strings_allocated: 20
+    strings_retained: 1
+  hex color:
+    memory_allocated_bytes: 4736
+    memory_retained_bytes: 128
+    objects_allocated: 80
+    objects_retained: 2
+    strings_allocated: 23
+    strings_retained: 1
+  multiple styles:
+    memory_allocated_bytes: 5992
+    memory_retained_bytes: 128
+    objects_allocated: 102
+    objects_retained: 2
+    strings_allocated: 30
+    strings_retained: 1
+  long string:
+    memory_allocated_bytes: 561193
+    memory_retained_bytes: 13097
+    objects_allocated: 13056
+    objects_retained: 2
+    strings_allocated: 22
+    strings_retained: 1
+  darken_text:
+    memory_allocated_bytes: 3152
+    memory_retained_bytes: 0
+    objects_allocated: 48
+    objects_retained: 0
+    strings_allocated: 14
+    strings_retained: 0
+  lighten_text:
+    memory_allocated_bytes: 3152
+    memory_retained_bytes: 0
+    objects_allocated: 48
+    objects_retained: 0
+    strings_allocated: 14
+    strings_retained: 0
+  gradient:
+    memory_allocated_bytes: 44444
+    memory_retained_bytes: 0
+    objects_allocated: 720
+    objects_retained: 0
+    strings_allocated: 50
+    strings_retained: 0
+  rainbow:
+    memory_allocated_bytes: 41806
+    memory_retained_bytes: 1616
+    objects_allocated: 658
+    objects_retained: 28
+    strings_allocated: 50
+    strings_retained: 0
+  color stripping:
+    memory_allocated_bytes: 4368
+    memory_retained_bytes: 408
+    objects_allocated: 73
+    objects_retained: 8
+    strings_allocated: 22
+    strings_retained: 2
+  color sequence parsing:
+    memory_allocated_bytes: 3144
+    memory_retained_bytes: 0
+    objects_allocated: 47
+    objects_retained: 0
+    strings_allocated: 16
+    strings_retained: 0
+  color registration:
+    memory_allocated_bytes: 1048
+    memory_retained_bytes: 400
+    objects_allocated: 15
+    objects_retained: 6
+    strings_allocated: 2
+    strings_retained: 1

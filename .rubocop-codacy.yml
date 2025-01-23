@@ -5,6 +5,7 @@ require:
 AllCops:
   Exclude:
     - vendor/**/*
+    - benchmark/**/*
   NewCops: enable
   TargetRubyVersion: 3.1
 
