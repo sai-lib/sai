@@ -1,0 +1,59 @@
+---
+metadata:
+  timestamp: '2025-01-23T21:14:51Z'
+  gem_version: 0.2.0
+  ruby_version: 3.1.6
+  ruby_platform: arm64-darwin24
+  ruby_engine: ruby
+  cpu_info: Apple M2 Max
+  os_info: macOS 15.2
+results:
+  Raw ANSI:
+    memory_allocated_bytes: 232
+    memory_retained_bytes: 0
+    objects_allocated: 2
+    objects_retained: 0
+    strings_allocated: 1
+    strings_retained: 0
+  named color:
+    memory_allocated_bytes: 2024
+    memory_retained_bytes: 88
+    objects_allocated: 33
+    objects_retained: 1
+    strings_allocated: 8
+    strings_retained: 1
+  named background color:
+    memory_allocated_bytes: 1440
+    memory_retained_bytes: 128
+    objects_allocated: 30
+    objects_retained: 2
+    strings_allocated: 8
+    strings_retained: 1
+  rbg color:
+    memory_allocated_bytes: 1480
+    memory_retained_bytes: 128
+    objects_allocated: 27
+    objects_retained: 2
+    strings_allocated: 6
+    strings_retained: 1
+  hex color:
+    memory_allocated_bytes: 1648
+    memory_retained_bytes: 128
+    objects_allocated: 32
+    objects_retained: 2
+    strings_allocated: 9
+    strings_retained: 1
+  multiple styles:
+    memory_allocated_bytes: 2064
+    memory_retained_bytes: 128
+    objects_allocated: 44
+    objects_retained: 2
+    strings_allocated: 13
+    strings_retained: 1
+  long string:
+    memory_allocated_bytes: 14409
+    memory_retained_bytes: 13097
+    objects_allocated: 30
+    objects_retained: 2
+    strings_allocated: 8
+    strings_retained: 1

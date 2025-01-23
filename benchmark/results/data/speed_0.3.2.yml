@@ -1,0 +1,108 @@
+---
+metadata:
+  timestamp: '2025-01-23T21:28:17Z'
+  gem_version: 0.3.2
+  ruby_version: 3.1.6
+  ruby_platform: arm64-darwin24
+  ruby_engine: ruby
+  cpu_info: Apple M2 Max
+  os_info: macOS 15.2
+results:
+  Raw ANSI:
+    :ips: 11405361.439013949
+    :stddev: 78167
+    :stddev_percentage: 0.6853531158829976
+    :microseconds_per_op: 0.08767806310629776
+    :iterations: 57308108
+    :samples: 52
+  named color:
+    :ips: 96537.61038562878
+    :stddev: 2858
+    :stddev_percentage: 2.9605041895935105
+    :microseconds_per_op: 10.358657066457349
+    :iterations: 487795
+    :samples: 49
+  named background color:
+    :ips: 97759.10689452494
+    :stddev: 1246
+    :stddev_percentage: 1.2745615621717417
+    :microseconds_per_op: 10.229226020639983
+    :iterations: 490147
+    :samples: 49
+  rbg color:
+    :ips: 99596.28350131752
+    :stddev: 1714
+    :stddev_percentage: 1.7209477500004566
+    :microseconds_per_op: 10.040535297552257
+    :iterations: 507550
+    :samples: 50
+  hex color:
+    :ips: 97076.2242425765
+    :stddev: 1340
+    :stddev_percentage: 1.3803585898145094
+    :microseconds_per_op: 10.301183506078429
+    :iterations: 485737
+    :samples: 49
+  multiple styles:
+    :ips: 71885.23019367119
+    :stddev: 1403
+    :stddev_percentage: 1.9517222052709247
+    :microseconds_per_op: 13.911063473064324
+    :iterations: 364700
+    :samples: 50
+  long string:
+    :ips: 406.5745843215451
+    :stddev: 5
+    :stddev_percentage: 1.229786659769584
+    :microseconds_per_op: 2459.5733195391676
+    :iterations: 2050
+    :samples: 50
+  darken_text:
+    :ips: 155684.04530159043
+    :stddev: 2478
+    :stddev_percentage: 1.5916852592053536
+    :microseconds_per_op: 6.423265775647109
+    :iterations: 783853
+    :samples: 49
+  lighten_text:
+    :ips: 154496.93359790577
+    :stddev: 7484
+    :stddev_percentage: 4.8441090872896435
+    :microseconds_per_op: 6.472620373182314
+    :iterations: 781354
+    :samples: 49
+  gradient:
+    :ips: 10992.669316647398
+    :stddev: 222
+    :stddev_percentage: 2.0195276834517455
+    :microseconds_per_op: 90.96971547079934
+    :iterations: 55370
+    :samples: 49
+  rainbow:
+    :ips: 12574.086860361384
+    :stddev: 99
+    :stddev_percentage: 0.7873335145479877
+    :microseconds_per_op: 79.52863783313006
+    :iterations: 63600
+    :samples: 50
+  color stripping:
+    :ips: 95422.96638244398
+    :stddev: 883
+    :stddev_percentage: 0.9253537523252425
+    :microseconds_per_op: 10.479657444226982
+    :iterations: 483950
+    :samples: 50
+  color sequence parsing:
+    :ips: 162734.70376861645
+    :stddev: 4952
+    :stddev_percentage: 3.042989531625029
+    :microseconds_per_op: 6.144970782764598
+    :iterations: 827169
+    :samples: 49
+  color registration:
+    :ips: 1679.9260548926256
+    :stddev: 72
+    :stddev_percentage: 4.2859029294954265
+    :microseconds_per_op: 595.2642957632538
+    :iterations: 8507
+    :samples: 47
