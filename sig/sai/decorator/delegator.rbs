@@ -1,0 +1,95 @@
+# Generated from lib/sai/decorator/delegator.rb with RBS::Inline
+
+module Sai
+  class Decorator
+    # Provides method delegation to the {Decorator} class for classes or modules that include it
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @abstract Include in a class or module to provide method delegation to the {Decorator} class
+    # @api private
+    module Delegator
+      def blink: () -> Decorator
+
+      def bold: () -> Decorator
+
+      def conceal: () -> Decorator
+
+      def darken_background: () -> Decorator
+
+      def darken_bg: () -> Decorator
+
+      def darken_fg: () -> Decorator
+
+      def darken_foreground: () -> Decorator
+
+      def darken_text: () -> Decorator
+
+      def dim: () -> Decorator
+
+      def gradient: () -> Decorator
+
+      def hex: () -> Decorator
+
+      def italic: () -> Decorator
+
+      def lighten_background: () -> Decorator
+
+      def lighten_bg: () -> Decorator
+
+      def lighten_fg: () -> Decorator
+
+      def lighten_foreground: () -> Decorator
+
+      def lighten_text: () -> Decorator
+
+      def no_blink: () -> Decorator
+
+      def no_conceal: () -> Decorator
+
+      def no_italic: () -> Decorator
+
+      def no_reverse: () -> Decorator
+
+      def no_strike: () -> Decorator
+
+      def no_underline: () -> Decorator
+
+      def normal_intensity: () -> Decorator
+
+      def on_gradient: () -> Decorator
+
+      def on_hex: () -> Decorator
+
+      def on_rainbow: () -> Decorator
+
+      def on_rgb: () -> Decorator
+
+      def rainbow: () -> Decorator
+
+      def rapid_blink: () -> Decorator
+
+      def reverse: () -> Decorator
+
+      def rgb: () -> Decorator
+
+      def strike: () -> Decorator
+
+      def underline: () -> Decorator
+
+      # Apply a specific color mode to the {Decorator} instance
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param mode [Integer] the color mode to use
+      #
+      # @return [Decorator] a new instance of Decorator with the applied color mode
+      # @rbs (Integer mode) -> Decorator
+      def with_mode: (Integer mode) -> Decorator
+    end
+  end
+end

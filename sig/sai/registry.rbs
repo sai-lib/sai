@@ -1,0 +1,106 @@
+# Generated from lib/sai/registry.rb with RBS::Inline
+
+module Sai
+  # The named color registry
+  #
+  # @author {https://aaronmallen.me Aaron Allen}
+  # @since unreleased
+  #
+  # @api private
+  module Registry
+    # Look up an RGB value by color name
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.3.1
+    #
+    # @api private
+    #
+    # @param name [String, Symbol] the color name
+    #
+    # @return [Array<Integer>] the RGB value
+    # @rbs (String | Symbol name) -> Array[Integer]?
+    def self.[]: (String | Symbol name) -> Array[Integer]?
+
+    # Get a list of all color names
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.3.1
+    #
+    # @api private
+    #
+    # @return [Array<Symbol>] the color names
+    def self.names: () -> untyped
+
+    # Register a named color with an RGB or Hexadecimal value
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param name [String, Symbol] the name of the color being registered
+    # @param rgb_or_hex [Array<Integer>, String] the RGB or Hexadecimal value of the color
+    #
+    # @return [Boolean] `true` if the color was registered
+    # @rbs (String | Symbol name, Array[Integer] | String rgb_or_hex) -> void
+    def self.register: (String | Symbol name, Array[Integer] | String rgb_or_hex) -> void
+
+    # Subscribe to registry changes
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param subscriber [Object] the subscriber
+    #
+    # @return [void]
+    # @rbs (Object subscriber) -> void
+    def self.subscribe: (Object subscriber) -> void
+
+    # Broadcast a color registration to all subscribers
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param color_name [Symbol] the color name
+    #
+    # @return [void]
+    # @rbs (Symbol name) -> void
+    private def self.broadcast_registration: (Symbol name) -> void
+
+    # The Sai named colors lookup
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @return [Hash{Symbol => Array<Integer>}] the named colors lookup
+    private def self.lookup: () -> untyped
+
+    # The registry subscribers
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @return [Array<Class, Module, Object>] the subscribers
+    # @rbs () -> Array[Class | Module | Object]
+    private def self.subscribers: () -> Array[Class | Module | Object]
+
+    # A Mutex for thread safety
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @return [Mutex] the thread lock
+    # @rbs () -> Mutex
+    private def self.thread_lock: () -> Mutex
+  end
+end

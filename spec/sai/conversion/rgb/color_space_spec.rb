@@ -130,7 +130,8 @@ RSpec.describe Sai::Conversion::RGB::ColorSpace do
       let(:color) { 'red' }
 
       it 'is expected to convert to RGB values' do
-        expect(resolve).to eq(Sai::NamedColors[:red])
+        Sai::Registry.register(:red, [255, 0, 0])
+        expect(resolve).to eq(Sai::Registry[:red])
       end
 
       context 'when given unknown color name' do

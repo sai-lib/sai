@@ -15,7 +15,7 @@ RSpec.describe Sai do
     subject(:register) { described_class.register(color_name, color_value) }
 
     before do
-      allow(Sai::NamedColors).to receive(:register)
+      allow(Sai::Registry).to receive(:register)
     end
 
     let(:color_name) { :test }
@@ -24,7 +24,7 @@ RSpec.describe Sai do
     it 'is expected to register the color' do
       register
 
-      expect(Sai::NamedColors).to have_received(:register).with(color_name, color_value)
+      expect(Sai::Registry).to have_received(:register).with(color_name, color_value)
     end
   end
 
@@ -40,6 +40,78 @@ RSpec.describe Sai do
     subject(:support) { described_class.support }
 
     it { is_expected.to eq(Sai::Support) }
+  end
+
+  describe 'color registration' do
+    subject(:register_color) { Sai::Registry.register(color_name, color_value) }
+
+    let(:color_name) { :test_color }
+    let(:color_value) { [255, 0, 0] }
+    let(:text) { 'test' }
+
+    after do
+      if described_class.singleton_methods.include?(color_name)
+        described_class.singleton_class.send(:remove_method,
+                                             color_name)
+      end
+      if described_class.singleton_methods.include?(:"on_#{color_name}")
+        described_class.singleton_class.send(:remove_method,
+                                             :"on_#{color_name}")
+      end
+    end
+
+    it 'is expected to define a foreground color method' do
+      register_color
+      expect(described_class).to respond_to(color_name)
+    end
+
+    it 'is expected to define a background color method' do
+      register_color
+      expect(described_class).to respond_to(:"on_#{color_name}")
+    end
+
+    it 'is expected to delegate foreground method to Decorator' do
+      register_color
+      result = described_class.public_send(color_name).with_mode(described_class.mode.true_color).decorate(text)
+      expect(result.to_s).to eq("\e[38;2;255;0;0m#{text}\e[0m")
+    end
+
+    it 'is expected to delegate background method to Decorator' do
+      register_color
+      result = described_class.public_send(:"on_#{color_name}")
+                              .with_mode(described_class.mode.true_color)
+                              .decorate(text)
+      expect(result.to_s).to eq("\e[48;2;255;0;0m#{text}\e[0m")
+    end
+
+    context 'when registering multiple colors' do
+      let(:colors) do
+        {
+          test_blue: [0, 0, 255],
+          test_green: [0, 255, 0]
+        }
+      end
+
+      before do
+        colors.each { |name, value| Sai::Registry.register(name, value) }
+      end
+
+      after do
+        colors.each_key do |name|
+          described_class.singleton_class.send(:remove_method, name) if described_class.singleton_methods.include?(name)
+          if described_class.singleton_methods.include?(:"on_#{name}")
+            described_class.singleton_class.send(:remove_method,
+                                                 :"on_#{name}")
+          end
+        end
+      end
+
+      it 'is expected to create all color methods' do
+        colors.each_key do |name|
+          expect(described_class).to respond_to(name).and(respond_to(:"on_#{name}"))
+        end
+      end
+    end
   end
 
   describe 'module inclusion' do
@@ -86,85 +158,6 @@ RSpec.describe Sai do
       subject(:terminal_color_support) { instance.terminal_color_support }
 
       it { is_expected.to eq(Sai::Support) }
-    end
-  end
-
-  describe 'delegated decorator methods' do
-    shared_examples 'a delegated method without arguments' do |method|
-      subject(:delegated_call) { described_class.public_send(method) }
-
-      let(:decorator_instance) { instance_spy(Sai::Decorator) }
-
-      before do
-        allow(Sai::Decorator).to receive(:new).with(mode: described_class.mode.auto).and_return(decorator_instance)
-      end
-
-      it 'is expected to delegate the method call to a new Decorator instance' do
-        delegated_call
-        expect(decorator_instance).to have_received(method).with(no_args)
-      end
-    end
-
-    shared_examples 'a delegated method with hex argument' do
-      subject(:delegated_call) { described_class.hex('#FF0000') }
-
-      let(:decorator_instance) { instance_spy(Sai::Decorator) }
-
-      before do
-        allow(Sai::Decorator).to receive(:new).with(mode: described_class.mode.auto).and_return(decorator_instance)
-      end
-
-      it 'is expected to delegate the method call to a new Decorator instance' do
-        delegated_call
-        expect(decorator_instance).to have_received(:hex).with('#FF0000')
-      end
-    end
-
-    shared_examples 'a delegated method with rgb arguments' do
-      subject(:delegated_call) { described_class.rgb(255, 0, 0) }
-
-      let(:decorator_instance) { instance_spy(Sai::Decorator) }
-
-      before do
-        allow(Sai::Decorator).to receive(:new).with(mode: described_class.mode.auto).and_return(decorator_instance)
-      end
-
-      it 'is expected to delegate the method call to a new Decorator instance' do
-        delegated_call
-        expect(decorator_instance).to have_received(:rgb).with(255, 0, 0)
-      end
-    end
-
-    describe '.red' do
-      include_examples 'a delegated method without arguments', :red
-    end
-
-    describe '.blue' do
-      include_examples 'a delegated method without arguments', :blue
-    end
-
-    describe '.bold' do
-      include_examples 'a delegated method without arguments', :bold
-    end
-
-    describe '.italic' do
-      include_examples 'a delegated method without arguments', :italic
-    end
-
-    describe '.hex' do
-      include_examples 'a delegated method with hex argument'
-    end
-
-    describe '.rgb' do
-      include_examples 'a delegated method with rgb arguments'
-    end
-
-    describe 'excluded methods' do
-      %i[apply call decorate encode].each do |method|
-        it "is not expected to respond to ##{method}" do
-          expect(described_class).not_to respond_to(method)
-        end
-      end
     end
   end
 end

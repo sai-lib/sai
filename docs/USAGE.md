@@ -84,28 +84,21 @@ Sai.bright_red.decorate('Bright red text')
 Sai.bright_blue.decorate('Bright blue text')
 Sai.on_bright_green.decorate('Bright green background')
 ```
-### Named Colors
 
-Common ANSI, XTERM, and CSS colors have convenient shortcuts. You can:
+Available named colors:
 
-```ruby
-# View all available colors programmatically
-Sai::NamedColors.names  # Returns array of all color names
-
-# Use colors in your code
-Sai.red.decorate('Red text')
-Sai.blue.decorate('Blue text')
-Sai.on_green.decorate('Green background')
-```
+* black/bright_black
+* red/bright_red
+* green/bright_green
+* yellow/bright_yellow
+* blue/bright_blue
+* magenta/bright_magenta
+* cyan/bright_cyan
+* white/bright_white
 
 > [!TIP]
 > While named colors provide convenient shortcuts, remember that Sai supports the full RGB color space. Don't feel
 > limited to just these predefined colors!
-
-For a complete list of available colors, see:
-
-* [Online Color Reference](https://github.com/aaronmallen/sai/blob/main/docs/AVAILABLE_NAMED_COLORS.md)
-* `Sai::NamedColors.names` in your code
 
 #### Registering Custom Named Colors
 
