@@ -42,6 +42,78 @@ RSpec.describe Sai do
     it { is_expected.to eq(Sai::Support) }
   end
 
+  describe 'color registration' do
+    subject(:register_color) { Sai::Registry.register(color_name, color_value) }
+
+    let(:color_name) { :test_color }
+    let(:color_value) { [255, 0, 0] }
+    let(:text) { 'test' }
+
+    after do
+      if described_class.singleton_methods.include?(color_name)
+        described_class.singleton_class.send(:remove_method,
+                                             color_name)
+      end
+      if described_class.singleton_methods.include?(:"on_#{color_name}")
+        described_class.singleton_class.send(:remove_method,
+                                             :"on_#{color_name}")
+      end
+    end
+
+    it 'is expected to define a foreground color method' do
+      register_color
+      expect(described_class).to respond_to(color_name)
+    end
+
+    it 'is expected to define a background color method' do
+      register_color
+      expect(described_class).to respond_to(:"on_#{color_name}")
+    end
+
+    it 'is expected to delegate foreground method to Decorator' do
+      register_color
+      result = described_class.public_send(color_name).with_mode(described_class.mode.true_color).decorate(text)
+      expect(result.to_s).to eq("\e[38;2;255;0;0m#{text}\e[0m")
+    end
+
+    it 'is expected to delegate background method to Decorator' do
+      register_color
+      result = described_class.public_send(:"on_#{color_name}")
+                              .with_mode(described_class.mode.true_color)
+                              .decorate(text)
+      expect(result.to_s).to eq("\e[48;2;255;0;0m#{text}\e[0m")
+    end
+
+    context 'when registering multiple colors' do
+      let(:colors) do
+        {
+          test_blue: [0, 0, 255],
+          test_green: [0, 255, 0]
+        }
+      end
+
+      before do
+        colors.each { |name, value| Sai::Registry.register(name, value) }
+      end
+
+      after do
+        colors.each_key do |name|
+          described_class.singleton_class.send(:remove_method, name) if described_class.singleton_methods.include?(name)
+          if described_class.singleton_methods.include?(:"on_#{name}")
+            described_class.singleton_class.send(:remove_method,
+                                                 :"on_#{name}")
+          end
+        end
+      end
+
+      it 'is expected to create all color methods' do
+        colors.each_key do |name|
+          expect(described_class).to respond_to(name).and(respond_to(:"on_#{name}"))
+        end
+      end
+    end
+  end
+
   describe 'module inclusion' do
     let(:including_class) do
       Class.new do

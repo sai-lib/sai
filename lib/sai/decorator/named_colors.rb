@@ -19,6 +19,52 @@ module Sai
     #   decorator.azure.decorate('Hello')      #=> "\e[38;2;0;127;255mHello\e[0m"
     #   decorator.on_azure.decorate('Hello')   #=> "\e[48;2;0;127;255mHello\e[0m"
     module NamedColors
+      # Inject ClassMethods into the including class
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param base [Class] the class including this module
+      #
+      # @return [void]
+      # @rbs (Class base) -> void
+      def self.included(base)
+        base.extend(ClassMethods)
+      end
+
+      # NamedColors ClassMethods
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      module ClassMethods
+        private
+
+        # Handle a color registration
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since unreleased
+        #
+        # @api private
+        #
+        # @param color_name [Symbol] the color name
+        #
+        # @return [void]
+        # @rbs (Symbol color_name) -> void
+        def on_color_registration(color_name)
+          { color_name => :foreground, :"on_#{color_name}" => :background }.each_pair do |method, component|
+            # @type self: singleton(Decorator)
+            # @type var component: Sai::Conversion::ColorSequence::style_type
+
+            undef_method(method) if method_defined?(method)
+            define_method(method) { apply_named_color(component, color_name) }
+          end
+        end
+      end
+
       private
 
       # Apply a named color to the specified style type

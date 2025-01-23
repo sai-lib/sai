@@ -45,6 +45,32 @@ module Sai
     # @rbs (String | Symbol name, Array[Integer] | String rgb_or_hex) -> void
     def self.register: (String | Symbol name, Array[Integer] | String rgb_or_hex) -> void
 
+    # Subscribe to registry changes
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param subscriber [Object] the subscriber
+    #
+    # @return [void]
+    # @rbs (Object subscriber) -> void
+    def self.subscribe: (Object subscriber) -> void
+
+    # Broadcast a color registration to all subscribers
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param color_name [Symbol] the color name
+    #
+    # @return [void]
+    # @rbs (Symbol name) -> void
+    private def self.broadcast_registration: (Symbol name) -> void
+
     # The Sai named colors lookup
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -54,6 +80,17 @@ module Sai
     #
     # @return [Hash{Symbol => Array<Integer>}] the named colors lookup
     private def self.lookup: () -> untyped
+
+    # The registry subscribers
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @return [Array<Class, Module, Object>] the subscribers
+    # @rbs () -> Array[Class | Module | Object]
+    private def self.subscribers: () -> Array[Class | Module | Object]
 
     # A Mutex for thread safety
     #

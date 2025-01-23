@@ -52,10 +52,45 @@ module Sai
         key = name.to_s.downcase.to_sym
         rgb = Conversion::RGB.resolve(rgb_or_hex)
         thread_lock.synchronize { lookup[key] = rgb }
+        broadcast_registration(key)
         true
       end
 
+      # Subscribe to registry changes
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param subscriber [Object] the subscriber
+      #
+      # @return [void]
+      # @rbs (Object subscriber) -> void
+      def subscribe(subscriber)
+        thread_lock.synchronize { subscribers << subscriber }
+      end
+
       private
+
+      # Broadcast a color registration to all subscribers
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @param color_name [Symbol] the color name
+      #
+      # @return [void]
+      # @rbs (Symbol name) -> void
+      def broadcast_registration(color_name)
+        subscribers.each do |subscriber|
+          next unless subscriber.respond_to?(:on_color_registration, true)
+
+          subscriber.send(:on_color_registration, color_name)
+        end
+      end
 
       # The Sai named colors lookup
       #
@@ -67,6 +102,19 @@ module Sai
       # @return [Hash{Symbol => Array<Integer>}] the named colors lookup
       def lookup
         @lookup ||= {}
+      end
+
+      # The registry subscribers
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Array<Class, Module, Object>] the subscribers
+      # @rbs () -> Array[Class | Module | Object]
+      def subscribers
+        @subscribers ||= []
       end
 
       # A Mutex for thread safety

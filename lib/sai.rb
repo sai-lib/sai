@@ -131,6 +131,26 @@ module Sai
     def support
       Support
     end
+
+    private
+
+    # Handle a color registration
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @param color_name [Symbol] the color name
+    #
+    # @return [void]
+    # @rbs (Symbol color_name) -> void
+    def on_color_registration(color_name)
+      [color_name, "on_#{color_name}"].each do |method|
+        singleton_class.undef_method(method) if singleton_class.method_defined?(method)
+        singleton_class.define_method(method) { Decorator.new.send(method) }
+      end
+    end
   end
 
   # A helper method that provides Sai color modes
@@ -203,3 +223,6 @@ module Sai
     Support
   end
 end
+
+Sai::Registry.subscribe(Sai)
+Sai::Registry.subscribe(Sai::Decorator)
