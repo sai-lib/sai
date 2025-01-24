@@ -88,7 +88,7 @@ module Sai
         # @return [Boolean] `true` if the NO_COLOR environment variable is set, otherwise `false`
         # @rbs () -> bool
         def no_color?
-          !ENV.fetch('NO_COLOR', '').empty? || !$stdout.tty?
+          !ENV.fetch('NO_COLOR', '').empty? || !tty?
         end
 
         # Check for true color (24-bit) support
@@ -114,6 +114,19 @@ module Sai
           end
 
           false
+        end
+
+        # Check if stdout is a TTY
+        #
+        # @author {https://aaronmallen.me Aaron Allen}
+        # @since unreleased
+        #
+        # @api private
+        #
+        # @return [Boolean] `true` if stdout is a TTY, otherwise `false`
+        # @rbs () -> bool
+        def tty?
+          @tty ||= $stdout.tty?
         end
       end
     end
