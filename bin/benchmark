@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+ruby benchmark/scripts/memory.rb &&
+  ruby benchmark/scripts/speed.rb &&
+  ruby benchmark/scripts/profile.rb &&
+  stackprof tmp/stackprof-cpu.dump
