@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog], and this project adheres to [Break Ve
 
 * [#19](https://github.com/aaronmallen/sai/pull/19) - Add short hex color support by
   [@aaronmallen](https://github.com/aaronmallen)
+* [#21](https://github.com/aaronmallen/sai/pull/21) - Add conversion result caching to improve gradient and rainbow
+  operation performance by [@aaronmallen](https://github.com/aaronmallen)
 
 ## [0.4.0] - 2025-01-23
 

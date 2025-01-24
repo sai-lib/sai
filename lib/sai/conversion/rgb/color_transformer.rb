@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'sai/conversion/cache'
 require 'sai/conversion/rgb/color_space'
 
 module Sai
@@ -29,8 +30,10 @@ module Sai
           def darken(color, amount)
             raise ArgumentError, "Invalid amount: #{amount}" unless amount.between?(0.0, 1.0)
 
-            rgb = ColorSpace.resolve(color)
-            rgb.map { |c| [0, (c * (1 - amount)).round].max }
+            Cache.fetch(:transformer_darken, [color, amount]) do
+              rgb = ColorSpace.resolve(color)
+              rgb.map { |c| [0, (c * (1 - amount)).round].max }
+            end
           end
 
           # Generate a gradient between two colors with a specified number of steps
@@ -54,9 +57,11 @@ module Sai
           def gradient(start_color, end_color, steps)
             raise ArgumentError, "Steps must be at least 2, got: #{steps}" if steps < 2
 
-            (0...steps).map do |i|
-              step = i.to_f / (steps - 1)
-              interpolate_color(start_color, end_color, step)
+            Cache.fetch(:transformer_gradient, [start_color, end_color, steps]) do
+              (0...steps).map do |i|
+                step = i.to_f / (steps - 1)
+                interpolate_color(start_color, end_color, step)
+              end
             end
           end
 
@@ -81,14 +86,16 @@ module Sai
           def interpolate_color(start_color, end_color, step)
             raise ArgumentError, "Invalid step: #{step}" unless step.between?(0.0, 1.0)
 
-            start_rgb = ColorSpace.resolve(start_color)
-            end_rgb = ColorSpace.resolve(end_color)
+            Cache.fetch(:transformer_interpolate_color, [start_color, end_color, step]) do
+              start_rgb = ColorSpace.resolve(start_color)
+              end_rgb = ColorSpace.resolve(end_color)
 
-            start_rgb.zip(end_rgb).map do |values|
-              start_val, end_val = values
-              next 0 unless start_val && end_val # Handle potential nil values
+              start_rgb.zip(end_rgb).map do |values|
+                start_val, end_val = values
+                next 0 unless start_val && end_val # Handle potential nil values
 
-              (start_val + ((end_val - start_val) * step)).round.clamp(0, 255)
+                (start_val + ((end_val - start_val) * step)).round.clamp(0, 255)
+              end
             end
           end
 
@@ -108,8 +115,10 @@ module Sai
           def lighten(color, amount)
             raise ArgumentError, "Invalid amount: #{amount}" unless amount.between?(0.0, 1.0)
 
-            rgb = ColorSpace.resolve(color)
-            rgb.map { |c| [255, (c * (1 + amount)).round].min }
+            Cache.fetch(:transformer_lighten, [color, amount]) do
+              rgb = ColorSpace.resolve(color)
+              rgb.map { |c| [255, (c * (1 + amount)).round].min }
+            end
           end
 
           # Generate a rainbow gradient with a specified number of steps
@@ -127,10 +136,12 @@ module Sai
           def rainbow_gradient(steps)
             raise ArgumentError, "Steps must be at least 2, got: #{steps}" if steps < 2
 
-            hue_step = 360.0 / steps
-            (0...steps).map do |i|
-              hue = (i * hue_step) % 360
-              ColorSpace.hsv_to_rgb(hue, 1.0, 1.0)
+            Cache.fetch(:transformer_rainbow_gradient, steps) do
+              hue_step = 360.0 / steps
+              (0...steps).map do |i|
+                hue = (i * hue_step) % 360
+                ColorSpace.hsv_to_rgb(hue, 1.0, 1.0)
+              end
             end
           end
         end

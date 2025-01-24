@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sai/conversion/cache'
+
 module Sai
   module Conversion
     module RGB
@@ -23,8 +25,10 @@ module Sai
           # @return [Integer] the color cube index
           # @rbs (Array[Integer] rgb) -> Integer
           def color_cube(rgb)
-            r, g, b = rgb.map { |c| ((c / 255.0) * 5).round } #: [Integer, Integer, Integer]
-            16 + (r * 36) + (g * 6) + b
+            Cache.fetch(:indexer_color_cube, rgb) do
+              r, g, b = rgb.map { |c| ((c / 255.0) * 5).round } #: [Integer, Integer, Integer]
+              16 + (r * 36) + (g * 6) + b
+            end
           end
 
           # Convert RGB values to grayscale index
@@ -39,7 +43,9 @@ module Sai
           # @return [Integer] the grayscale index
           # @rbs (Array[Integer] rgb) -> Integer
           def grayscale(rgb)
-            232 + ((rgb[0] / 255.0) * 23).round
+            Cache.fetch(:indexer_grayscale, rgb) do
+              232 + ((rgb[0] / 255.0) * 23).round
+            end
           end
         end
       end
