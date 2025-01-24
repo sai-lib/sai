@@ -45,15 +45,7 @@ Enhancement suggestions are welcome! When suggesting an enhancement, please:
 3. Add tests for your changes
 4. Run the CI checks locally:
    ```bash
-   bundle exec rubocop -A && \
-   COVERAGE=true bundle exec rspec && \
-   RUBYOPT='-r bundler/setup -r rbs/test/setup' \
-   RBS_TEST_TARGET=Sai::* \
-   RBS_TEST_LOG_LEVEL=error \
-   RBS_TEST_DOUBLE_SUITE=rspec \
-   RBS_TEST_OPT='-I sig' \
-   bundle exec rspec --tag ~rbs:skip && \
-   bundle exec steep check
+   bin/ci
    ```
 
 #### Code Style
