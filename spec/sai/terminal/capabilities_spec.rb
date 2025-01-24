@@ -6,6 +6,8 @@ RSpec.describe Sai::Terminal::Capabilities do
   describe '.detect_color_support' do
     subject(:detect_color_support) { described_class.detect_color_support }
 
+    before { described_class.instance_variable_set(:@detect_color_support, nil) }
+
     context 'when NO_COLOR environment variable is set' do
       before do
         stub_const('ENV', { 'NO_COLOR' => 'true' })
