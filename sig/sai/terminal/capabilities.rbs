@@ -76,6 +76,17 @@ module Sai
       # @return [Boolean] `true` if the terminal supports true color, otherwise `false`
       # @rbs () -> bool
       private def self.true_color?: () -> bool
+
+      # Check if stdout is a TTY
+      #
+      # @author {https://aaronmallen.me Aaron Allen}
+      # @since unreleased
+      #
+      # @api private
+      #
+      # @return [Boolean] `true` if stdout is a TTY, otherwise `false`
+      # @rbs () -> bool
+      private def self.tty?: () -> bool
     end
   end
 end
