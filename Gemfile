@@ -6,6 +6,7 @@ gemspec
 group :benchmark do
   gem 'benchmark-ips', require: false
   gem 'benchmark-memory', require: false
+  gem 'stackprof', require: false
 end
 
 group :development, :test do

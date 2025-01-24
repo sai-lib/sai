@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+bundle exec rubocop && \
+  COVERAGE=true bundle exec rspec && \
+  RUBYOPT='-r bundler/setup -r rbs/test/setup' \
+  RBS_TEST_TARGET=Sai::* \
+  RBS_TEST_LOG_LEVEL=error \
+  RBS_TEST_DOUBLE_SUITE=rspec \
+  RBS_TEST_OPT='-r forwardable -r strscan -I sig' \
+  bundle exec rspec --tag ~rbs:skip && \
+  bundle exec steep check
