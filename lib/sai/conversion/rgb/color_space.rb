@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'sai/conversion/cache'
 require 'sai/registry'
 
 module Sai
@@ -27,16 +28,18 @@ module Sai
           # @return [Array<Integer>] the RGB values
           # @rbs (Float hue, Float saturation, Float value) -> Array[Integer]
           def hsv_to_rgb(hue, saturation, value)
-            hue_sector = (hue / 60.0).floor.to_i
-            hue_remainder = (hue / 60.0) - hue_sector
+            Cache.fetch(:space_hsv_to_rgb, [hue, saturation, value]) do
+              hue_sector = (hue / 60.0).floor.to_i
+              hue_remainder = (hue / 60.0) - hue_sector
 
-            components = calculate_hsv_components(value, saturation, hue_remainder)
-            primary, secondary, tertiary = *components
+              components = calculate_hsv_components(value, saturation, hue_remainder)
+              primary, secondary, tertiary = *components
 
-            return [0, 0, 0] unless primary && secondary && tertiary
+              return [0, 0, 0] unless primary && secondary && tertiary
 
-            rgb = select_rgb_values(hue_sector, value, primary, secondary, tertiary)
-            normalize_rgb(rgb)
+              rgb = select_rgb_values(hue_sector, value, primary, secondary, tertiary)
+              normalize_rgb(rgb)
+            end
           end
 
           # Convert a color value to RGB components
@@ -52,15 +55,17 @@ module Sai
           # @return [Array<Integer>] the RGB components
           # @rbs (Array[Integer] | String | Symbol color) -> Array[Integer]
           def resolve(color)
-            case color
-            when Array then validate_rgb(color)
-            when /^#?([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/
-              hex_to_rgb(
-                Regexp.last_match(1) # steep:ignore ArgumentTypeMismatch
-              )
-            when String, Symbol then named_to_rgb(color.to_s.downcase)
-            else
-              raise ArgumentError, "Invalid color format: #{color}"
+            Cache.fetch(:space_resolve, color) do
+              case color
+              when Array then validate_rgb(color)
+              when /^#?([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/
+                hex_to_rgb(
+                  Regexp.last_match(1) # steep:ignore ArgumentTypeMismatch
+                )
+              when String, Symbol then named_to_rgb(color.to_s.downcase)
+              else
+                raise ArgumentError, "Invalid color format: #{color}"
+              end
             end
           end
 
