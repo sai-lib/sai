@@ -8,78 +8,6 @@ module Sai
   #
   # @api public
   module Support
-    # Check if the terminal supports 256 colors (8-bit)
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api public
-    #
-    # @example Check if the terminal supports 256 colors
-    #   Sai.advanced? # => true
-    #
-    # @return [Boolean] `true` if the terminal supports 256 colors (8-bit), otherwise `false`
-    # @rbs () -> bool
-    def self.advanced?: () -> bool
-
-    alias self.color256? self.advanced?
-
-    alias self.colour256? self.advanced?
-
-    alias self.eight_bit? self.advanced?
-
-    alias self.two_hundred_fifty_six_color? self.advanced?
-
-    alias self.two_hundred_fifty_six_colour? self.advanced?
-
-    # Check if the terminal supports ANSI colors (4-bit)
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api public
-    #
-    # @example Check if the terminal supports ANSI colors
-    #   Sai.ansi? # => true
-    #
-    # @return [Boolean] `true` if the terminal supports ANSI colors (4-bit), otherwise `false`
-    # @rbs () -> bool
-    def self.ansi?: () -> bool
-
-    alias self.color16? self.ansi?
-
-    alias self.colour16? self.ansi?
-
-    alias self.four_bit? self.ansi?
-
-    alias self.sixteen_color? self.ansi?
-
-    alias self.sixteen_colour? self.ansi?
-
-    # Check if the terminal supports basic colors (3-bit)
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.1.0
-    #
-    # @api public
-    #
-    # @example Check if the terminal supports basic colors
-    #   Sai.basic? # => true
-    #
-    # @return [Boolean] `true` if the terminal supports basic colors (3-bit), otherwise `false`
-    # @rbs () -> bool
-    def self.basic?: () -> bool
-
-    alias self.color8? self.basic?
-
-    alias self.colour8? self.basic?
-
-    alias self.eight_color? self.basic?
-
-    alias self.eight_colour? self.basic?
-
-    alias self.three_bit? self.basic?
-
     # Check if the terminal supports color output
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -94,6 +22,78 @@ module Sai
     # @rbs () -> bool
     def self.color?: () -> bool
 
+    # Check if the terminal supports 256 colors (8-bit)
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.1.0
+    #
+    # @api public
+    #
+    # @example Check if the terminal supports 256 colors
+    #   Sai.advanced? # => true
+    #
+    # @return [Boolean] `true` if the terminal supports 256 colors (8-bit), otherwise `false`
+    # @rbs () -> bool
+    def self.eight_bit?: () -> bool
+
+    alias self.advanced? self.eight_bit?
+
+    alias self.color256? self.eight_bit?
+
+    alias self.colour256? self.eight_bit?
+
+    alias self.two_hundred_fifty_six_color? self.eight_bit?
+
+    alias self.two_hundred_fifty_six_colour? self.eight_bit?
+
+    # Check if the terminal supports ANSI colors (4-bit)
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.1.0
+    #
+    # @api public
+    #
+    # @example Check if the terminal supports ANSI colors
+    #   Sai.ansi? # => true
+    #
+    # @return [Boolean] `true` if the terminal supports ANSI colors (4-bit), otherwise `false`
+    # @rbs () -> bool
+    def self.four_bit?: () -> bool
+
+    alias self.ansi? self.four_bit?
+
+    alias self.color16? self.four_bit?
+
+    alias self.colour16? self.four_bit?
+
+    alias self.sixteen_color? self.four_bit?
+
+    alias self.sixteen_colour? self.four_bit?
+
+    # Check if the terminal supports basic colors (3-bit)
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.1.0
+    #
+    # @api public
+    #
+    # @example Check if the terminal supports basic colors
+    #   Sai.basic? # => true
+    #
+    # @return [Boolean] `true` if the terminal supports basic colors (3-bit), otherwise `false`
+    # @rbs () -> bool
+    def self.three_bit?: () -> bool
+
+    alias self.basic? self.three_bit?
+
+    alias self.color8? self.three_bit?
+
+    alias self.colour8? self.three_bit?
+
+    alias self.eight_color? self.three_bit?
+
+    alias self.eight_colour? self.three_bit?
+
     # Check if the terminal supports true color (24-bit)
     #
     # @author {https://aaronmallen.me Aaron Allen}
@@ -106,16 +106,16 @@ module Sai
     #
     # @return [Boolean] `true` if the terminal supports true color (24-bit), otherwise `false`
     # @rbs () -> bool
-    def self.true_color?: () -> bool
+    def self.twenty_four_bit?: () -> bool
 
-    alias self.color16m? self.true_color?
+    alias self.color16m? self.twenty_four_bit?
 
-    alias self.colour16m? self.true_color?
+    alias self.colour16m? self.twenty_four_bit?
 
-    alias self.sixteen_million_color? self.true_color?
+    alias self.sixteen_million_color? self.twenty_four_bit?
 
-    alias self.sixteen_million_colour? self.true_color?
+    alias self.sixteen_million_colour? self.twenty_four_bit?
 
-    alias self.twenty_for_bit? self.true_color?
+    alias self.true_color? self.twenty_four_bit?
   end
 end
