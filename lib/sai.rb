@@ -11,8 +11,6 @@ require 'sai/decorator/delegator'
 require 'sai/mode_selector'
 require 'sai/registry'
 require 'sai/support'
-require 'sai/terminal/capabilities'
-require 'sai/terminal/color_mode'
 
 # An elegant color management system for crafting sophisticated CLI applications
 #
