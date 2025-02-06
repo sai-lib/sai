@@ -3,185 +3,214 @@
 require 'spec_helper'
 
 RSpec.describe Sai::ModeSelector do
-  describe '.advanced' do
-    subject(:advanced) { described_class.advanced }
-
-    it { is_expected.to eq(Sai::Terminal::ColorMode::ADVANCED) }
+  before do
+    described_class.instance_variable_set(:@supported_color_mode, nil)
   end
 
-  describe '.advanced_auto' do
-    subject(:advanced_auto) { described_class.advanced_auto }
-
+  shared_context 'when 24-bit color is supported' do
     before do
-      allow(Sai::Terminal::Capabilities).to receive(:detect_color_support).and_return(color_support)
-    end
-
-    context 'when terminal supports true color' do
-      let(:color_support) { Sai::Terminal::ColorMode::TRUE_COLOR }
-
-      it { is_expected.to eq(Sai::Terminal::ColorMode::ADVANCED) }
-    end
-
-    context 'when terminal supports 8-bit color' do
-      let(:color_support) { Sai::Terminal::ColorMode::ADVANCED }
-
-      it { is_expected.to eq(Sai::Terminal::ColorMode::ADVANCED) }
-    end
-
-    context 'when terminal only supports 4-bit color' do
-      let(:color_support) { Sai::Terminal::ColorMode::ANSI }
-
-      it { is_expected.to eq(Sai::Terminal::ColorMode::ANSI) }
-    end
-
-    context 'when terminal only supports 3-bit color' do
-      let(:color_support) { Sai::Terminal::ColorMode::BASIC }
-
-      it { is_expected.to eq(Sai::Terminal::ColorMode::BASIC) }
-    end
-
-    context 'when terminal has no color support' do
-      let(:color_support) { Sai::Terminal::ColorMode::NO_COLOR }
-
-      it { is_expected.to eq(Sai::Terminal::ColorMode::NO_COLOR) }
+      allow(Sai::Support).to receive(:twenty_four_bit?).and_return(true)
     end
   end
 
-  describe '.ansi' do
-    subject(:ansi) { described_class.ansi }
-
-    it { is_expected.to eq(Sai::Terminal::ColorMode::ANSI) }
-  end
-
-  describe '.ansi_auto' do
-    subject(:ansi_auto) { described_class.ansi_auto }
-
+  shared_context 'when only 8-bit color is supported' do
     before do
-      allow(Sai::Terminal::Capabilities).to receive(:detect_color_support).and_return(color_support)
+      allow(Sai::Support).to receive_messages(twenty_four_bit?: false, eight_bit?: true)
     end
+  end
 
-    context 'when terminal supports true color' do
-      let(:color_support) { Sai::Terminal::ColorMode::TRUE_COLOR }
-
-      it { is_expected.to eq(Sai::Terminal::ColorMode::ANSI) }
+  shared_context 'when only 4-bit color is supported' do
+    before do
+      allow(Sai::Support).to receive_messages(twenty_four_bit?: false, eight_bit?: false, four_bit?: true)
     end
+  end
 
-    context 'when terminal supports 8-bit color' do
-      let(:color_support) { Sai::Terminal::ColorMode::ADVANCED }
-
-      it { is_expected.to eq(Sai::Terminal::ColorMode::ANSI) }
+  shared_context 'when only 3-bit color is supported' do
+    before do
+      allow(Sai::Support).to receive_messages(
+        twenty_four_bit?: false,
+        eight_bit?: false,
+        four_bit?: false,
+        three_bit?: true
+      )
     end
+  end
 
-    context 'when terminal supports 4-bit color' do
-      let(:color_support) { Sai::Terminal::ColorMode::ANSI }
-
-      it { is_expected.to eq(Sai::Terminal::ColorMode::ANSI) }
-    end
-
-    context 'when terminal only supports 3-bit color' do
-      let(:color_support) { Sai::Terminal::ColorMode::BASIC }
-
-      it { is_expected.to eq(Sai::Terminal::ColorMode::BASIC) }
-    end
-
-    context 'when terminal has no color support' do
-      let(:color_support) { Sai::Terminal::ColorMode::NO_COLOR }
-
-      it { is_expected.to eq(Sai::Terminal::ColorMode::NO_COLOR) }
+  shared_context 'when color is not supported' do
+    before do
+      allow(Sai::Support).to receive_messages(
+        twenty_four_bit?: false,
+        eight_bit?: false,
+        four_bit?: false,
+        three_bit?: false,
+        color?: false
+      )
     end
   end
 
   describe '.auto' do
     subject(:auto) { described_class.auto }
 
-    before do
-      allow(Sai::Terminal::Capabilities).to receive(:detect_color_support).and_return(color_support)
+    context 'when 24-bit color is supported' do
+      include_context 'when 24-bit color is supported'
+
+      it { is_expected.to eq(described_class::TWENTY_FOUR_BIT) }
     end
 
-    context 'when terminal supports true color' do
-      let(:color_support) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    context 'when only 8-bit color is supported' do
+      include_context 'when only 8-bit color is supported'
 
-      it { is_expected.to eq(Sai::Terminal::ColorMode::TRUE_COLOR) }
+      it { is_expected.to eq(described_class::EIGHT_BIT) }
     end
 
-    context 'when terminal supports 8-bit color' do
-      let(:color_support) { Sai::Terminal::ColorMode::ADVANCED }
+    context 'when only 4-bit color is supported' do
+      include_context 'when only 4-bit color is supported'
 
-      it { is_expected.to eq(Sai::Terminal::ColorMode::ADVANCED) }
+      it { is_expected.to eq(described_class::FOUR_BIT) }
     end
 
-    context 'when terminal supports 4-bit color' do
-      let(:color_support) { Sai::Terminal::ColorMode::ANSI }
+    context 'when only 3-bit color is supported' do
+      include_context 'when only 3-bit color is supported'
 
-      it { is_expected.to eq(Sai::Terminal::ColorMode::ANSI) }
+      it { is_expected.to eq(described_class::THREE_BIT) }
     end
 
-    context 'when terminal supports 3-bit color' do
-      let(:color_support) { Sai::Terminal::ColorMode::BASIC }
+    context 'when color is not supported' do
+      include_context 'when color is not supported'
 
-      it { is_expected.to eq(Sai::Terminal::ColorMode::BASIC) }
-    end
-
-    context 'when terminal has no color support' do
-      let(:color_support) { Sai::Terminal::ColorMode::NO_COLOR }
-
-      it { is_expected.to eq(Sai::Terminal::ColorMode::NO_COLOR) }
+      it { is_expected.to eq(described_class::NO_COLOR) }
     end
   end
 
-  describe '.basic' do
-    subject(:basic) { described_class.basic }
+  describe '.eight_bit' do
+    subject(:eight_bit) { described_class.eight_bit }
 
-    it { is_expected.to eq(Sai::Terminal::ColorMode::BASIC) }
+    it { is_expected.to eq(described_class::EIGHT_BIT) }
   end
 
-  describe '.basic_auto' do
-    subject(:basic_auto) { described_class.basic_auto }
+  describe '.eight_bit_auto' do
+    subject(:eight_bit_auto) { described_class.eight_bit_auto }
 
-    before do
-      allow(Sai::Terminal::Capabilities).to receive(:detect_color_support).and_return(color_support)
+    context 'when 24-bit color is supported' do
+      include_context 'when 24-bit color is supported'
+
+      it { is_expected.to eq(described_class::EIGHT_BIT) }
     end
 
-    context 'when terminal supports true color' do
-      let(:color_support) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    context 'when only 8-bit color is supported' do
+      include_context 'when only 8-bit color is supported'
 
-      it { is_expected.to eq(Sai::Terminal::ColorMode::BASIC) }
+      it { is_expected.to eq(described_class::EIGHT_BIT) }
     end
 
-    context 'when terminal supports 8-bit color' do
-      let(:color_support) { Sai::Terminal::ColorMode::ADVANCED }
+    context 'when only 4-bit color is supported' do
+      include_context 'when only 4-bit color is supported'
 
-      it { is_expected.to eq(Sai::Terminal::ColorMode::BASIC) }
+      it { is_expected.to eq(described_class::FOUR_BIT) }
     end
 
-    context 'when terminal supports 4-bit color' do
-      let(:color_support) { Sai::Terminal::ColorMode::ANSI }
+    context 'when only 3-bit color is supported' do
+      include_context 'when only 3-bit color is supported'
 
-      it { is_expected.to eq(Sai::Terminal::ColorMode::BASIC) }
+      it { is_expected.to eq(described_class::THREE_BIT) }
     end
 
-    context 'when terminal supports 3-bit color' do
-      let(:color_support) { Sai::Terminal::ColorMode::BASIC }
+    context 'when color is not supported' do
+      include_context 'when color is not supported'
 
-      it { is_expected.to eq(Sai::Terminal::ColorMode::BASIC) }
+      it { is_expected.to eq(described_class::NO_COLOR) }
+    end
+  end
+
+  describe '.four_bit' do
+    subject(:four_bit) { described_class.four_bit }
+
+    it { is_expected.to eq(described_class::FOUR_BIT) }
+  end
+
+  describe '.four_bit_auto' do
+    subject(:four_bit_auto) { described_class.four_bit_auto }
+
+    context 'when 24-bit color is supported' do
+      include_context 'when 24-bit color is supported'
+
+      it { is_expected.to eq(described_class::FOUR_BIT) }
     end
 
-    context 'when terminal has no color support' do
-      let(:color_support) { Sai::Terminal::ColorMode::NO_COLOR }
+    context 'when only 8-bit color is supported' do
+      include_context 'when only 8-bit color is supported'
 
-      it { is_expected.to eq(Sai::Terminal::ColorMode::NO_COLOR) }
+      it { is_expected.to eq(described_class::FOUR_BIT) }
+    end
+
+    context 'when only 4-bit color is supported' do
+      include_context 'when only 4-bit color is supported'
+
+      it { is_expected.to eq(described_class::FOUR_BIT) }
+    end
+
+    context 'when only 3-bit color is supported' do
+      include_context 'when only 3-bit color is supported'
+
+      it { is_expected.to eq(described_class::THREE_BIT) }
+    end
+
+    context 'when color is not supported' do
+      include_context 'when color is not supported'
+
+      it { is_expected.to eq(described_class::NO_COLOR) }
     end
   end
 
   describe '.no_color' do
     subject(:no_color) { described_class.no_color }
 
-    it { is_expected.to eq(Sai::Terminal::ColorMode::NO_COLOR) }
+    it { is_expected.to eq(described_class::NO_COLOR) }
   end
 
-  describe '.true_color' do
-    subject(:true_color) { described_class.true_color }
+  describe '.three_bit' do
+    subject(:three_bit) { described_class.three_bit }
 
-    it { is_expected.to eq(Sai::Terminal::ColorMode::TRUE_COLOR) }
+    it { is_expected.to eq(described_class::THREE_BIT) }
+  end
+
+  describe '.three_bit_auto' do
+    subject(:three_bit_auto) { described_class.three_bit_auto }
+
+    context 'when 24-bit color is supported' do
+      include_context 'when 24-bit color is supported'
+
+      it { is_expected.to eq(described_class::THREE_BIT) }
+    end
+
+    context 'when only 8-bit color is supported' do
+      include_context 'when only 8-bit color is supported'
+
+      it { is_expected.to eq(described_class::THREE_BIT) }
+    end
+
+    context 'when only 4-bit color is supported' do
+      include_context 'when only 4-bit color is supported'
+
+      it { is_expected.to eq(described_class::THREE_BIT) }
+    end
+
+    context 'when only 3-bit color is supported' do
+      include_context 'when only 3-bit color is supported'
+
+      it { is_expected.to eq(described_class::THREE_BIT) }
+    end
+
+    context 'when color is not supported' do
+      include_context 'when color is not supported'
+
+      it { is_expected.to eq(described_class::NO_COLOR) }
+    end
+  end
+
+  describe '.twenty_four_bit' do
+    subject(:twenty_four_bit) { described_class.twenty_four_bit }
+
+    it { is_expected.to eq(described_class::TWENTY_FOUR_BIT) }
   end
 end

@@ -553,11 +553,12 @@ RSpec.describe Sai::Decorator do
     let(:decorator) { described_class.new(mode: Sai.mode.auto) }
 
     before do
-      allow(Sai::Terminal::Capabilities).to receive(:detect_color_support).and_return(terminal_support)
+      Sai::ModeSelector.instance_variable_set(:@supported_color_mode, nil)
+      allow(Sai::ModeSelector).to receive(:supported_color_mode).and_return(terminal_support)
     end
 
     context 'when terminal supports true color' do
-      let(:terminal_support) { Sai::Terminal::ColorMode::TRUE_COLOR }
+      let(:terminal_support) { Sai::ModeSelector::TWENTY_FOUR_BIT }
 
       it 'is expected to use true color codes' do
         expect(decorated_text).to eq("\e[38;2;205;0;0mtest\e[0m")
@@ -565,7 +566,7 @@ RSpec.describe Sai::Decorator do
     end
 
     context 'when terminal supports 8-bit color' do
-      let(:terminal_support) { Sai::Terminal::ColorMode::ADVANCED }
+      let(:terminal_support) { Sai::ModeSelector::EIGHT_BIT }
 
       it 'is expected to use 8-bit color codes' do
         expect(decorated_text).to eq("\e[38;5;160mtest\e[0m")
@@ -573,7 +574,7 @@ RSpec.describe Sai::Decorator do
     end
 
     context 'when terminal supports 4-bit color' do
-      let(:terminal_support) { Sai::Terminal::ColorMode::ANSI }
+      let(:terminal_support) { Sai::ModeSelector::FOUR_BIT }
 
       it 'is expected to use 4-bit color codes' do
         expect(decorated_text).to eq("\e[31mtest\e[0m")
@@ -581,7 +582,7 @@ RSpec.describe Sai::Decorator do
     end
 
     context 'when terminal supports only basic color' do
-      let(:terminal_support) { Sai::Terminal::ColorMode::BASIC }
+      let(:terminal_support) { Sai::ModeSelector::THREE_BIT }
 
       it 'is expected to use basic color codes' do
         expect(decorated_text).to eq("\e[31mtest\e[0m")
@@ -589,7 +590,7 @@ RSpec.describe Sai::Decorator do
     end
 
     context 'when terminal has no color support' do
-      let(:terminal_support) { Sai::Terminal::ColorMode::NO_COLOR }
+      let(:terminal_support) { Sai::ModeSelector::NO_COLOR }
 
       it 'is expected to return unmodified text' do
         expect(decorated_text).to eq('test')
