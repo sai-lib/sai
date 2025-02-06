@@ -6,7 +6,7 @@ RSpec.describe Sai::Decorator do
   describe '.new' do
     subject(:decorator) { described_class.new(mode: mode) }
 
-    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:mode) { Sai::ModeSelector::TWENTY_FOUR_BIT }
 
     it 'is expected to initialize with empty styles' do
       expect(decorator.instance_variable_get(:@styles)).to eq([])
@@ -29,7 +29,7 @@ RSpec.describe Sai::Decorator do
     subject(:darken_background) { decorator.darken_background(amount) }
 
     let(:decorator) { described_class.new(mode: mode).on_rgb(0, 0, 238) }
-    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:mode) { Sai::ModeSelector::TWENTY_FOUR_BIT }
     let(:amount) { 0.5 }
 
     it { is_expected.to be_an_instance_of(described_class) }
@@ -72,7 +72,7 @@ RSpec.describe Sai::Decorator do
     subject(:darken_text) { decorator.darken_text(amount) }
 
     let(:decorator) { described_class.new(mode: mode).rgb(205, 0, 0) }
-    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:mode) { Sai::ModeSelector::TWENTY_FOUR_BIT }
     let(:amount) { 0.5 }
 
     it { is_expected.to be_an_instance_of(described_class) }
@@ -115,7 +115,7 @@ RSpec.describe Sai::Decorator do
     subject(:decorated_text) { decorator.decorate(text) }
 
     let(:decorator) { described_class.new(mode: mode) }
-    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:mode) { Sai::ModeSelector::TWENTY_FOUR_BIT }
     let(:text) { 'Hello, world!' }
 
     context 'when no styles or colors are applied' do
@@ -160,7 +160,7 @@ RSpec.describe Sai::Decorator do
   describe '#gradient' do
     subject(:gradient_decorator) { decorator.gradient(start_rgb, end_rgb, steps) }
 
-    let(:decorator) { described_class.new(mode: Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:decorator) { described_class.new(mode: Sai::ModeSelector::TWENTY_FOUR_BIT) }
     let(:start_rgb) { [205, 0, 0] }
     let(:end_rgb) { [0, 0, 238] }
     let(:steps) { 3 }
@@ -199,7 +199,7 @@ RSpec.describe Sai::Decorator do
     subject(:hex_decorator) { decorator.hex(code) }
 
     let(:decorator) { described_class.new(mode: mode) }
-    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:mode) { Sai::ModeSelector::TWENTY_FOUR_BIT }
 
     context 'when given a valid hex code' do
       let(:code) { '#EB4133' }
@@ -234,7 +234,7 @@ RSpec.describe Sai::Decorator do
     subject(:lighten_background) { decorator.lighten_background(amount) }
 
     let(:decorator) { described_class.new(mode: mode).on_rgb(205, 0, 0) }
-    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:mode) { Sai::ModeSelector::TWENTY_FOUR_BIT }
     let(:amount) { 0.5 }
 
     it { is_expected.to be_an_instance_of(described_class) }
@@ -277,7 +277,7 @@ RSpec.describe Sai::Decorator do
     subject(:lighten_text) { decorator.lighten_text(amount) }
 
     let(:decorator) { described_class.new(mode: mode).rgb(0, 0, 238) }
-    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:mode) { Sai::ModeSelector::TWENTY_FOUR_BIT }
     let(:amount) { 0.5 }
 
     it { is_expected.to be_an_instance_of(described_class) }
@@ -319,7 +319,7 @@ RSpec.describe Sai::Decorator do
   describe '#on_gradient' do
     subject(:on_gradient_decorator) { decorator.on_gradient(start_rgb, end_rgb, steps) }
 
-    let(:decorator) { described_class.new(mode: Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:decorator) { described_class.new(mode: Sai::ModeSelector::TWENTY_FOUR_BIT) }
     let(:start_rgb) { [205, 0, 0] }
     let(:end_rgb) { [0, 0, 238] }
     let(:steps) { 3 }
@@ -358,7 +358,7 @@ RSpec.describe Sai::Decorator do
     subject(:on_hex_decorator) { decorator.on_hex(code) }
 
     let(:decorator) { described_class.new(mode: mode) }
-    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:mode) { Sai::ModeSelector::TWENTY_FOUR_BIT }
 
     context 'when given a valid hex code' do
       let(:code) { '#EB4133' }
@@ -393,7 +393,7 @@ RSpec.describe Sai::Decorator do
     subject(:rgb_decorator) { decorator.rgb(red, green, blue) }
 
     let(:decorator) { described_class.new(mode: mode) }
-    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:mode) { Sai::ModeSelector::TWENTY_FOUR_BIT }
     let(:red) { 235 }
     let(:green) { 65 }
     let(:blue) { 51 }
@@ -428,7 +428,7 @@ RSpec.describe Sai::Decorator do
   describe '#on_rainbow' do
     subject(:on_rainbow_decorator) { decorator.on_rainbow(steps) }
 
-    let(:decorator) { described_class.new(mode: Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:decorator) { described_class.new(mode: Sai::ModeSelector::TWENTY_FOUR_BIT) }
     let(:steps) { 6 }
     let(:text) { 'RAINBOW' }
 
@@ -465,7 +465,7 @@ RSpec.describe Sai::Decorator do
     subject(:on_rgb_decorator) { decorator.on_rgb(red, green, blue) }
 
     let(:decorator) { described_class.new(mode: mode) }
-    let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+    let(:mode) { Sai::ModeSelector::TWENTY_FOUR_BIT }
     let(:red) { 235 }
     let(:green) { 65 }
     let(:blue) { 51 }
@@ -500,7 +500,7 @@ RSpec.describe Sai::Decorator do
   describe '#rainbow' do
     subject(:rainbow_decorator) { decorator.rainbow(steps) }
 
-    let(:decorator) { described_class.new(mode: Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:decorator) { described_class.new(mode: Sai::ModeSelector::TWENTY_FOUR_BIT) }
     let(:steps) { 6 }
     let(:text) { 'RAINBOW' }
 
@@ -553,11 +553,12 @@ RSpec.describe Sai::Decorator do
     let(:decorator) { described_class.new(mode: Sai.mode.auto) }
 
     before do
-      allow(Sai::Terminal::Capabilities).to receive(:detect_color_support).and_return(terminal_support)
+      Sai::ModeSelector.instance_variable_set(:@supported_color_mode, nil)
+      allow(Sai::ModeSelector).to receive(:supported_color_mode).and_return(terminal_support)
     end
 
     context 'when terminal supports true color' do
-      let(:terminal_support) { Sai::Terminal::ColorMode::TRUE_COLOR }
+      let(:terminal_support) { Sai::ModeSelector::TWENTY_FOUR_BIT }
 
       it 'is expected to use true color codes' do
         expect(decorated_text).to eq("\e[38;2;205;0;0mtest\e[0m")
@@ -565,7 +566,7 @@ RSpec.describe Sai::Decorator do
     end
 
     context 'when terminal supports 8-bit color' do
-      let(:terminal_support) { Sai::Terminal::ColorMode::ADVANCED }
+      let(:terminal_support) { Sai::ModeSelector::EIGHT_BIT }
 
       it 'is expected to use 8-bit color codes' do
         expect(decorated_text).to eq("\e[38;5;160mtest\e[0m")
@@ -573,7 +574,7 @@ RSpec.describe Sai::Decorator do
     end
 
     context 'when terminal supports 4-bit color' do
-      let(:terminal_support) { Sai::Terminal::ColorMode::ANSI }
+      let(:terminal_support) { Sai::ModeSelector::FOUR_BIT }
 
       it 'is expected to use 4-bit color codes' do
         expect(decorated_text).to eq("\e[31mtest\e[0m")
@@ -581,7 +582,7 @@ RSpec.describe Sai::Decorator do
     end
 
     context 'when terminal supports only basic color' do
-      let(:terminal_support) { Sai::Terminal::ColorMode::BASIC }
+      let(:terminal_support) { Sai::ModeSelector::THREE_BIT }
 
       it 'is expected to use basic color codes' do
         expect(decorated_text).to eq("\e[31mtest\e[0m")
@@ -589,7 +590,7 @@ RSpec.describe Sai::Decorator do
     end
 
     context 'when terminal has no color support' do
-      let(:terminal_support) { Sai::Terminal::ColorMode::NO_COLOR }
+      let(:terminal_support) { Sai::ModeSelector::NO_COLOR }
 
       it 'is expected to return unmodified text' do
         expect(decorated_text).to eq('test')
@@ -602,7 +603,7 @@ RSpec.describe Sai::Decorator do
 
     let(:color_name) { :test_color }
     let(:color_value) { [255, 0, 0] }
-    let(:decorator) { described_class.new(mode: Sai::Terminal::ColorMode::TRUE_COLOR) }
+    let(:decorator) { described_class.new(mode: Sai::ModeSelector::TWENTY_FOUR_BIT) }
     let(:text) { 'test' }
 
     after do

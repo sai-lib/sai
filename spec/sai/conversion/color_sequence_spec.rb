@@ -9,7 +9,7 @@ RSpec.describe Sai::Conversion::ColorSequence do
     let(:style_type) { :foreground }
 
     context 'when in true color mode' do
-      let(:mode) { Sai::Terminal::ColorMode::TRUE_COLOR }
+      let(:mode) { Sai::ModeSelector::TWENTY_FOUR_BIT }
 
       context 'when given RGB array' do
         let(:color) { [255, 128, 0] }
@@ -48,7 +48,7 @@ RSpec.describe Sai::Conversion::ColorSequence do
     end
 
     context 'when in 8-bit color mode' do
-      let(:mode) { Sai::Terminal::ColorMode::ADVANCED }
+      let(:mode) { Sai::ModeSelector::EIGHT_BIT }
 
       context 'when given grayscale color' do
         let(:color) { [128, 128, 128] }
@@ -76,7 +76,7 @@ RSpec.describe Sai::Conversion::ColorSequence do
     end
 
     context 'when in ANSI color mode' do
-      let(:mode) { Sai::Terminal::ColorMode::ANSI }
+      let(:mode) { Sai::ModeSelector::FOUR_BIT }
 
       context 'when given RGB color' do
         let(:color) { [255, 128, 128] }
@@ -104,7 +104,7 @@ RSpec.describe Sai::Conversion::ColorSequence do
     end
 
     context 'when in basic color mode' do
-      let(:mode) { Sai::Terminal::ColorMode::BASIC }
+      let(:mode) { Sai::ModeSelector::THREE_BIT }
 
       context 'when given RGB color' do
         let(:color) { [255, 0, 0] }
@@ -133,7 +133,7 @@ RSpec.describe Sai::Conversion::ColorSequence do
     end
 
     context 'when given invalid style type', rbs: :skip do
-      let(:mode) { Sai::Terminal::ColorMode::BASIC }
+      let(:mode) { Sai::ModeSelector::THREE_BIT }
       let(:color) { [255, 0, 0] }
       let(:style_type) { :invalid }
 
@@ -141,7 +141,7 @@ RSpec.describe Sai::Conversion::ColorSequence do
     end
 
     context 'when given invalid color format', rbs: :skip do
-      let(:mode) { Sai::Terminal::ColorMode::BASIC }
+      let(:mode) { Sai::ModeSelector::THREE_BIT }
       let(:color) { 123 }
 
       it { expect { resolve }.to raise_error(ArgumentError, 'Invalid color format: 123') }

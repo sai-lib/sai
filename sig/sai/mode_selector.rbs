@@ -8,154 +8,55 @@ module Sai
   #
   # @api public
   module ModeSelector
-    # Set the color mode to 256 color (8-bit) mode
+    # No color
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.2.0
+    # @since unreleased
     #
-    # @api public
-    #
-    # @example
-    #   Sai.mode.advanced  #=> 3
-    #   Sai.mode.eight_bit #=> 3
-    #   Sai.mode.color256  #=> 3
+    # @api private
     #
     # @return [Integer] the color mode
-    # @rbs () -> Integer
-    def self.advanced: () -> Integer
+    NO_COLOR: Integer
 
-    alias self.color256 self.advanced
-
-    alias self.colour256 self.advanced
-
-    alias self.eight_bit self.advanced
-
-    alias self.two_hundred_fifty_six_color self.advanced
-
-    alias self.two_hundred_fifty_six_colour self.advanced
-
-    # Automatically set the color mode to advanced (8-bit) or lower
-    #
-    # Sets the terminal color mode to advanced (8-bit) support, which provides 256 colors
-    # The mode will automatically downgrade to 4-bit, 3-bit, or NO_COLOR if the terminal doesn't support
-    # advanced colors
+    # 8 colors (3-bit)
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.2.0
+    # @since unreleased
     #
-    # @api public
-    #
-    # @example With color support enabled
-    #   ENV['COLORTERM']        #=> nil
-    #   ENV['TERM']             #=> 'xterm-256color'
-    #   Sai.mode.advanced_auto  #=> 3
-    #   Sai.mode.eight_bit_auto #=> 3
-    #   Sai.mode.color256_auto  #=> 3
-    #
-    # @example With only 4-bit color support
-    #   ENV['NO_COLOR']         #=> nil
-    #   ENV['TERM']             #=> 'ansi'
-    #   Sai.mode.advanced_auto  #=> 2
-    #   Sai.mode.eight_bit_auto #=> 2
-    #   Sai.mode.color256_auto  #=> 2
-    #
-    # @example With only 3-bit color support
-    #   ENV['TERM']             #=> nil
-    #   ENV['NO_COLOR']         #=> nil
-    #   Sai.mode.advanced_auto  #=> 1
-    #   Sai.mode.eight_bit_auto #=> 1
-    #   Sai.mode.color256_auto  #=> 1
-    #
-    # @example With color support disabled
-    #   ENV['NO_COLOR']         #=> 'true'
-    #   Sai.mode.advanced_auto  #=> 0
-    #   Sai.mode.eight_bit_auto #=> 0
-    #   Sai.mode.color256_auto  #=> 0
+    # @api private
     #
     # @return [Integer] the color mode
-    # @rbs () -> Integer
-    def self.advanced_auto: () -> Integer
+    THREE_BIT: Integer
 
-    alias self.color256_auto self.advanced_auto
-
-    alias self.colour256_auto self.advanced_auto
-
-    alias self.eight_bit_auto self.advanced_auto
-
-    alias self.two_hundred_fifty_six_color_auto self.advanced_auto
-
-    alias self.two_hundred_fifty_six_colour_auto self.advanced_auto
-
-    # Set the color mode to 16 color (4-bit) mode
+    # 16 colors (4-bit)
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.2.0
+    # @since unreleased
     #
-    # @api public
-    #
-    # @example
-    #   Sai.mode.ansi     #=> 2
-    #   Sai.mode.color16 #=> 2
-    #   Sai.mode.four_bit #=> 2
+    # @api private
     #
     # @return [Integer] the color mode
-    # @rbs () -> Integer
-    def self.ansi: () -> Integer
+    FOUR_BIT: Integer
 
-    alias self.color16 self.ansi
-
-    alias self.colour16 self.ansi
-
-    alias self.four_bit self.ansi
-
-    alias self.sixteen_color self.ansi
-
-    alias self.sixteen_colour self.ansi
-
-    # Automatically set the color mode to ansi (4-bit) or lower
-    #
-    # Sets the terminal color mode to ansi (4-bit) support, which provides 8 colors
-    # The mode will automatically downgrade to 3-bit or NO_COLOR if the terminal doesn't support
-    # ansi colors
+    # 256 colors (8-bit)
     #
     # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.2.0
+    # @since unreleased
     #
-    # @api public
-    #
-    # @example With color support enabled
-    #   ENV['NO_COLOR'] #=> nil
-    #   ENV['TERM'] #=> 'ansi'
-    #   Sai.mode.ansi_auto     #=> 2
-    #   Sai.mode.four_bit_auto #=> 2
-    #   Sai.mode.color16_auto  #=> 2
-    #
-    # @example With only 3-bit color support
-    #   ENV['TERM']             #=> nil
-    #   ENV['NO_COLOR']         #=> nil
-    #   Sai.mode.ansi_auto      #=> 1
-    #   Sai.mode.four_bit_auto  #=> 1
-    #   Sai.mode.color16_auto   #=> 1
-    #
-    # @example With color support disabled
-    #   ENV['NO_COLOR']         #=> 'true'
-    #   Sai.mode.ansi_auto      #=> 0
-    #   Sai.mode.four_bit_auto  #=> 0
-    #   Sai.mode.color16_auto   #=> 0
+    # @api private
     #
     # @return [Integer] the color mode
-    # @rbs () -> Integer
-    def self.ansi_auto: () -> Integer
+    EIGHT_BIT: Integer
 
-    alias self.color16_auto self.ansi_auto
-
-    alias self.colour16_auto self.ansi_auto
-
-    alias self.four_bit_auto self.ansi_auto
-
-    alias self.sixteen_color_auto self.ansi_auto
-
-    alias self.sixteen_colour_auto self.ansi_auto
+    # True color (24-bit)
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @return [Integer] the color mode
+    TWENTY_FOUR_BIT: Integer
 
     # Set the color mode based on the current Terminal's capabilities
     #
@@ -203,7 +104,178 @@ module Sai
 
     alias self.sixteen_million_colour_auto self.auto
 
-    alias self.twenty_for_bit_auto self.auto
+    alias self.twenty_four_bit_auto self.auto
+
+    # Set the color mode to 256 color (8-bit) mode
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.2.0
+    #
+    # @api public
+    #
+    # @example
+    #   Sai.mode.advanced  #=> 3
+    #   Sai.mode.eight_bit #=> 3
+    #   Sai.mode.color256  #=> 3
+    #
+    # @return [Integer] the color mode
+    # @rbs () -> Integer
+    def self.eight_bit: () -> Integer
+
+    alias self.advanced self.eight_bit
+
+    alias self.color256 self.eight_bit
+
+    alias self.colour256 self.eight_bit
+
+    alias self.two_hundred_fifty_six_color self.eight_bit
+
+    alias self.two_hundred_fifty_six_colour self.eight_bit
+
+    # Automatically set the color mode to advanced (8-bit) or lower
+    #
+    # Sets the terminal color mode to advanced (8-bit) support, which provides 256 colors
+    # The mode will automatically downgrade to 4-bit, 3-bit, or NO_COLOR if the terminal doesn't support
+    # advanced colors
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.2.0
+    #
+    # @api public
+    #
+    # @example With color support enabled
+    #   ENV['COLORTERM']        #=> nil
+    #   ENV['TERM']             #=> 'xterm-256color'
+    #   Sai.mode.advanced_auto  #=> 3
+    #   Sai.mode.eight_bit_auto #=> 3
+    #   Sai.mode.color256_auto  #=> 3
+    #
+    # @example With only 4-bit color support
+    #   ENV['NO_COLOR']         #=> nil
+    #   ENV['TERM']             #=> 'ansi'
+    #   Sai.mode.advanced_auto  #=> 2
+    #   Sai.mode.eight_bit_auto #=> 2
+    #   Sai.mode.color256_auto  #=> 2
+    #
+    # @example With only 3-bit color support
+    #   ENV['TERM']             #=> nil
+    #   ENV['NO_COLOR']         #=> nil
+    #   Sai.mode.advanced_auto  #=> 1
+    #   Sai.mode.eight_bit_auto #=> 1
+    #   Sai.mode.color256_auto  #=> 1
+    #
+    # @example With color support disabled
+    #   ENV['NO_COLOR']         #=> 'true'
+    #   Sai.mode.advanced_auto  #=> 0
+    #   Sai.mode.eight_bit_auto #=> 0
+    #   Sai.mode.color256_auto  #=> 0
+    #
+    # @return [Integer] the color mode
+    # @rbs () -> Integer
+    def self.eight_bit_auto: () -> Integer
+
+    alias self.advanced_auto self.eight_bit_auto
+
+    alias self.color256_auto self.eight_bit_auto
+
+    alias self.colour256_auto self.eight_bit_auto
+
+    alias self.two_hundred_fifty_six_color_auto self.eight_bit_auto
+
+    alias self.two_hundred_fifty_six_colour_auto self.eight_bit_auto
+
+    # Set the color mode to 16 color (4-bit) mode
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.2.0
+    #
+    # @api public
+    #
+    # @example
+    #   Sai.mode.ansi     #=> 2
+    #   Sai.mode.color16 #=> 2
+    #   Sai.mode.four_bit #=> 2
+    #
+    # @return [Integer] the color mode
+    # @rbs () -> Integer
+    def self.four_bit: () -> Integer
+
+    alias self.ansi self.four_bit
+
+    alias self.color16 self.four_bit
+
+    alias self.colour16 self.four_bit
+
+    alias self.sixteen_color self.four_bit
+
+    alias self.sixteen_colour self.four_bit
+
+    # Automatically set the color mode to ansi (4-bit) or lower
+    #
+    # Sets the terminal color mode to ansi (4-bit) support, which provides 8 colors
+    # The mode will automatically downgrade to 3-bit or NO_COLOR if the terminal doesn't support
+    # ansi colors
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.2.0
+    #
+    # @api public
+    #
+    # @example With color support enabled
+    #   ENV['NO_COLOR'] #=> nil
+    #   ENV['TERM'] #=> 'ansi'
+    #   Sai.mode.ansi_auto     #=> 2
+    #   Sai.mode.four_bit_auto #=> 2
+    #   Sai.mode.color16_auto  #=> 2
+    #
+    # @example With only 3-bit color support
+    #   ENV['TERM']             #=> nil
+    #   ENV['NO_COLOR']         #=> nil
+    #   Sai.mode.ansi_auto      #=> 1
+    #   Sai.mode.four_bit_auto  #=> 1
+    #   Sai.mode.color16_auto   #=> 1
+    #
+    # @example With color support disabled
+    #   ENV['NO_COLOR']         #=> 'true'
+    #   Sai.mode.ansi_auto      #=> 0
+    #   Sai.mode.four_bit_auto  #=> 0
+    #   Sai.mode.color16_auto   #=> 0
+    #
+    # @return [Integer] the color mode
+    # @rbs () -> Integer
+    def self.four_bit_auto: () -> Integer
+
+    alias self.ansi_auto self.four_bit_auto
+
+    alias self.color16_auto self.four_bit_auto
+
+    alias self.colour16_auto self.four_bit_auto
+
+    alias self.sixteen_color_auto self.four_bit_auto
+
+    alias self.sixteen_colour_auto self.four_bit_auto
+
+    # Set the color mode to disable all color and styling
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since 0.2.0
+    #
+    # @api public
+    #
+    # @example
+    #   Sai.mode.no_color #=> 0
+    #   Sai.mode.disabled #=> 0
+    #   Sai.mode.mono     #=> 0
+    #
+    # @return [Integer] the color mode
+    # @rbs () -> Integer
+    def self.no_color: () -> Integer
+
+    alias self.disabled self.no_color
+
+    alias self.mono self.no_color
+
+    alias self.no_colour self.no_color
 
     # Set the color mode to 8 color (3-bit) mode
     #
@@ -219,17 +291,17 @@ module Sai
     #
     # @return [Integer] the 4 color (3-bit) mode
     # @rbs () -> Integer
-    def self.basic: () -> Integer
+    def self.three_bit: () -> Integer
 
-    alias self.color8 self.basic
+    alias self.basic self.three_bit
 
-    alias self.colour8 self.basic
+    alias self.color8 self.three_bit
 
-    alias self.eight_color self.basic
+    alias self.colour8 self.three_bit
 
-    alias self.eight_colour self.basic
+    alias self.eight_color self.three_bit
 
-    alias self.three_bit self.basic
+    alias self.eight_colour self.three_bit
 
     # Automatically set the color mode to basic (3-bit) or lower
     #
@@ -256,39 +328,17 @@ module Sai
     #
     # @return [Integer] the color mode
     # @rbs () -> Integer
-    def self.basic_auto: () -> Integer
+    def self.three_bit_auto: () -> Integer
 
-    alias self.color8_auto self.basic_auto
+    alias self.basic_auto self.three_bit_auto
 
-    alias self.colour8_auto self.basic_auto
+    alias self.color8_auto self.three_bit_auto
 
-    alias self.eight_color_auto self.basic_auto
+    alias self.colour8_auto self.three_bit_auto
 
-    alias self.eight_colour_auto self.basic_auto
+    alias self.eight_color_auto self.three_bit_auto
 
-    alias self.three_bit_auto self.basic_auto
-
-    # Set the color mode to disable all color and styling
-    #
-    # @author {https://aaronmallen.me Aaron Allen}
-    # @since 0.2.0
-    #
-    # @api public
-    #
-    # @example
-    #   Sai.mode.no_color #=> 0
-    #   Sai.mode.disabled #=> 0
-    #   Sai.mode.mono     #=> 0
-    #
-    # @return [Integer] the color mode
-    # @rbs () -> Integer
-    def self.no_color: () -> Integer
-
-    alias self.disabled self.no_color
-
-    alias self.mono self.no_color
-
-    alias self.no_colour self.no_color
+    alias self.eight_colour_auto self.three_bit_auto
 
     # Set the color mode to 16-million color (24-bit) mode
     #
@@ -304,16 +354,27 @@ module Sai
     #
     # @return [Integer] the color mode
     # @rbs () -> Integer
-    def self.true_color: () -> Integer
+    def self.twenty_four_bit: () -> Integer
 
-    alias self.color16m self.true_color
+    alias self.color16m self.twenty_four_bit
 
-    alias self.colour16m self.true_color
+    alias self.colour16m self.twenty_four_bit
 
-    alias self.sixteen_million_color self.true_color
+    alias self.sixteen_million_color self.twenty_four_bit
 
-    alias self.sixteen_million_colour self.true_color
+    alias self.sixteen_million_colour self.twenty_four_bit
 
-    alias self.twenty_for_bit self.true_color
+    alias self.true_color self.twenty_four_bit
+
+    # Determine the highest color mode supported by the terminal
+    #
+    # @author {https://aaronmallen.me Aaron Allen}
+    # @since unreleased
+    #
+    # @api private
+    #
+    # @return [Integer] the highest supported color mode
+    # @rbs () -> Integer
+    private def self.supported_color_mode: () -> Integer
   end
 end

@@ -10,7 +10,7 @@ require 'sai/decorator/hex_colors'
 require 'sai/decorator/named_colors'
 require 'sai/decorator/named_styles'
 require 'sai/decorator/rgb_colors'
-require 'sai/terminal/color_mode'
+require 'sai/mode_selector'
 
 module Sai
   # A decorator for applying ANSI styles and colors to text
@@ -115,7 +115,7 @@ module Sai
     # @return [Boolean] `true` if text should be decorated, `false` otherwise
     # @rbs () -> bool
     def should_decorate?
-      return false if @mode == Terminal::ColorMode::NO_COLOR
+      return false if @mode == ModeSelector::NO_COLOR
       return false if @foreground.nil? && @background.nil? && @styles.empty? &&
                       @foreground_sequence.nil? && @background_sequence.nil?
 

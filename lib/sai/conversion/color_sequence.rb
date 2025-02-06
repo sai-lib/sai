@@ -2,7 +2,7 @@
 
 require 'sai/ansi'
 require 'sai/conversion/rgb'
-require 'sai/terminal/color_mode'
+require 'sai/mode_selector'
 
 module Sai
   module Conversion
@@ -35,10 +35,10 @@ module Sai
           style_type = validate_style_type(style_type) #: style_type
 
           case mode
-          when Terminal::ColorMode::TRUE_COLOR then true_color(rgb, style_type)
-          when Terminal::ColorMode::ADVANCED then advanced(rgb, style_type)
-          when Terminal::ColorMode::ANSI then ansi(rgb, style_type)
-          when Terminal::ColorMode::BASIC then basic(rgb, style_type)
+          when ModeSelector::TWENTY_FOUR_BIT then true_color(rgb, style_type)
+          when ModeSelector::EIGHT_BIT then advanced(rgb, style_type)
+          when ModeSelector::FOUR_BIT then ansi(rgb, style_type)
+          when ModeSelector::THREE_BIT then basic(rgb, style_type)
           else
             ''
           end
